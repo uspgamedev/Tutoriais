@@ -1,0 +1,457 @@
+\documentclass[12pt,onecolumn]{article}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\begin{document}
+
+\title{Aula Exercicio de Introducao ao \LaTeX}
+\author{Thiago de Gouveia Nunes}
+\maketitle
+
+\section{Introducao ao \LaTeX}
+    LaTeX é um programa de formatação de texto e uma expansão do programa
+    TeX, criado por Donald Knuth. Mas o que é um programa de
+    formatação de texto?
+
+    A maioria dos processadores de texto cuidam de 4 estágios para preparar
+    um texto:
+    1. O texto entra no computador.
+    2. O texto é formatado em linhas, paragráfos e páginas.
+    3. O texto é impresso na tela.
+    4. O texto é impresso.
+
+    O LaTeX e o TeX se preocupao somente com o segundo estagio
+    do processamento. Para formatar um texto usando o LaTeX, escrevemos
+    o texto em um editor de texto e compilamos. A partir daí, o \LaTeX
+    cuidára da formatação do texto.
+
+\subsection{Tipos de Documentos}
+    Os tipos mais comuns de documentos que o \LaTeX aceita são
+    \begin{enumerate}
+    \item Book
+    \item Article
+    \item Letter
+    \item Report
+    \end{enumerate}
+
+\subsection{Fontes}
+
+    Podemos mudar o tamanho e o estilo das fontes usando os seguintes
+    comandos:
+    \begin{itemize}
+    \item \verb#\textrm{...}# \textrm{roman}
+    \item \verb#\textsf{...}# \textsf{sans serif}
+    \item \verb#\texttt{...}# \texttt{typewriter}
+    \item \verb#\textmd{...}# \textmd{medium}
+    \item \verb#\textbf{...}# \textbf{boldface}
+    \item \verb#\textup{...}# \textup{upright}
+    \item \verb#\textit{...}# \textit{italic}
+    \item \verb#\textsl{...}# \textsl{slanted}
+    \item \verb#\textsc{...}# \textsc{small cap}
+    \end{itemize}
+
+\section{Primeiro arquivo}
+    Agora, vamos criar um arquivo simples no \LaTeX. Copie as
+    linhas abaixo no seu editor de texto favorito e rode o
+    compilador de \LaTeX para gerar o pdf.
+
+    \begin{verbatim}
+    \documentclass{article}
+    \begin{document}
+    Hello, world!
+    \end{document}
+    \end{verbatim}
+
+    Os comandos nesse arquivo são:
+    \begin{itemize}
+    \item \verb#\documentclass{..}# é o comando
+        que define qual o tipo de documento estamos escrevendo.
+    \item \verb#\begin{...} e \end{...}# são os
+        comandos que definem quando algo começa e termina. No nosso caso,
+        eles definem quando o documento começa e termina.
+    \end{itemize}
+
+    Agora, vamos acrescentar novos elementos nesse documento,
+    e transformá-lo em um documento real.
+
+\section{Estrutura de um Documento}
+\subsection{Modificações para o Documento}
+    Vamos estudar mais detalhadamente a estrutura de um documento no \LaTeX.
+    Já vimos acima o \verb#\documentclass[...]{...}#. Ele aceita várias
+    opções para modificar o documento. Essas opções, que colocadas
+    entre os colchetes, são:
+    \begin{itemize}
+    \item \verb#\documentclass[10pt]{article}# Assim, o tamanho das letras do
+        documento é setado para 10pt.
+    \item \verb#documentclass[letterpaper]{article}# Esse comando faz com que
+        o \LaTeX molde o seu texto para ser impresso em papel de carta.
+    \item \verb#documentclass[twocolumn]{article}# Esse aqui faz com que o
+        texto seja dividido em duas colunas ( como nos dicionários ).
+    \item \verb#documentclass[oneside]{article}# Quando o \LaTeX montar o
+        texto para impressão, ele vai configurá-lo para imprimir somente
+        nas páginas ímpares.
+    \end{itemize}
+
+\subsection{Modificações para Páginas}
+    Podemos modificar todas as páginas de um documento, ou alguma página
+    especifica, usando os comandos \verb#\pagestyle{...}# e o
+    \verb#\thispagestyle{...}#, respectivamente.
+
+    Os argumentos que eles aceitam são:
+    \begin{itemize}
+    \item plain - O cabeçálho fica vazio e o rodapé contêm o número da
+    página. Esse é o padrao para o article,
+    \item empty - Tanto o cabeçálho como o rodapé ficam vazios,
+    \item headings - O rodapé fica vazio e o cabeçálho contem o número da
+            página e o nome do capítulo ou seção ou subseção,
+    \item myheadings - Igual ao headings, mas o que é mostrando no lugar do
+            nome do capítulo pode ser configurado.
+    \end{itemize}
+
+    Para modificar o modo com que as páginas são númeradas, usamos o
+    comando \verb#\pagenumbering{...}#. Seus argumentos são:
+    \begin{itemize}
+    \item arabic - Numerais arábicos
+    \item roman - Numerais romanos em minúsculo,
+    \item Roman - Numerais romanos em maiúsculo,
+    \item alph - Numerais por extenso em inglês em minúsculo,
+    \item Alph - Numerais por extenso em inglês em maiúsculo.
+    \end{itemize}
+
+\subsection{Atualizar Exemplo}
+    Esse são só alguns exemplos do que podemos mudar nos nossos documentos.
+    Agora, vamos ver como fica o nosso documento de teste se colocarmos
+    as opções \emph{twocolumn} e \emph{a4paper} para o documento, opções
+    \emph{headings} e \emph{Roman} para as páginas. E vamos
+    incrementá-lo com dois paragráfos de texto.
+
+    Para criar novos paragráfos no \LaTeX só precisamos deixar uma linha
+    totalmente em branco entre os dois paragráfos.
+
+\subsection{Título}
+    O \LaTeX também cuida da criação do título do documento. Para isso
+    usamos os seguintes comandos
+    \begin{verbatim}
+    \title{título}
+    \author{autor}
+    \date{data}
+    \maketitle
+    \end{verbatim}
+
+    Note que é preciso usar o comando \verb#\maketitle# ou o título não
+    será gerado.
+
+\subsection{Resumo}
+    Nos documentos do tipo article e report podemos gerar um resumo usando
+    os comandos \verb#\begin{abstract}# e \verb#\end{abstract}#.
+    Tudo o que estiver escrito dentro dessas tags vai virar o resumo do
+    documento, e será posicionado entre o título e o resto do documento.
+
+\subsection{Divisão do Documento}
+    Quando escrevemos textos grandes ( como esse ), é bom criar seções e
+    subções para deixar tudo organizado e para facilitar a busca de infor
+    mações. O \LaTeX tem uma hierarquia de comandos para criar divisões:
+    \begin{enumerate}
+	\item \verb#\chapter#
+    \item \verb#\section#
+    \item \verb#\subsection#
+    \item \verb#\subsubsection#
+    \item \verb#\paragraph#
+    \item \verb#\subparagraph#
+    \end{enumerate}
+    
+    O \verb#\chapter# só pode ser usado no tipo book.
+
+\subsection{Nova Atualização}
+    Agora vamos colocar mais informação no nosso documento. Vamos criar duas
+    seções com duas subseções cada. Vamos criar um resumo também.
+
+\section{Fórmulas Matemáticas}
+    O \TeX foi criado pelo Donal Kunth principalmente para processar
+    fórmulas matemáticas. Para colocar expressões matemáticas em linha
+    usamos o símbolo \$. Para produzir
+        
+        A raiz de $ax+b=0$ é $-b/a$.
+        
+    Devemos escrever no arquivo-fonte
+        
+        \verb#A raíz de $ax+b=0$ é $-b/a$.#
+    
+    Esse método é antigo, e é usado pelo \TeX. O \LaTeX
+    usa dois padrões para reconhecer expressões
+
+    \begin{verbatim}
+    \(...\) 
+    ou
+    \begin{math} ... \end{math}
+    \end{verbatim}
+    
+    Então, para gerar a mesma linha acima, podemos usarmos
+    
+    \verb#A raiz de \(ax+b=0\) é \(-b/a\).#
+    
+\subsection{Expoentes e Índices}
+    Vamos usar exemplos para entender como criar expoentes e índices.
+    Para produzir expoentes, usamos o símbolo \verb#^#.
+    
+    Para produzir esse trecho
+    $$
+    x^n + y^n = z^n
+    $$
+    devemos escrever \verb#x^n + y^n = z^n#.
+    
+    O trecho, 
+    $$
+    (x^m)^n = x^{mn}
+    $$
+    é gerado pelo código \verb#(x^m)^n = x^{mn}#.
+    
+    Podemos fazer potência de potências, por exemplo,
+    $$
+    2^{2^n}+1
+    $$
+    é produzido pela linha \verb#2^{2^n}+1#.
+    
+    Agora vamos falar de índices. Para gerar um índice, usamos
+    o símbolo \verb#_#.
+    
+    O trecho abaixo
+    
+    A sequência $(x_n)$ definida por
+    $$
+    x_1=1,\quad x_2=1,\quad x_n=x_{n-1}+x_{n-2}\;\;(n>2)
+    $$
+    é chamada de Fibonacci.
+    
+    é feita digitando a linha   
+\begin{verbatim}
+A sequência $(x_n)$ definida por
+$$ 
+x_1=1,\quad x_2=1,\quad x_n=x_{n-1}+x_{n-2}\;\;(n>2)
+$$
+é chamada de Fibonacci.
+\end{verbatim}.
+
+    Podemos juntar potências e índices usando a seguinte linha de código
+    \verb#$(x_nˆ2)$#, com resultado, $(x_n^2)$.
+    
+\subsection{Raizes}
+    Raizes são geradas usando o comando \verb#$\sqrt$#. \verb#$\sqrt{2}$# 
+    gera $\sqrt{2}$. Para fazer raizes com raizes não quadradas usamos,
+    por exemplo, \verb#$\sqrt[4]{2}$#, que gera $\sqrt[4]{2}$. Podemos
+    colocar qualquer fórmula matemática dentro das chaves que o \LaTeX
+    vai arrumar a raiz para englobar a fórmula.
+
+\section{Mais Matemática}
+    Essa seção vai explorar o pacote \emph{amsmath}. Para incluilo no
+    \LaTeX, é só colocar a linha \verb#\usepackage{amsmath}# abaixo da
+    linha \verb#\documentclass{...}# no início do arquivo fonte.
+   % \subsection{Equações}
+   % Como visto acima, podemos usar o símbolo \$ para gerar texto
+   % matemático, mas o \emph{amsmath} tem o comando \verb#\begin{equation*}#
+   % e \verb#\end{equation)}#, que fazem com que tudo que seja escrito entre
+   % eles vire linguagem matemática.
+   % Vamos ver um exemplo
+    
+\subsection{Matriz}
+    Podemos fazer um sistema de equações usando o comando \verb#\begin{align*}#.
+    Um exemplo:
+        
+        \begin{align*}
+            x+y-z=1\\
+            x-y+z=1\\
+            x+y+z=1
+        \end{align*}
+        
+    É gerado usando
+    
+    \begin{verbatim}
+    \begin{align*}
+        x+y-z=1\\
+        x-y+z=1\\
+        x+y+z=1
+    \end{align*}
+    \end{verbatim}
+
+    Para escrever esse sistema como matriz, usamos esses comandos:
+    
+    \begin{verbatim}
+        \begin{equation*}
+            \begin{pmatrix}
+                1 & 1 & -1\\
+                1 & -1 & 1\\
+                1 & 1 & 1
+             \end{pmatrix}
+             \begin{pmatrix}
+                x\\
+                y\\
+                z
+             \end{pmatrix}
+             =
+             \begin{pmatrix}
+                1\\
+                1\\
+                1
+             \end{pmatrix}.
+        \end{equation*}
+    \end{verbatim}
+    
+    Com esse resultado:
+    
+    \begin{equation*}
+        \begin{pmatrix}
+            1 & 1 & -1\\
+            1 & -1 & 1\\
+            1 & 1 & 1
+         \end{pmatrix}
+         \begin{pmatrix}
+            x\\
+            y\\
+            z
+         \end{pmatrix}
+         =
+         \begin{pmatrix}
+            1\\
+            1\\
+            1
+         \end{pmatrix}.
+    \end{equation*}
+    
+    Podemos mudar as matrizes de parênteses para chaves usando o
+    \verb#\begin{bmatrix}# e para barras usando o \verb#\begin{vmatrix}#.
+    
+    Exemplos:
+    
+    \begin{equation*}
+        \begin{bmatrix}
+            1 & 1 & -1\\
+            1 & -1 & 1\\
+            1 & 1 & 1
+        \end{bmatrix}
+    \end{equation*}
+     
+    \begin{equation*}
+        \begin{vmatrix}
+            1 & 1 & -1\\
+            1 & -1 & 1\\
+            1 & 1 & 1
+        \end{vmatrix}
+    \end{equation*}
+    
+    Para gerar uma matriz genérica $n \times m$, usamos:
+    
+    \begin{verbatim}
+        \begin{equation*}
+            \begin{bmatrix}
+                a_{11} & a_{12} & \dots & a_{1n} \\
+                a_{21} & a_{22} & \dots & a_{2n} \\
+                \hdotsfor{4}\\
+                a_{m1} & a_{m2} & \dots & a_{mn}
+            \end{bmatrix}
+        \end{equation*}
+    \end{verbatim}
+        
+    Gerando,
+    
+    \begin{equation*}
+        \begin{bmatrix}
+            a_{11} & a_{12} & \dots & a_{1n} \\
+            a_{21} & a_{22} & \dots & a_{2n} \\
+            \hdotsfor{4}\\
+            a_{m1} & a_{m2} & \dots & a_{mn}
+        \end{bmatrix}
+    \end{equation*}
+
+\subsection{Frações}
+    O \LaTeX usa o comando \verb#\frac{X}{Y}# para inserir uma fração no texto.
+    O exemplo seria
+    
+    \begin{equation*}
+        \frac{x}{y}
+    \end{equation*}
+    
+    X e Y podem ser qualquer expressão matemática. Por exemplo:
+    
+    \begin{equation*}
+        \frac{x^2 + x + 1}{\frac{y^2}{2}}
+    \end{equation*}
+    
+    Se usarmos o comando \verb#\tfrac{X}{Y}#, geramos uma fração menos que 
+    a normal.
+    
+    \begin{equation*}
+        \frac{1}{2}
+        >
+        \tfrac{1}{2}
+    \end{equation*}
+    
+\section{Expressões de Exemplo}
+
+    \begin{equation*}
+        \int_a^b f(x)dx   
+    \end{equation*}
+    
+    \begin{verbatim}
+        \begin{equation*}
+            \int_a^b f(x)dx   
+        \end{equation*}
+    \end{verbatim}
+    
+    \begin{equation*}
+        \sum_{i = 1}^3 i   
+    \end{equation*}
+    
+    \begin{verbatim}
+        \begin{equation*}
+            \sum_{i = 1}^3 i   
+        \end{equation*}
+    \end{verbatim}
+    
+    \begin{equation*}
+        \binom{n}{1}
+    \end{equation*}
+    
+    \begin{verbatim}
+        \begin{equation*}
+            \binom{n}{1}
+        \end{equation*}
+    \end{verbatim}
+    
+\section{Comandos Customizados}
+    O \LaTeX permite a programação de novos comandos. Isso é muito útil,
+    quando, por exemplo, estamos escrevendo uma aula de algebra linear e
+    a precisamos sempre escrever isso \verb#(x_1,x_2,\dots,x_n)# para
+    gerar $(x_1,x_2,\dots,x_n)$, podemos usar o comando
+    
+    \verb#\newcommand{\nome_do_comando}{comando_a_ser_executado}#
+    
+    No exemplo anterior, podemos fazer o comando
+    
+    \verb#\newcommand{\vect}{(x_1,x_2,\dots,x_n)}#
+    
+    e agora, toda vez que digitarmos \verb#$\vect$# obteremos
+    \newcommand{\vect}[3]{(#1_#2,#1_2,\dots,#1_#3)}
+    $\vect{x}{1}{n}$
+    
+    Podemos, ainda, modificar o novo comando para aceitar parâmetros, assim
+    não estamos limitados a vetores com coordenadas $X$. O comando ainda é
+    o mesmo, mas precisamos modificá-lo um pouco.
+    
+    \begin{verbatim}
+        \newcommand{\vect}[N]{(#1_1,#1_2,\dots,#1_#i)}
+        Sendo N o número de argumentos que esse comando vai recerber
+        e #i recebe o i-ésimo argumento.
+    \end{verbatim}
+    
+    Logo, o comando    
+    
+    \begin{verbatim}
+        \newcommand{\vect}[3]{(#1_#2,#1_2,\dots,#1_#3)}
+    \end{verbatim}
+    
+    faz um vetor de variável \#1, da posição \#2 até \#3.
+    Exemplo,
+    
+    $\vect{x}{1}{n}$
+    
+\end{document}

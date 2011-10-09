@@ -1,0 +1,28 @@
+\documentclass[11pt,a4paper]{report}
+
+\usepackage[pdftex]{graphicx}
+
+\begin{document}
+
+%
+% here's one box before the table
+%
+\fbox{some text here} \\
+
+%
+% here's a box inside of a table. 
+% it works when using pdflatex to generate a pdf.
+%
+\begin{tabular}{|l|c|r|}
+ \hline
+\fbox{some stuff in a box} & blah & blah\\
+ \hline
+text & text & text\\
+ \hline
+text & text & text\\
+ \hline
+ C++ & A difficult language. & R4C3\\ 
+ \hline
+\end{tabular}
+
+\end{document
