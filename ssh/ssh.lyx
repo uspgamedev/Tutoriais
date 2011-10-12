@@ -64,7 +64,7 @@
 \begin_body
 
 \begin_layout Title
-Aula Exercicio de Introducao ao SSH
+Aula Exercício de Introdução ao SSH
 \end_layout
 
 \begin_layout Author
@@ -172,6 +172,46 @@ Embora essa aula foque apenas na versão Windows do PuTTY, é importante notar
  
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename putty.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Tela inicial do PuTTY
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
 \begin_layout Subsection
 OpenSSH Client
 \end_layout
@@ -184,11 +224,44 @@ Métodos de Autenticação
 Senha 
 \end_layout
 
-\begin_layout Subsection
-Chave privada 
+\begin_layout Standard
+Método simples e direto ao ponto.
+ Aparece um prompt onde você digita a senha, que é então transmitida de
+ maneira segura para o servidor, que então verifica como bem quiser se a
+ senha é válida.
 \end_layout
 
 \begin_layout Subsection
+Chaves
+\end_layout
+
+\begin_layout Standard
+Uma chave SSH é composta de duas partes: a pública e a privada.
+ Cada parte tem um uso diferente, e juntas são utilizadas para autenticação.
+\end_layout
+
+\begin_layout Standard
+Coloca-se a chave pública em todos os servidores no qual você deseja autenticar-
+se, enquanto a chave privada permanece ao lado de seu cliente.
+\end_layout
+
+\begin_layout Standard
+Ao especificar os parametros para abrir uma conexão SSH, você também pode
+ especificar o caminho para a chave privada que deseja usar.
+ O cliente tentará autenticar-se com o servidor usando essa chave.
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template RasterImage
+	filename privatekey.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
 Agente SSH
 \end_layout
 

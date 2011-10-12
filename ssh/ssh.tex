@@ -5,10 +5,21 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{graphicx}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% A simple dot to overcome graphicx limitations
+\newcommand{\lyxdot}{.}
+
+
+\makeatother
+
 \usepackage{babel}
 \begin{document}
 
-\title{Aula Exercicio de Introducao ao SSH}
+\title{Aula Exercício de Introdução ao SSH}
 
 
 \author{Henrique Gemignani Passos Lima}
@@ -65,6 +76,17 @@ Embora essa aula foque apenas na versão Windows do PuTTY, é importante
 notar que esse é um programa é multi-plataforma e possui versões para
 Linux. 
 
+\begin{figure}
+\includegraphics{putty}
+
+\caption{Tela inicial do PuTTY}
+
+
+\end{figure}
+
+
+
+
 
 \subsection{OpenSSH Client}
 
@@ -74,11 +96,27 @@ Linux.
 
 \subsection{Senha }
 
+Método simples e direto ao ponto. Aparece um prompt onde você digita
+a senha, que é então transmitida de maneira segura para o servidor,
+que então verifica como bem quiser se a senha é válida.
 
-\subsection{Chave privada }
+
+\subsection{Chaves}
+
+Uma chave SSH é composta de duas partes: a pública e a privada. Cada
+parte tem um uso diferente, e juntas são utilizadas para autenticação.
+
+Coloca-se a chave pública em todos os servidores no qual você deseja
+autenticar-se, enquanto a chave privada permanece ao lado de seu cliente.
+
+Ao especificar os parametros para abrir uma conexão SSH, você também
+pode especificar o caminho para a chave privada que deseja usar. O
+cliente tentará autenticar-se com o servidor usando essa chave.
+
+\includegraphics{privatekey}
 
 
-\subsection{Agente SSH}
+\subsubsection{Agente SSH}
 
 
 \section{Túneis }
