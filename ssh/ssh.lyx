@@ -86,7 +86,7 @@ O que é SSH, e principais características
 
 \begin_layout Standard
 SSH, Secure Shell, é um protocolo de rede que permite uma conexão segura
- entre dois computadores através de uma rede insegura.
+ entre dois computadores através de um ambiente de rede inseguro.
 \end_layout
 
 \begin_layout Standard
@@ -102,11 +102,42 @@ man-in-the-middle
 \begin_inset Quotes erd
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
-Conexão criptografada: senhas não passam em branco pela rede
+Conexão criptografada: senhas não passam em branco pela rede.
+\end_layout
+
+\begin_layout Section
+Segurança
+\end_layout
+
+\begin_layout Standard
+O cliente possui uma tabela de servidores conhecidos, onde cada item é uma
+ tupla (hostname, endereço IP, chave pública).
+\end_layout
+
+\begin_layout Standard
+Ao conectar com um servidor, este envia a sua chave pública, e seu cliente
+ verifica a integridade desta chave.
+ Se a resposta for negativa, a conexão é terminada.
+ Senão, de agora em diante, todo dado transportado pela conexão é criptografado
+ usando a chave pública do servidor.
+\end_layout
+
+\begin_layout Standard
+Isto garante, desde de que o cliente conheça propriamente a chave pública
+ de fato do servidor, que ataques do estilo 
+\begin_inset Quotes eld
+\end_inset
+
+man-in-the-middle
+\begin_inset Quotes erd
+\end_inset
+
+ são impossibilitados, pois apenas o servidor têm conhecimento de sua chave
+ privada.
 \end_layout
 
 \begin_layout Section
@@ -118,8 +149,26 @@ Shell Remoto
 \end_layout
 
 \begin_layout Standard
-O principal uso do SSH é fazer um login numa máquina remota.
- TODO: completar
+O principal e mais simples uso do SSH é fazer um login com um shell numa
+ máquina remota.
+ Com isso podemos trabalhar em uma máquina remota através de uma rede.
+\end_layout
+
+\begin_layout Standard
+Exemplos:
+\end_layout
+
+\begin_layout Enumerate
+Conecte-se com a sua máquina do trabalho e continua a editar documentos
+ usando o 
+\family typewriter
+vim
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+Conectar-se em um servidor HTTP e configurar o acesso de um novo usuário.
 \end_layout
 
 \begin_layout Subsection
@@ -134,11 +183,32 @@ scp
 \family default
  ou 
 \family typewriter
-sftp.
+sftp
+\family default
+.
 \end_layout
 
 \begin_layout Standard
-TODO: completar
+O 
+\family typewriter
+scp
+\family default
+ é simplesmente um 
+\family typewriter
+cp
+\family default
+ encapsulado dentro de uma conexao SSH.
+ Permite copiar arquivos locais para máquinas remotas, e de máquinas remotas
+ para local.
+\end_layout
+
+\begin_layout Standard
+O 
+\family typewriter
+sftp
+\family default
+ é um protocolo desenvolvido com o objetivo de providenciar uma alternativa
+ segura ao FTP.
 \end_layout
 
 \begin_layout Subsection
@@ -152,6 +222,10 @@ Túneis permitem encapsular protocolos inseguros na conexão segura do SSH,
 
 \begin_layout Standard
 Também é possível utilizar túneis para burlar problemas devido ao NAT.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -174,9 +248,10 @@ Embora essa aula foque apenas na versão Windows do PuTTY, é importante notar
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -208,12 +283,57 @@ Tela inicial do PuTTY
 
 \end_layout
 
-\begin_layout Standard
-
-\end_layout
-
 \begin_layout Subsection
 OpenSSH Client
+\end_layout
+
+\begin_layout Standard
+É um programa de terminal.
+ Aqui vai uma lista de exemplos de comandos:
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+ssh destino
+\family default
+ ; Conecta-se em destino, usando o mesmo usuário que o seu atual.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+ssh jose@destino
+\family default
+ ; Conecta-se em destino, com o usuário 
+\begin_inset Quotes eld
+\end_inset
+
+jose
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+ssh jose@destino -p 22000
+\family default
+ ; Conecta-se em destino na port 22000.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+ssh -i chaveprivada destino
+\family default
+ ; Conecta-se em destino, usando 
+\family typewriter
+chaveprivada
+\family default
+ como chave privada de autenticação.
 \end_layout
 
 \begin_layout Section
@@ -225,10 +345,8 @@ Senha
 \end_layout
 
 \begin_layout Standard
-Método simples e direto ao ponto.
- Aparece um prompt onde você digita a senha, que é então transmitida de
- maneira segura para o servidor, que então verifica como bem quiser se a
- senha é válida.
+Aparece um prompt onde você digita a senha, que é então transmitida de maneira
+ segura para o servidor, e que então verifica se a senha é válida.
 \end_layout
 
 \begin_layout Subsection
@@ -236,25 +354,66 @@ Chaves
 \end_layout
 
 \begin_layout Standard
-Uma chave SSH é composta de duas partes: a pública e a privada.
- Cada parte tem um uso diferente, e juntas são utilizadas para autenticação.
+Chaves são utilizadas para autenticação automática, e são compostas de duas
+ partes: a pública e a privada.
 \end_layout
 
 \begin_layout Standard
-Coloca-se a chave pública em todos os servidores no qual você deseja autenticar-
-se, enquanto a chave privada permanece ao lado de seu cliente.
+A chave pública, você deve disponibilizar para os servidores no qual você
+ deseja autenticar-se, enquanto que a chave privada deve permanecer apenas
+ no seu cliente.
 \end_layout
 
 \begin_layout Standard
-Ao especificar os parametros para abrir uma conexão SSH, você também pode
- especificar o caminho para a chave privada que deseja usar.
- O cliente tentará autenticar-se com o servidor usando essa chave.
+Uma dos parâmetros para abrir uma conexão SSH é o caminho para o arquivo
+ de chave privada que deseja usar.
+ O cliente SSH tentará autenticar-se com o servidor usando essa chave, e
+ obterá sucesso apenas se o servidor conhecer (e aceitar) a chave pública
+ associada.
 \end_layout
 
 \begin_layout Standard
+Como a chave em si é utilizada para a autenticação, deve-se tomar cuidado
+ para impedir acesso indevido à chave.
+ Uma opção de segurança é criptografar a chave com uma 
+\begin_inset Quotes eld
+\end_inset
+
+passphrase
+\begin_inset Quotes erd
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement b
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
 \begin_inset External
 	template RasterImage
 	filename privatekey.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Uma chave, composta pela parte privada e pública.
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -265,24 +424,227 @@ Ao especificar os parametros para abrir uma conexão SSH, você também pode
 Agente SSH
 \end_layout
 
+\begin_layout Standard
+Um agente é um programa que possui uma lista de chaves privadas, onde o
+ seu cliente, no mesmo computador, tem acesso.
+ Como o agente guarda as chaves de forma descriptografada, não é necessário
+ digitar senhas ao usar o agente.
+\end_layout
+
+\begin_layout Standard
+É possível encaminhar o agente atravéz da conexão, permitindo utilizar as
+ mesmas chaves privadas no destino.
+ 
+\end_layout
+
+\begin_layout Standard
+Cuidado: use agentes SSH, em particular se encaminhar-los pela conexão,
+ apenas se você confia nos administradores da máquina destino, pois estes
+ podem acessar os arquivos temporários que o agente usa!
+\end_layout
+
 \begin_layout Section
 Túneis 
 \end_layout
 
-\begin_layout Subsection
-Local <-> Remoto 
+\begin_layout Standard
+Túneis são formas de encapsular e encaminhar conexões arbitrárias com a
+ conexão SSH.
 \end_layout
 
 \begin_layout Subsection
-Remoto <-> Local 
+Local -> Remoto
+\end_layout
+
+\begin_layout Standard
+O seu cliente SSH local escuta conexões numa port TCP de sua máquina, encaminha
+ atravéz da conexão segura até um servidor SSH, e este encaminha seus pacotes
+ para o destino, em uma port especificada.
+\end_layout
+
+\begin_layout Standard
+Note que a port local, o destino e a port no destino são especificadas por
+ você ao abrir a conexão SSH.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O exemplo abaixo pode ser replicado no OpenSSH Client com o comando 
+\family typewriter
+ssh user@servidor -L8080:destino:80
+\family default
+ .
+ Note que o destino pode ser fisicamente o próprio servidor SSH.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset External
+	template RasterImage
+	filename tunel-local-destino.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Exemplo de Túnel Local -> Remoto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
-Dinâmico 
+Remoto -> Local
+\end_layout
+
+\begin_layout Standard
+Você configura o servidor SSH para que ele escute uma port específica, e
+ abre um túnel de conexão segura com ele.
+ O servidor então envia todo pacote na port escutada para o destino local
+ em uma port específica, através do seu cliente.
+\end_layout
+
+\begin_layout Standard
+Neste caso também, as ports e o destino são especificados por você, na criação
+ do túnel.
+\end_layout
+
+\begin_layout Standard
+Em geral, o destino é a própria máquina onde o cliente está sendo executado.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+O exemplo abaixo pode ser replicado no OpenSSH Client com o comando 
+\family typewriter
+ssh user@servidor -R8080:destino:80
+\family default
+ .
+ Note que o destino pode ser fisicamente o próprio servidor SSH.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset External
+	template RasterImage
+	filename tunel-destino-local.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Exemplo de Túnel Remoto -> Local
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Dinâmico
+\end_layout
+
+\begin_layout Standard
+O seu cliente SSH escuta em uma port especificada em modo de entrada, podendo
+ também restringí-la a um endereço específico.
+ Sempre que uma conexão é aberta com essa port, o protocolo da conexão é
+ usado para decidir o destino final, e a conexão é encaminhada para o servidor
+ pela conexão segura, que então encaminha por sua vez para o destino.
+\end_layout
+
+\begin_layout Standard
+Isto é útil para criar proxies de maneira segura.
 \end_layout
 
 \begin_layout Subsection
 X
+\end_layout
+
+\begin_layout Standard
+O X é um sistema de gerenciador de janelas, que faz distinção entre servidor
+ (que encapsula o gerenciador de janelas) e clientes (programas que utilizam
+ e exibem janelas).
+ Isso permite que façamos túneis de gerenciadores de janelas.
+\end_layout
+
+\begin_layout Standard
+Um túnel X do SSH, é um tipo de 
+\begin_inset Quotes eld
+\end_inset
+
+display virtual
+\begin_inset Quotes erd
+\end_inset
+
+ na sua sessão remota, que corresponde a um servidor X na sua máquina local.
+\end_layout
+
+\begin_layout Standard
+Ao abrir um programa remotamente que usa janelas (um cliente X), ele tentará
+ usar este 
+\begin_inset Quotes eld
+\end_inset
+
+display virtual
+\begin_inset Quotes erd
+\end_inset
+
+, que é túnel de conexão segura para seu gerenciador de janelas local.
+\end_layout
+
+\begin_layout Standard
+Assim, você pode usar programas remotamente, ainda aproveitando da interface
+ gráfica de janelas :P
 \end_layout
 
 \end_body
