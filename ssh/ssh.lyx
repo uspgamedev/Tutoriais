@@ -373,20 +373,6 @@ Uma dos parâmetros para abrir uma conexão SSH é o caminho para o arquivo
 \end_layout
 
 \begin_layout Standard
-Como a chave em si é utilizada para a autenticação, deve-se tomar cuidado
- para impedir acesso indevido à chave.
- Uma opção de segurança é criptografar a chave com uma 
-\begin_inset Quotes eld
-\end_inset
-
-passphrase
-\begin_inset Quotes erd
-\end_inset
-
- .
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 placement b
 wide false
@@ -418,6 +404,20 @@ Uma chave, composta pela parte privada e pública.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Como a chave em si é utilizada para a autenticação, deve-se tomar cuidado
+ para impedir acesso indevido à chave.
+ Uma opção de segurança é criptografar a chave com uma 
+\begin_inset Quotes eld
+\end_inset
+
+passphrase
+\begin_inset Quotes erd
+\end_inset
+
+ .
 \end_layout
 
 \begin_layout Subsubsection
@@ -512,6 +512,13 @@ Exemplo de Túnel Local -> Remoto
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
 \end_inset
 
 
