@@ -1,0 +1,35 @@
+﻿Curso SSH
+
+Tópicos:
+1 - O que é SSH, e principais características
+
+2 - Utilidades para o SSH
+(login remoto, scp, fazer túneis)
+
+3 - Como usar
+ .1 - Putty
+ .2 - OpenSSH Client
+
+4 - Métodos de Autenticação
+ .1 - Senha
+ .2 - Chave privada
+ .3 - Agente SSH
+
+5 - Túneis
+ .1 - Local <-> Remoto
+ .2 - Remoto <-> Local
+ .3 - Dinâmico
+ .4 - X
+ 
+ 
+ 
+ ----
+1. O que é SSH, e principais características
+SSH, Secure Shell, é um protocolo de rede que permite uma conexão segura entre dois computadores através de uma rede insegura.
+Possui as seguintes caracteristicas:
+- Autentica o servidor, impedindo man-in-the-middle
+- Autentica o usuário de maneira confiável
+- Conexão criptografada: senhas não passam em branco pela rede
+
+2. Utilidades para o SSH
+ 
