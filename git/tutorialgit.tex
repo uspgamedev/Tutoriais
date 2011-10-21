@@ -34,7 +34,7 @@
     a muito tempo.
     
     O git usa uma mecânica de 3 estagios para controlar os arquivos na sua área de
-    trabalho. Estes estagios sao: commited, modified e staged. Commited significa
+    trabalho. Estes estagios sao: unmodified, modified e staged. Commited significa
     que o arquivo esta na sua database local. Modificado quer dizer que o arquivo
     foi modificado. Staged quer dizer que o arquivo foi selecionado para entrar no seu
     próximo commit.
@@ -83,11 +83,21 @@ começar a modificar nosso projeto. O git usa um mecânismo para controlar as
 modificações nos seus arquivos, e usa um sistema um pouco diferente dos outros
 controles de versões para mandar essas modificações para o remoto.
 
+\subsection{Iniciando um repositório local git}
+    Para iniciar um rep. local em um diretório usamos o comando
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git init#
+\end{tabbing}
+ou
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git clone <url>#
+\end{tabbing}
+
 \subsection{Arquivos no Git}
     Todo arquivo, antes de ser adicionado no seu repositório, é reconhecido no git
 como \textbf{Untracked}. Ao ser adicionado usando o comando:\\
 \begin{tabbing}
-\hspace{1cm}\=\verb#$ git add <Nome-do-Arquivo>#\\
+    \hspace{1cm}\=\verb#$ git add <Nome-do-Arquivo>#\\
 \end{tabbing}
 ele vira \textbf{Tracked} entra num ciclo de 3 fases do git.
 
@@ -104,9 +114,9 @@ um arquivo vai para \textbf{modified}. Ao ser comitado, o arquivo se torna
     ele ainda mostra algums comandos para resetar arquivos e outras dicas, falaremos
 mais sobre isso depois.
     
+Esse arquivo vai aparecer nos dois locais. Na realidade, o arquivo que aparece
     Um arquivo pode ser \textbf{staged} e \textbf{modified} ao mesmo tempo.
 Esperimente dar um git add em um arquivo, modificá-lo e dar um git status.
-Esse arquivo vai aparecer nos dois locais. Na realidade, o arquivo que aparece
 na seção \textbf{modified} é o arquivo modificado, e o arquivo que está na
 \textbf{staged} é o arquivo sem modifcação.
 
@@ -121,16 +131,73 @@ os suas respectivas cópias no local usamos o comando
     Os commits no git, ao contrário dos controles de versão ao estilo SVN,
 é local. Isso quer dizer que tudo o que é commitado não vai diretamente para
 o repositório remoto, e sim para o seu repositório local. Os arquivos na área
-\textbf{staged} serão adicionados no próximo commit.
+\textbf{staged} serão adicionados no próximo commit. Um commit contêm a célula
+do commit, as informações de quem commitou e uma mensagem sobre o commit. Para
+commitar suas mudanças, usamos o comando
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git commit#
+\end{tabbing}
+    ao executar esse comando, um editor de texto vai abrir, e a mensagem do commit
+deve ser escrita.
+    
+    O git commit aceita duas opções muito usadas
+    \begin{itemize}
+        \item \verb#$ git commit -a #, ele commita tudo que está na área \textbf{modified}
+        \item \verb#$ git commit -m "string"#, ele gera um commit com mensagem igual a string passada.
+            Lembre que a string deve ser passada entre áspas.
+    \end{itemize}
 
+\subsubsection{Como os commits são armazenados}
+    Os commits são armazenados como uma lista ligada, onde cada célula da lista
+é um arquivo de 41 bits ( um HASH para identificar cada commit de maneira única ),
+um ponteiro para um estrutura que aponta para todos os arquivos daquele commit e
+um ponteiro para o commit pai.
+
+    O commit atual é marcado por um apontador chamado HEAD, que é movido toda vez
+que fazemos um commit. Está estrutura faz com que commitar e andar nos commit seja
+muito leve, pois só mudamos o valor de um ponteiro, e para carregar os arquivo usamos
+um arquivo de 41 bits.
+
+\subsubsection{Boas práticas de commit}
+    Quando se trabalha com várias pessoas num projeto, é bom seguir algumas práticas
+pra deixar o trabalho de todos mais fácil:
+    \begin{itemize}
+        \item Teste o seu código antes de dar git push. Sempre deixe o código que 
+                está no repositório funcional.
+        \item Escreva mensagens de commit claras, pequenas e informativas. Elas devem
+                explicar o que você fez nesse commit.
+        \item Faça vários commit pequenos. Assim, você não adiciona muita informação
+                ao mesmo tempo dentro do repositório, facilitando a volta de commits. % MELHORAR ESSA PARTE @@ %
+        \item Quebre commits. Ao ínvez de adicionar todas as suas mudanças direto em um grande commit,
+                adicione-ás de uma maneira inteligente, se você modificou dois arquivos muito diferentes,
+                use um commit para cada um.
+    \end{itemize}
+
+\subsubsection{Mandando commits para o repositório remoto}
     Os seus commits só são mandados para o repositório remoto quando usamos o comando
 \begin{tabbing}
     \hspace{1cm}\=\verb#$ git push#
 \end{tabbing}
-
-    Os commits são armazenados como uma lista ligada, onde cada célula da lista
-é um arquivo de 41 bits ( um 
     
+    Esse comando vai "colar" a sua lista ligada à lista ligada de commits do repositório remoto.
+Ele vai procurar o commit em comum mais antigo entre seu rep. e o remoto e tentar dar cópiar seus
+commits para o remoto. Se o commit mais antigo não for o último do remoto, ou seja, alguem fez algum
+push antes do seu, você deve usar o comando  
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git pull#
+\end{tabbing}
+para pegar as modificações do remoto e aplicar no local, para só depois você poder dar push.
+
+\subsection{Comunicação com o remoto}
+    Como vimos, usamos os seguintes comandos para mandar/receber dados do remoto:
+    \begin{itemize}
+        \item \verb#$ git pull -> #Recebe as últimas modificações do remoto.
+        \item \verb#$ git push -> #Manda seus commits para o remoto.
+        \item \verb#$ git clone <url> -> #Clona um remoto para \verb#\<nome-do-projeto># dentro da pasta local.
+        \item \verb#$ git remote show -> #Mostra informações sobre o remoto.
+        \item \verb#$ git remote <nome-atual> <novo-nome> ->#Renomeia um remoto.
+    \end{itemize}
+
 \section{Branches}
     Branches sao facilmente criados no git. Eles sao arquivos de 41bits que apon
 tam para as mudancas feitas dentro deles. Vale lembrar que um branch criado por
