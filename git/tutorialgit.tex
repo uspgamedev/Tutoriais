@@ -85,36 +85,52 @@ controles de versões para mandar essas modificações para o remoto.
 
 \subsection{Arquivos no Git}
     Todo arquivo, antes de ser adicionado no seu repositório, é reconhecido no git
-como Untracked. Ao ser adicionado usando o comando:\\
-\verb#$ git add <Nome-do-Arquivo>#\\
-ele entra num ciclo de 3 fases do git.
- 
+como \textbf{Untracked}. Ao ser adicionado usando o comando:\\
+\begin{tabbing}
+\hspace{1cm}\=\verb#$ git add <Nome-do-Arquivo>#\\
+\end{tabbing}
+ele vira \textbf{Tracked} entra num ciclo de 3 fases do git.
+
+    Esse ciclo consiste nas fases \textbf{modified}, \textbf{staged} e 
+\textbf{unmodified}. Quando um arquivo é adicionado no git, ele entra como 
+\textbf{staged} e será adicionado ao remoto no próximo commit. Ao ser modificado,
+um arquivo vai para \textbf{modified}. Ao ser comitado, o arquivo se torna 
+\textbf{unmodified}.
     
-    Todo arquivo no git tem dois status: Tracked e Untracked. Arquivos Tracked 
-serão adicionados no próximo commit. Para verifica o status de cada arquivos 
-usamos o comando git status. O comando git commit adiciona os arquivos Tracked 
-para o seu repositório. Toda vez que um arquivo é modificado ele é marcado como 
-Untracked. Para mudar o status de um arquivo para 
-Tracked usamos o comando git add \verb#<Nome-do-Arquivo>#. O comando git diff mostra a 
-diferença entre os arquivos Untracked e os Tracked. Um arquivo pode estar Tracked
-e Untracked ao mesmo tempo se dermos git add nele, modificarmos ele, e executar
-mos o git status, ele vai mostrar o mesmo arquivo nas duas partes, a que mostra 
-os arquivos que serão commitados e os que não serão. Isso quer dizer que a versão
-não modificada do seu arquivo vai ser commitada, e não a mais nova. Para corrigir
-isso teriamos que dar git add no mesmo arquivo. Para remover um arquivo do git 
-usamos o comando git rm <Nome-do-Arquivo>. O comando \verb#git mv file_from file_to#
-move um arquivo.
-	O git commit só modifica os arquivos no seu repositorio local. Precisamos 
-usar o comando git push para mandar as modificações para o repositorio no github.
-Se a sua versão for mais nova que a do repositorio, o seu push será feito e as 
-modificações serão feitas. Se não, usamos o comando git pull para pegar a versão
-mais nova do repositorio e dar um merge com o nosso repositorio. Se houver
-algum problema com o merge, por exemplo um arquivo que você modificou foi modi
-ficado no repositorio no github, você terá que abrir o arquivo e modifica-lo
-manualmente para arrumá-lo. Depois disso, o git push poderá ser executado sem
-problema.
+    Para verificar quais arquivos estão em qual fase usamos o comando    
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git status#
+\end{tabbing}
+    ele ainda mostra algums comandos para resetar arquivos e outras dicas, falaremos
+mais sobre isso depois.
+    
+    Um arquivo pode ser \textbf{staged} e \textbf{modified} ao mesmo tempo.
+Esperimente dar um git add em um arquivo, modificá-lo e dar um git status.
+Esse arquivo vai aparecer nos dois locais. Na realidade, o arquivo que aparece
+na seção \textbf{modified} é o arquivo modificado, e o arquivo que está na
+\textbf{staged} é o arquivo sem modifcação.
 
+    Para verificar as diferenças entre os arquivos que estão modificados e
+os suas respectivas cópias no local usamos o comando
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git diff#
+\end{tabbing}
 
+    
+\subsection{Commits}
+    Os commits no git, ao contrário dos controles de versão ao estilo SVN,
+é local. Isso quer dizer que tudo o que é commitado não vai diretamente para
+o repositório remoto, e sim para o seu repositório local. Os arquivos na área
+\textbf{staged} serão adicionados no próximo commit.
+
+    Os seus commits só são mandados para o repositório remoto quando usamos o comando
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git push#
+\end{tabbing}
+
+    Os commits são armazenados como uma lista ligada, onde cada célula da lista
+é um arquivo de 41 bits ( um 
+    
 \section{Branches}
     Branches sao facilmente criados no git. Eles sao arquivos de 41bits que apon
 tam para as mudancas feitas dentro deles. Vale lembrar que um branch criado por
