@@ -95,7 +95,7 @@ ou
 
 \subsection{Arquivos no Git}
     Todo arquivo, antes de ser adicionado no seu repositório, é reconhecido no git
-como \textbf{Untracked}. Ao ser adicionado usando o comando:\\
+como \textbf{Untracked}. Ao ser adicionado usando o comando:
 \begin{tabbing}
     \hspace{1cm}\=\verb#$ git add <Nome-do-Arquivo>#\\
 \end{tabbing}
@@ -193,20 +193,81 @@ para pegar as modificações do remoto e aplicar no local, para só depois você
     \begin{itemize}
         \item \verb#$ git pull -> #Recebe as últimas modificações do remoto.
         \item \verb#$ git push -> #Manda seus commits para o remoto.
-        \item \verb#$ git clone <url> -> #Clona um remoto para \verb#\<nome-do-projeto># dentro da pasta local.
+        \item \verb#$ git clone <url> -> #Clona um remoto para dentro da pasta local.
         \item \verb#$ git remote show -> #Mostra informações sobre o remoto.
         \item \verb#$ git remote <nome-atual> <novo-nome> ->#Renomeia um remoto.
     \end{itemize}
 
 \section{Branches}
-    Branches sao facilmente criados no git. Eles sao arquivos de 41bits que apon
-tam para as mudancas feitas dentro deles. Vale lembrar que um branch criado por
-voce e local, e ele so e adicionado no repositorio local se usarmos o push desta
-maneira:
-    git push (remote) (branch)
-exemplo: git push origin teste, isso vai fazer o branch teste ser integrado
-no nosso repsitorio remoto origin.
+    Branches sao facilmente criados no git. Eles não passam de outro apontador para 
+commits, tipo o HEAD. O objetivo das branches é criar ambientes de trabalho com o
+menor contato possível com a branch master ( a princípal do projeto ) assim
+não "estragamos" o projeto com features que não estão prontas ainda. Todo trabalho
+que fazemos numa branch fica somente nela até que juntamos elas com outra branch.
 
+\subsection{Criando, deletando e usando Branches}
+    O comando para criar branches é
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git checkout -d <nome-da-branch># ou\\
+                \>\verb#$ git branch <nome-da-branch>#
+\end{tabbing}
+    A diferença é que no primeiro caso a branch é criada e o git vai pra ela. No segundo
+ela só é criada.
+
+    Para se movimentar pelas branches usamos o comando
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git checkout <nome-da-branch>#
+\end{tabbing}
+    que vai para a branch passada para ele.
+
+    Para deletar branches, você precisa sair delas e usar o comando
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git branch -d <nome-da-branch>#
+\end{tabbing}
+
+\subsubsection{Merge}
+    O merge é juntar dois arquivos, ou nesse caso, duas branches. Para juntar as
+branches, use o comando checkout para ir até a branch na qual você quer que o resultado
+fique e use o comando 
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git merge <nome-da-branch>#
+\end{tabbing}
+ele vai tentar juntar os arquivos da branch alvo com os da branch atual.
+
+
+\subsubsection{Branches remotas}
+
+Vale lembrar que um branch criado por você é local, e ele só é adicionado no repositorio 
+local se usarmos o push desta maneira:
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git push <remote> <branch>#\\
+\end{tabbing} 
+Exemplo: 
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git push origin teste#\\
+\end{tabbing} 
+isso vai fazer o branch teste ser integrado no nosso repositório remoto origin.
+
+\subsection{Algumas boas práticas de branches no git}
+    Quando criamos uma branch num projeto onde várias pessoas estão trabalhando, é
+bom seguir algumas práticas:
+\begin{itemize}
+    \item Sempre crie branches com nomes que falem sobre o que o branch é. Se
+            você está fez um branch para arrumar algo sobre e-mail, um bom nome
+            seria e-mailfix.
+    \item Criar uma branch toda vez que você for implementar algo no sistema.
+            Isso impede que o projeto seja desenvolvido direto na master.
+    \item Só de merge com qualquer outra branch quando a feature do branch 
+            estiver pronta e testada. Isso impede que pessoas usem coisas
+            da sua branch quando ela ainda não está pronta.
+\end{itemize}
+
+\subsection{Merge}
+    Para dar merge ( juntar o código ) de duas branchs, você usa o comando
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git merge <nome-da-branch>#\\
+\end{tabbing}
+que vai jogar tudo o que você tem na alvo e jogar na atual.
 \section{Resumo dos comandos no linux}
 \begin{tabbing}
 \hspace{0.5cm}  \=  \verb#$ git clone -> Copia um repositorio remoto para a atual localização.#\\
