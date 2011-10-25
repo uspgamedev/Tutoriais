@@ -26,8 +26,8 @@
     A maioria do trabalho do git é local. O git salva todas as modificações dos arquivos
     localmente, e toda vez que você baixar as atualizações do seu projeto, todo o
     histórico de modificações vem junto.
-    
     O git tem integridade. Isso quer dizer que é impossível modificar arquivos sem o
+    
     git saber que você está fazendo algo. O git usa um mecanismo chamado SHA-1 hash.
     O git quase sempre adiciona dados. Na maioria das vezes, o git só adiciona dados
     no repositório. Assim, você pode sempre resgatar arquivos que já foram deletados
@@ -43,8 +43,8 @@
 
 	O github tem um bom tutorial para instalar e iniciar o git:
 	\begin{itemize}
-    \item Windows   http://help.github.com/win-set-up-git/ ( Sem o tortoise git. Há um
-                    tutorial breve sobre o turtoise git abaixo. )
+    \item \href{Windows}{http://help.github.com/win-set-up-git/} ( Sem o tortoise git. Há um
+                    tutorial breve sobre o turtoise git abaixo. ) 
     \item Linux     http://help.github.com/linux-set-up-git/
     \item MacOS     http://help.github.com/mac-set-up-git/
     \end{itemize}
@@ -92,7 +92,7 @@ ou
 \begin{tabbing}
     \hspace{1cm}\=\verb#$ git clone <url>#
 \end{tabbing}
-
+    % TODO Explicar melhor
 \subsection{Arquivos no Git}
     Todo arquivo, antes de ser adicionado no seu repositório, é reconhecido no git
 como \textbf{Untracked}. Ao ser adicionado usando o comando:
@@ -125,7 +125,6 @@ os suas respectivas cópias no local usamos o comando
 \begin{tabbing}
     \hspace{1cm}\=\verb#$ git diff#
 \end{tabbing}
-
     
 \subsection{Commits}
     Os commits no git, ao contrário dos controles de versão ao estilo SVN,
@@ -142,8 +141,8 @@ deve ser escrita.
     
     O git commit aceita duas opções muito usadas
     \begin{itemize}
-        \item \verb#$ git commit -a #, ele commita tudo que está na área \textbf{modified}
-        \item \verb#$ git commit -m "string"#, ele gera um commit com mensagem igual a string passada.
+        \item \verb#$ git commit -a # ele commita tudo que está na área \textbf{modified}
+        \item \verb#$ git commit -m "string"# ele gera um commit com mensagem igual a string passada.
             Lembre que a string deve ser passada entre áspas.
     \end{itemize}
 
@@ -188,6 +187,12 @@ push antes do seu, você deve usar o comando
 \end{tabbing}
 para pegar as modificações do remoto e aplicar no local, para só depois você poder dar push.
 
+\subsection{Retornando a estados anteriores}
+
+\subsubsection{Voltando arquivos}
+    % TODO
+\subsubsection{Voltando para commits}
+    % TODO
 \subsection{Comunicação com o remoto}
     Como vimos, usamos os seguintes comandos para mandar/receber dados do remoto:
     \begin{itemize}
@@ -199,6 +204,11 @@ para pegar as modificações do remoto e aplicar no local, para só depois você
     \end{itemize}
 
 \section{Branches}
+
+\subsection{O que são branches}
+    % TODO
+
+\subsection{Branches no git}
     Branches sao facilmente criados no git. Eles não passam de outro apontador para 
 commits, tipo o HEAD. O objetivo das branches é criar ambientes de trabalho com o
 menor contato possível com a branch master ( a princípal do projeto ) assim
@@ -262,12 +272,6 @@ bom seguir algumas práticas:
             da sua branch quando ela ainda não está pronta.
 \end{itemize}
 
-\subsection{Merge}
-    Para dar merge ( juntar o código ) de duas branchs, você usa o comando
-\begin{tabbing}
-    \hspace{1cm}\=\verb#$ git merge <nome-da-branch>#\\
-\end{tabbing}
-que vai jogar tudo o que você tem na alvo e jogar na atual.
 \section{Resumo dos comandos no linux}
 \begin{tabbing}
 \hspace{0.5cm}  \=  \verb#$ git clone -> Copia um repositorio remoto para a atual localização.#\\
@@ -282,6 +286,10 @@ que vai jogar tudo o que você tem na alvo e jogar na atual.
                 \>  \verb#$ git branch <Nome-do-Branch> -> Cria um branch com o nome passado.#\\
                 \>  \verb#$ git checkout <Nome-do3-Branch> -> Vai para o branch com o nome passado.#\\
 \end{tabbing}
+
+\section{"Malandragens" no git}
+
+    % TODO ( git stash e git commit --amend e coisas assim )
 
 \section{Git no Windows usando o tortoise git}
     Primeiro precisamos instalar os seguintes arquivos:
