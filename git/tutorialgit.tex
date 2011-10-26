@@ -212,8 +212,22 @@ usamos o comando
                     \>( n é  a diferença do número do commit atual e o alvo ).
     \end{tabbing}
     
+    \underline{Um exemplo}:
+    \begin{tabbing}
+        \hspace{0.5cm}  \= Imagine que você quer voltar o arquivo \emph{pessoa.c} para o\\
+                        \> estado dele 3 commits atrás. Você usa o comando\\
+                        \> \verb#$ git checkout master~3 pessoa.c#.
+    \end{tabbing}
+    
 \subsubsection{Voltando para commits}
-    % TODO
+    O comando para se mover na lista ligada de commits é bem parecido com o acima
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git checkout <nome-da-branch>~n# \\
+                    \>( n é  a diferença do número do commit atual e o alvo ).
+    \end{tabbing}
+    
+    A diferença é que como não especificamos um arquivo, voltamos todo o projeto
+para o seu estado passado.
 \subsection{Comunicação com o remoto}
     Como vimos, usamos os seguintes comandos para mandar/receber dados do remoto:
     \begin{itemize}
