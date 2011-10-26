@@ -2,6 +2,7 @@
 \usepackage[brazilian]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{hyperref}
 \begin{document}
 
 \title{Aula Exercicio de Introducao ao Git}
@@ -43,10 +44,10 @@
 
 	O github tem um bom tutorial para instalar e iniciar o git:
 	\begin{itemize}
-    \item \href{Windows}{http://help.github.com/win-set-up-git/} ( Sem o tortoise git. Há um
+    \item \href{http://help.github.com/win-set-up-git/}{Windows} ( Sem o tortoise git. Há um
                     tutorial breve sobre o turtoise git abaixo. ) 
-    \item Linux     http://help.github.com/linux-set-up-git/
-    \item MacOS     http://help.github.com/mac-set-up-git/
+    \item \href{http://help.github.com/linux-set-up-git/}{Linux}
+    \item \href{http://help.github.com/mac-set-up-git/}{MacOS} 
     \end{itemize}
     
 \section{Iniciar o git}
@@ -92,7 +93,11 @@ ou
 \begin{tabbing}
     \hspace{1cm}\=\verb#$ git clone <url>#
 \end{tabbing}
-    % TODO Explicar melhor
+
+    O \verb#git init# inicia um repositório sem qualquer ligação com algum remoto,
+e o \verb#git clone# pega tudo de um remoto ( a \verb#<url># ) copia para um novo repositório
+local e linka esse local com o remoto de origem.
+
 \subsection{Arquivos no Git}
     Todo arquivo, antes de ser adicionado no seu repositório, é reconhecido no git
 como \textbf{Untracked}. Ao ser adicionado usando o comando:
@@ -188,9 +193,25 @@ push antes do seu, você deve usar o comando
 para pegar as modificações do remoto e aplicar no local, para só depois você poder dar push.
 
 \subsection{Retornando a estados anteriores}
+    A grande vantagem de se usar controle de versão é a possibilidade de trazer
+arquivos de volta para versões antigas deles. No git, podemos voltar arquivos
+separadamente ou voltar para commits especificos.
 
 \subsubsection{Voltando arquivos}
-    % TODO
+    Para retornar arquivos para a última versão gravada no git usamos o comando
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git checkout -- <nome-do-arquivo>#
+    \end{tabbing}
+mas tome cuidado com esse comando, pois ele sobrescreve o seu arquivo, deletando
+as suas modificações.
+    
+    Para retornar para uma versão especifica de um arquivo, em um branch especifico,
+usamos o comando
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git checkout <nome-da-branch>~n <nome-do-arquivo># \\
+                    \>( n é  a diferença do número do commit atual e o alvo ).
+    \end{tabbing}
+    
 \subsubsection{Voltando para commits}
     % TODO
 \subsection{Comunicação com o remoto}
@@ -289,7 +310,7 @@ bom seguir algumas práticas:
 
 \section{"Malandragens" no git}
 
-    % TODO ( git stash e git commit --amend e coisas assim )
+    % TODO ( git stash e git commit --amend e git tag e git reset HEAD e coisas assim)
 
 \section{Git no Windows usando o tortoise git}
     Primeiro precisamos instalar os seguintes arquivos:
