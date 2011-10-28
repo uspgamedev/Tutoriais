@@ -110,34 +110,107 @@ Conexão criptografada: senhas não passam em branco pela rede.
 \end_layout
 
 \begin_layout Section
-Segurança
+Como usar
 \end_layout
 
 \begin_layout Standard
-O cliente possui uma tabela de servidores conhecidos, onde cada item é uma
- tupla (hostname, endereço IP, chave pública).
+Existem diversos clientes, mas nessa aula veremos apenas dois:
+\end_layout
+
+\begin_layout Subsection
+PuTTY
 \end_layout
 
 \begin_layout Standard
-Ao conectar com um servidor, este envia a sua chave pública, e seu cliente
- verifica a integridade desta chave.
- Se a resposta for negativa, a conexão é terminada.
- Senão, de agora em diante, todo dado transportado pela conexão é criptografado
- usando a chave pública do servidor.
+Embora essa aula foque apenas na versão Windows do PuTTY, é importante notar
+ que esse é um programa é multi-plataforma e possui versões para Linux.
+ 
 \end_layout
 
 \begin_layout Standard
-Isto garante, desde de que o cliente conheça propriamente a chave pública
- de fato do servidor, que ataques do estilo 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename putty.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Tela inicial do PuTTY
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+OpenSSH Client
+\end_layout
+
+\begin_layout Standard
+É um programa de terminal.
+ Aqui vai uma lista de exemplos de comandos:
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+ssh destino
+\family default
+ ; Conecta-se em destino, usando o mesmo usuário que o seu atual.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+ssh jose@destino
+\family default
+ ; Conecta-se em destino, com o usuário 
 \begin_inset Quotes eld
 \end_inset
 
-man-in-the-middle
+jose
 \begin_inset Quotes erd
 \end_inset
 
- são impossibilitados, pois apenas o servidor têm conhecimento de sua chave
- privada.
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+ssh jose@destino -p 22000
+\family default
+ ; Conecta-se em destino na port 22000.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+ssh -i chaveprivada destino
+\family default
+ ; Conecta-se em destino, usando 
+\family typewriter
+chaveprivada
+\family default
+ como chave privada de autenticação.
 \end_layout
 
 \begin_layout Section
@@ -222,118 +295,57 @@ Túneis permitem encapsular protocolos inseguros na conexão segura do SSH,
 
 \begin_layout Standard
 Também é possível utilizar túneis para burlar problemas devido ao NAT.
-\begin_inset Newpage pagebreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Como usar
-\end_layout
-
-\begin_layout Standard
-Existem diversos clientes, mas nessa aula veremos apenas dois:
 \end_layout
 
 \begin_layout Subsection
-PuTTY
+Git
 \end_layout
 
 \begin_layout Standard
-Embora essa aula foque apenas na versão Windows do PuTTY, é importante notar
- que esse é um programa é multi-plataforma e possui versões para Linux.
+Git é um sistema de controle de versão distribuído, que utiliza túneis SSH
+ para fazer a transferência de dados de maneira segura, além de utilizar
+ chaves para autenticação.
  
 \end_layout
 
 \begin_layout Standard
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename putty.png
-
+Para comparação, considere esse comando git:
+\begin_inset VSpace defskip
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Tela inicial do PuTTY
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-OpenSSH Client
 \end_layout
 
 \begin_layout Standard
-É um programa de terminal.
- Aqui vai uma lista de exemplos de comandos:
-\end_layout
-
-\begin_layout Enumerate
 
 \family typewriter
-ssh destino
+git clone git@github.com:uspgamedev/horus_eye.git
 \family default
- ; Conecta-se em destino, usando o mesmo usuário que o seu atual.
-\end_layout
 
-\begin_layout Enumerate
-
-\family typewriter
-ssh jose@destino
-\family default
- ; Conecta-se em destino, com o usuário 
-\begin_inset Quotes eld
+\begin_inset VSpace defskip
 \end_inset
 
-jose
-\begin_inset Quotes erd
+
+\end_layout
+
+\begin_layout Standard
+Esse comando abre uma conexão SSH para o servidor 
+\family typewriter
+github.com
+\family default
+ usando o usuário 
+\family typewriter
+git
+\family default
+ e executa o clone do git no caminho 
+\family typewriter
+uspgamedev/horus_eye.git
+\family default
+ .
+\begin_inset Newpage pagebreak
 \end_inset
 
-.
-\end_layout
 
-\begin_layout Enumerate
-
-\family typewriter
-ssh jose@destino -p 22000
-\family default
- ; Conecta-se em destino na port 22000.
-\end_layout
-
-\begin_layout Enumerate
-
-\family typewriter
-ssh -i chaveprivada destino
-\family default
- ; Conecta-se em destino, usando 
-\family typewriter
-chaveprivada
-\family default
- como chave privada de autenticação.
 \end_layout
 
 \begin_layout Section
@@ -441,6 +453,41 @@ Um agente é um programa que possui uma lista de chaves privadas, onde o
 Cuidado: use agentes SSH, em particular se encaminhar-los pela conexão,
  apenas se você confia nos administradores da máquina destino, pois estes
  podem acessar os arquivos temporários que o agente usa!
+\end_layout
+
+\begin_layout Section
+Segurança
+\end_layout
+
+\begin_layout Standard
+O cliente possui uma tabela de servidores conhecidos, onde cada item é uma
+ tupla (hostname, endereço IP, chave pública).
+\end_layout
+
+\begin_layout Standard
+Ao conectar com um servidor, este envia a sua chave pública, e seu cliente
+ verifica a integridade desta chave.
+ Se a resposta for negativa, a conexão é terminada.
+ Senão, de agora em diante, todo dado transportado pela conexão é criptografado
+ usando a chave pública do servidor.
+\end_layout
+
+\begin_layout Standard
+Isto garante, desde de que o cliente conheça propriamente a chave pública
+ de fato do servidor, que ataques do estilo 
+\begin_inset Quotes eld
+\end_inset
+
+man-in-the-middle
+\begin_inset Quotes erd
+\end_inset
+
+ são impossibilitados, pois apenas o servidor têm conhecimento de sua chave
+ privada.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -585,10 +632,6 @@ Exemplo de Túnel Remoto -> Local
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
