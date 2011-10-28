@@ -1,3 +1,0 @@
-Tutoriais sobre :
-- LaTeX
-- GIT

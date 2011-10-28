@@ -1,7 +1,8 @@
-\documentclass[12pt,onecolumn]{article}
+\documentclass{article}
 \usepackage[brazilian]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{hyperref}
 \begin{document}
 
 \title{Aula Exercicio de Introducao ao Git}
@@ -26,15 +27,15 @@
     A maioria do trabalho do git é local. O git salva todas as modificações dos arquivos
     localmente, e toda vez que você baixar as atualizações do seu projeto, todo o
     histórico de modificações vem junto.
-    
     O git tem integridade. Isso quer dizer que é impossível modificar arquivos sem o
+    
     git saber que você está fazendo algo. O git usa um mecanismo chamado SHA-1 hash.
     O git quase sempre adiciona dados. Na maioria das vezes, o git só adiciona dados
     no repositório. Assim, você pode sempre resgatar arquivos que já foram deletados
     a muito tempo.
     
     O git usa uma mecânica de 3 estagios para controlar os arquivos na sua área de
-    trabalho. Estes estagios sao: commited, modified e staged. Commited significa
+    trabalho. Estes estagios sao: unmodified, modified e staged. Commited significa
     que o arquivo esta na sua database local. Modificado quer dizer que o arquivo
     foi modificado. Staged quer dizer que o arquivo foi selecionado para entrar no seu
     próximo commit.
@@ -43,10 +44,10 @@
 
 	O github tem um bom tutorial para instalar e iniciar o git:
 	\begin{itemize}
-    \item Windows   http://help.github.com/win-set-up-git/ ( Sem o tortoise git. Há um
-                    tutorial breve sobre o turtoise git abaixo. )
-    \item Linux     http://help.github.com/linux-set-up-git/
-    \item MacOS     http://help.github.com/mac-set-up-git/
+    \item \href{http://help.github.com/win-set-up-git/}{Windows} ( Sem o tortoise git. Há um
+                    tutorial breve sobre o turtoise git abaixo. ) 
+    \item \href{http://help.github.com/linux-set-up-git/}{Linux}
+    \item \href{http://help.github.com/mac-set-up-git/}{MacOS} 
     \end{itemize}
     
 \section{Iniciar o git}
@@ -54,12 +55,15 @@
 usuario e e-mail, assim todo commit que voce fizer estara com essas informacoes.
 Para isso, use os comandos:
 
-\verb#$git config --global user.name "Seu Nome"#
-\verb#$git config --global user.email seuemail@exemplo.comando#
-
+\begin{tabbing}
+\hspace{1cm}\=   \verb#$git config --global user.name "Seu Nome"# \\
+            \>   \verb#$git config --global user.email seuemail@exemplo.comando#
+\end{tabbing}
     Para configurar a sua ferramenta de diff, use o comando:
 
-\verb#$git config --global merge.tool NomeDaFerramenta#
+\begin{tabbing}
+\hspace{1cm}\=   \verb#$git config --global merge.tool NomeDaFerramenta#
+\end{tabbing}
 
 Obs: O git aceita kdiff3, tkdiff, meld, xxdiff, emerge, vimdiff, gvimdiff, ecmerge
 e opendiff como ferramentas de merge.
@@ -68,93 +72,271 @@ e opendiff como ferramentas de merge.
     Para acessar o manual do git ( e de seus comandos ) voce pode usar qualquer
 uma das sintaxes abaixo:
 
-\verb#$git help <comando>#
-\verb#$git <comando> --help#
-\verb#$man git-<comando>#
+\begin{tabbing}
+\hspace{1cm}\=  \verb#$git help <comando>#\\
+            \>  \verb#$git <comando> --help#\\
+            \>  \verb#$man git-<comando>#
+\end{tabbing}
 
 \section{Como usar o git}
 	Agora que o git está instalado e o repositório já está criado, podemos
-começar a modificar nosso projeto. Todo arquivo no git tem dois status: Tracked
-e Untracked. Arquivos Tracked serão adicionados no próximo commit. Para verifica
-o status de cada arquivos usamos o comando git status. O comando git commit adic
-iona os arquivos Tracked para o seu repositório. Toda vez que um arquivo é modi
-ficado ele é marcado como Untracked. Para mudar o status de um arquivo para 
-Tracked usamos o comando git add \verb#<Nome-do-Arquivo>#. O comando git diff mostra a 
-diferença entre os arquivos Untracked e os Tracked. Um arquivo pode estar Tracked
-e Untracked ao mesmo tempo se dermos git add nele, modificarmos ele, e executar
-mos o git status, ele vai mostrar o mesmo arquivo nas duas partes, a que mostra 
-os arquivos que serão commitados e os que não serão. Isso quer dizer que a versão
-não modificada do seu arquivo vai ser commitada, e não a mais nova. Para corrigir
-isso teriamos que dar git add no mesmo arquivo. Para remover um arquivo do git 
-usamos o comando git rm <Nome-do-Arquivo>. O comando \verb#git mv file_from file_to#
-move um arquivo.
-	O git commit só modifica os arquivos no seu repositorio local. Precisamos 
-usar o comando git push para mandar as modificações para o repositorio no github.
-Se a sua versão for mais nova que a do repositorio, o seu push será feito e as 
-modificações serão feitas. Se não, usamos o comando git pull para pegar a versão
-mais nova do repositorio e dar um merge com o nosso repositorio. Se houver
-algum problema com o merge, por exemplo um arquivo que você modificou foi modi
-ficado no repositorio no github, você terá que abrir o arquivo e modifica-lo
-manualmente para arrumá-lo. Depois disso, o git push poderá ser executado sem
-problema.
+começar a modificar nosso projeto. O git usa um mecânismo para controlar as
+modificações nos seus arquivos, e usa um sistema um pouco diferente dos outros
+controles de versões para mandar essas modificações para o remoto.
 
+\subsection{Iniciando um repositório local git}
+    Para iniciar um rep. local em um diretório usamos o comando
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git init#
+\end{tabbing}
+ou
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git clone <url>#
+\end{tabbing}
+
+    O \verb#git init# inicia um repositório sem qualquer ligação com algum remoto,
+e o \verb#git clone# pega tudo de um remoto ( a \verb#<url># ) copia para um novo repositório
+local e linka esse local com o remoto de origem.
+
+\subsection{Arquivos no Git}
+    Todo arquivo, antes de ser adicionado no seu repositório, é reconhecido no git
+como \textbf{Untracked}. Ao ser adicionado usando o comando:
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git add <Nome-do-Arquivo>#\\
+\end{tabbing}
+ele vira \textbf{Tracked} entra num ciclo de 3 fases do git.
+
+    Esse ciclo consiste nas fases \textbf{modified}, \textbf{staged} e 
+\textbf{unmodified}. Quando um arquivo é adicionado no git, ele entra como 
+\textbf{staged} e será adicionado ao remoto no próximo commit. Ao ser modificado,
+um arquivo vai para \textbf{modified}. Ao ser comitado, o arquivo se torna 
+\textbf{unmodified}.
+    
+    Para verificar quais arquivos estão em qual fase usamos o comando    
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git status#
+\end{tabbing}
+    ele ainda mostra algums comandos para resetar arquivos e outras dicas, falaremos
+mais sobre isso depois.
+    
+Esse arquivo vai aparecer nos dois locais. Na realidade, o arquivo que aparece
+    Um arquivo pode ser \textbf{staged} e \textbf{modified} ao mesmo tempo.
+Esperimente dar um git add em um arquivo, modificá-lo e dar um git status.
+na seção \textbf{modified} é o arquivo modificado, e o arquivo que está na
+\textbf{staged} é o arquivo sem modifcação.
+
+    Para verificar as diferenças entre os arquivos que estão modificados e
+os suas respectivas cópias no local usamos o comando
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git diff#
+\end{tabbing}
+    
+\subsection{Commits}
+    Os commits no git, ao contrário dos controles de versão ao estilo SVN,
+é local. Isso quer dizer que tudo o que é commitado não vai diretamente para
+o repositório remoto, e sim para o seu repositório local. Os arquivos na área
+\textbf{staged} serão adicionados no próximo commit. Um commit contêm a célula
+do commit, as informações de quem commitou e uma mensagem sobre o commit. Para
+commitar suas mudanças, usamos o comando
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git commit#
+\end{tabbing}
+    ao executar esse comando, um editor de texto vai abrir, e a mensagem do commit
+deve ser escrita.
+    
+    O git commit aceita duas opções muito usadas
+    \begin{itemize}
+        \item \verb#$ git commit -a # ele commita tudo que está na área \textbf{modified}
+        \item \verb#$ git commit -m "string"# ele gera um commit com mensagem igual a string passada.
+            Lembre que a string deve ser passada entre áspas.
+    \end{itemize}
+
+\subsubsection{Como os commits são armazenados}
+    Os commits são armazenados como uma lista ligada, onde cada célula da lista
+é um arquivo de 41 bits ( um HASH para identificar cada commit de maneira única ),
+um ponteiro para um estrutura que aponta para todos os arquivos daquele commit e
+um ponteiro para o commit pai.
+
+    O commit atual é marcado por um apontador chamado HEAD, que é movido toda vez
+que fazemos um commit. Está estrutura faz com que commitar e andar nos commit seja
+muito leve, pois só mudamos o valor de um ponteiro, e para carregar os arquivo usamos
+um arquivo de 41 bits.
+
+\subsubsection{Boas práticas de commit}
+    Quando se trabalha com várias pessoas num projeto, é bom seguir algumas práticas
+pra deixar o trabalho de todos mais fácil:
+    \begin{itemize}
+        \item Teste o seu código antes de dar git push. Sempre deixe o código que 
+                está no repositório funcional.
+        \item Escreva mensagens de commit claras, pequenas e informativas. Elas devem
+                explicar o que você fez nesse commit.
+        \item Faça vários commit pequenos. Assim, você não adiciona muita informação
+                ao mesmo tempo dentro do repositório, facilitando a volta de commits. % MELHORAR ESSA PARTE @@ %
+        \item Quebre commits. Ao ínvez de adicionar todas as suas mudanças direto em um grande commit,
+                adicione-ás de uma maneira inteligente, se você modificou dois arquivos muito diferentes,
+                use um commit para cada um.
+    \end{itemize}
+
+\subsubsection{Mandando commits para o repositório remoto}
+    Os seus commits só são mandados para o repositório remoto quando usamos o comando
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git push#
+\end{tabbing}
+    
+    Esse comando vai copiar a sua lista ligada à lista ligada de commits do repositório remoto.
+Ele vai procurar o commit em comum mais antigo entre seu rep. e o remoto e tentar dar cópiar seus
+commits para o remoto. Se o commit mais antigo não for o último do remoto, ou seja, alguem fez algum
+push antes do seu, você deve usar o comando  
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git pull#
+\end{tabbing}
+para pegar as modificações do remoto e aplicar no local, para só depois você poder dar push.
+
+\subsection{Retornando a estados anteriores}
+    A grande vantagem de se usar controle de versão é a possibilidade de trazer
+arquivos de volta para versões antigas deles. No git, podemos voltar arquivos
+separadamente ou voltar para commits especificos.
+
+\subsubsection{Voltando arquivos}
+    Para retornar arquivos para a última versão gravada no git usamos o comando
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git checkout -- <nome-do-arquivo>#
+    \end{tabbing}
+mas tome cuidado com esse comando, pois ele sobrescreve o seu arquivo, deletando
+as suas modificações.
+    
+    Para retornar para uma versão especifica de um arquivo, em um branch especifico,
+usamos o comando
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git checkout <nome-da-branch>~n <nome-do-arquivo># \\
+                    \>( n é  a diferença do número do commit atual e o alvo ).
+    \end{tabbing}
+    
+    \underline{Um exemplo}:
+    \begin{tabbing}
+        \hspace{0.5cm}  \= Imagine que você quer voltar o arquivo \emph{pessoa.c} para o\\
+                        \> estado dele 3 commits atrás. Você usa o comando\\
+                        \> \verb#$ git checkout master~3 pessoa.c#.
+    \end{tabbing}
+    
+\subsubsection{Voltando para commits}
+    O comando para se mover na lista ligada de commits é bem parecido com o acima
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git checkout <nome-da-branch>~n# \\
+                    \>( n é  a diferença do número do commit atual e o alvo ).
+    \end{tabbing}
+    
+    A diferença é que como não especificamos um arquivo, voltamos todo o projeto
+para o seu estado passado.
+\subsection{Comunicação com o remoto}
+    Como vimos, usamos os seguintes comandos para mandar/receber dados do remoto:
+    \begin{itemize}
+        \item \verb#$ git pull -> #Recebe as últimas modificações do remoto.
+        \item \verb#$ git push -> #Manda seus commits para o remoto.
+        \item \verb#$ git clone <url> -> #Clona um remoto para dentro da pasta local.
+        \item \verb#$ git remote show -> #Mostra informações sobre o remoto.
+        \item \verb#$ git remote <nome-atual> <novo-nome> ->#Renomeia um remoto.
+    \end{itemize}
 
 \section{Branches}
-    Branches sao facilmente criados no git. Eles sao arquivos de 41bits que apon
-tam para as mudancas feitas dentro deles. Vale lembrar que um branch criado por
-voce e local, e ele so e adicionado no repositorio local se usarmos o push desta
-maneira:
-    git push (remote) (branch)
-exemplo: git push origin teste, isso vai fazer o branch teste ser integrado
-no nosso repsitorio remoto origin.
 
-\section{Exercicio}
-    Primeiro, precisamos copiar o repositorio remoto para o computador. Usamos o
-comando clone para isso. Ele vai copiar inteiramente o repositorio alvo para o 
-local onde ele foi invocado. Copiaremos o repositorio que esta em :
-    git@github.com:gorobaum/DummyRep.git 
-    Agora, vamos mexer nesse repositorio. Primeiramente, crie uma pasta e um ar
-quivo de texto, os dois com o seu nome, dentro da pasta DummyRep. Escreva 3 linhas
-de texto no arquivo. Use o comando add do git para adicionar a pasta e o arquivo
-criados no proximo commit. Use o comando commit para commitar as suas mudancas.
-Lembre-se de escrever mensagens curtas mas informativas sobre o conteudo do seu 
-commit. Com isso, o seu repositorio local tem a sua pasta, mas o repositorio re
-moto ainda nao sabe que essa pasta existe. Para isso, temos que usar o comando
-push, que manda todos os commits que voce fez para o repositorio remoto. Use
-o push agora. Com isso suas mudancas estao agora dentro do repositorio remoto.
-    Agora vamos criar um branch. Crie um branch com o nome teste1. Agora de check
-out teste1 para "entrar" no branch teste1 e modifique a segunda linha do seu ar
-quivo de texto. Commite as mudancas. Agora volte para o master, e modifique a 
-segunda linha do mesmo arquivo, de uma maneira diferente e commite. Tente dar 
-merge com o teste1. O merge dara problema, e voce tera que mudar manualmente o 
-arquivo. Ao abrir o arquivo, ele estara dividido em duas partes:
-    - Uma que vai de <<<<<<<<<< HEAD ate ===========. Essa parte e a que esta no
-branch master.
-    - Outra que vai de ========== ate >>>>>>>>>> teste1. Essa parte e a que esta
-no branch teste1.
-Modifique o arquivo ate que ele fique do jeito que voce desejar e de um commit.
-Agora de um push. Pronto, voce criou e modificou arquivos de um repositorio 
-remoto usando o git.
+\subsection{O que são branches}
+    Usamos uma branch num controle de versão quando queremos separar o fluxo de desenvolvimento
+de um projeto. Imagine que temos dois fluxos no projeto, é interesante separarmos eles para que
+nossa branch principal ( normalmente a master ) não fique poluída com commits que não acresentão
+nada diretamente ao projeto.
 
-\section{Resumo dos comandos unix}
-\verb#$ git clone -> Copia um repositorio remoto para a atual localização.#
-\verb#$ git add <Arquivo> -> Adiciona o arquivo para ser commitado.#
-\verb#$ git commit -> Comita as atuais modificações para o seu repositorio local.#
-\verb#$ git push -> Mandas os atuais commits para o repositorio remoto.#
-\verb#$ git pull -> Puxa os commits do repositorio remoto.#
-\verb#$ git rm -> Remove um arquivo.#
-\verb#$ git mv -> Move um arquivo.#
-\verb#$ git diff -> Mostra a diferença entre os arquivos que serão comitados e suas atuais modificações#
-\verb#$ git status -> Mostra o status de cada arquivo.#
-\verb#$ git branch <Nome-do-Branch> -> Cria um branch com o nome passado.#
-\verb#$ git checkout <Nome-do3-Branch> -> Vai para o branch com o nome passado. O branch tem que existir.#
+\subsection{Branches no git}
+    Branches sao facilmente criados no git. Eles não passam de outro apontador para 
+commits, tipo o HEAD. O objetivo das branches é criar ambientes de trabalho com o
+menor contato possível com a branch master ( a princípal do projeto ) assim
+não "estragamos" o projeto com features que não estão prontas ainda. Todo trabalho
+que fazemos numa branch fica somente nela até que juntamos elas com outra branch.
+
+\subsection{Criando, deletando e usando Branches}
+    O comando para criar branches é
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git checkout -d <nome-da-branch># ou\\
+                \>\verb#$ git branch <nome-da-branch>#
+\end{tabbing}
+    A diferença é que no primeiro caso a branch é criada e o git vai pra ela. No segundo
+ela só é criada.
+
+    Para se movimentar pelas branches usamos o comando
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git checkout <nome-da-branch>#
+\end{tabbing}
+    que vai para a branch passada para ele.
+
+    Para deletar branches, você precisa sair delas e usar o comando
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git branch -d <nome-da-branch>#
+\end{tabbing}
+
+\subsubsection{Merge}
+    O merge é juntar dois arquivos, ou nesse caso, duas branches. Para juntar as
+branches, use o comando checkout para ir até a branch na qual você quer que o resultado
+fique e use o comando 
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git merge <nome-da-branch>#
+\end{tabbing}
+ele vai tentar juntar os arquivos da branch alvo com os da branch atual.
+
+
+\subsubsection{Branches remotas}
+
+Vale lembrar que um branch criado por você é local, e ele só é adicionado no repositorio 
+local se usarmos o push desta maneira:
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git push <remote> <branch>#\\
+\end{tabbing} 
+Exemplo: 
+\begin{tabbing}
+    \hspace{1cm}\=\verb#$ git push origin teste#\\
+\end{tabbing} 
+isso vai fazer o branch teste ser integrado no nosso repositório remoto origin.
+
+\subsection{Algumas boas práticas de branches no git}
+    Quando criamos uma branch num projeto onde várias pessoas estão trabalhando, é
+bom seguir algumas práticas:
+\begin{itemize}
+    \item Sempre crie branches com nomes que falem sobre o que o branch é. Se
+            você está fez um branch para arrumar algo sobre e-mail, um bom nome
+            seria e-mailfix.
+    \item Criar uma branch toda vez que você for implementar algo no sistema.
+            Isso impede que o projeto seja desenvolvido direto na master.
+    \item Só de merge com qualquer outra branch quando a feature do branch 
+            estiver pronta e testada. Isso impede que pessoas usem coisas
+            da sua branch quando ela ainda não está pronta.
+\end{itemize}
+
+\section{Resumo dos comandos no linux}
+\begin{tabbing}
+\hspace{0.5cm}  \=  \verb#$ git clone -> Copia um repositorio remoto para a atual localização.#\\
+                \>  \verb#$ git add <Arquivo> -> Adiciona o arquivo para ser commitado.#\\
+                \>  \verb#$ git commit -> Comita as atuais modificações para o seu repositorio local.#\\
+                \>  \verb#$ git push -> Mandas os atuais commits para o repositorio remoto.#\\
+                \>  \verb#$ git pull -> Puxa os commits do repositorio remoto.#\\
+                \>  \verb#$ git rm -> Remove um arquivo.#\\
+                \>  \verb#$ git mv -> Move um arquivo.#\\
+                \>  \verb#$ git diff -> Diferença entre os arquivos que serão comitados e suas modificações.#\\
+                \>  \verb#$ git status -> Mostra o status de cada arquivo.#\\
+                \>  \verb#$ git branch <Nome-do-Branch> -> Cria um branch com o nome passado.#\\
+                \>  \verb#$ git checkout <Nome-do3-Branch> -> Vai para o branch com o nome passado.#\\
+\end{tabbing}
+
+\section{"Malandragens" no git}
+
+    % TODO ( git stash e git commit --amend e git tag e git reset HEAD e coisas assim)
 
 \section{Git no Windows usando o tortoise git}
     Primeiro precisamos instalar os seguintes arquivos:
-    - msysgit       http://code.google.com/p/msysgit/
-    - Tortoise Git  http://code.google.com/p/tortoisegit/
-    - PuTTY         http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
-Baixe as versoes mais novas, e instale tudo normalmente, sem mudar nenhuma opcao,
+    \begin{tabbing}
+        \hspace{1cm}\=\textbf{Tortoise Git}\quad    \=http://code.google.com/p/tortoisegit/\\
+                    \>\textbf{msysgit}              \>http://code.google.com/p/msysgit/\\
+                    \>\textbf{PuTTY}                \>http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+    \end{tabbing}
+Baixe as versões mais novas, e instale tudo normalmente, sem mudar nenhuma opcao,
 a nao ser que seja de sua preferencia.
 Agora, precisamos configurar uma chave de ssh para que se computador possa con
 versar com o repositorio remoto. Va ate a pasta em que o PuTTY foi instalado e 
