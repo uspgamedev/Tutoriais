@@ -5,8 +5,8 @@
 \usepackage{hyperref}
 \begin{document}
 
-\title{Aula Exercicio de Introducao ao Git}
-\author{Thiago de Gouveia Nunes}
+\title{Curso de Introdução ao Git}
+\author{USPGameDev}
 \maketitle
 
 \section{Controle de Versão}
@@ -325,9 +325,73 @@ bom seguir algumas práticas:
                 \>  \verb#$ git checkout <Nome-do3-Branch> -> Vai para o branch com o nome passado.#\\
 \end{tabbing}
 
-\section{"Malandragens" no git}
+\section{Extras}
+\subsection{Tags}
+    Assim como várias outras ferramentas de controle de versão, o git permite a criação de tags para
+identificar commits específicos. A utilização de tags permite que o histórico de commits seja mais limpo
+e a marcação de pontos importantes no projeto, como releases.
 
-    % TODO ( git stash e git commit --amend e git tag e git reset HEAD e coisas assim)
+\subsubsection{Tags no git}
+    Para listar as tags no git, use o comando
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git tag#
+    \end{tabbing}
+    
+    O git tem dois tipos de tags, as anotadas (annotated) e as leves (lightweight). As leves
+são como branches fixas, elas só apontam para um commit. As anotadas são mais completas. Elas
+tem um nome, e-mail, data de criação e uma mensagem. Para criar tags usamos o comando:
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git tag -a <nome-da-tag> -m "mensagem" <hash-do-commit># ou \\
+                    \>\verb#$ git tag <nome-da-tag>#.
+    \end{tabbing}
+        O primeiro comando cria uma tag anotada e o segundo cria uma leve. O hash do commit não é necessário
+para criar uma tag no commit atual.
+\subsubsection{Tags no remoto}
+    O git não adiciona automâticamente as tags no servidor remoto, precisamos colocá-las na mão
+no remoto. Para fazer isso, usamos:
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git push origin <nome-da-tag> # ou \\
+                    \>\verb#$ git push origin --tags# para mandar todas as tags.
+    \end{tabbing}
+
+\subsection{Alias no git}
+    O git permite a criação de alias. Usamos o comando \emph{git config} para isso:
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git config --global alias.co checkout #\\
+                    \>\verb#$ git config --global alias.st status #\\
+                    \>\verb#$ git config --global alias.unstage 'reset HEAD --'#
+    \end{tabbing}
+    
+    O último exemplo faz com que o comando:
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git unstage pessoa.c#
+    \end{tabbing}
+    fique igual ao
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git reset --HEAD pessoa.c#
+    \end{tabbing}
+    
+\subsection{Stashing}
+    O git não deixa você trocar de branch se houver trabalho não commitado na branch atual, mas nem sempre
+queremos commitar o trabalho atual, seja por que ele está meio feito ou por que não é algo relevante. Para
+esses casos, existe o comando \verb#$ git stash#. Esse comando pega todas as suas modificações e adiciona
+numa pilha de "stashes" limpando a branch atual.
+
+\subsubsection{Aplicando Stash}
+    Podemos aplicar os arquivos de uma stash usando o comando:
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git stash apply# ou\\
+                    \>\verb#$ git stash apply stash@{n}# para aplicar o n-ésimo stash da pilha.
+    \end{tabbing}
+    
+    A stash vai ser aplicada na branch atual e vai funcionar como um "pull". O git vai avisar se
+algum problema de merge ocorrer.
+
+\subsubsection{Criando branches de stashs}
+    Para criar uma branch a partir de um stash, usamos o comando:
+    \begin{tabbing}
+        \hspace{1cm}\=\verb#$ git stash branch <nome-da-branch>#
+    \end{tabbing}
 
 \section{Git no Windows usando o tortoise git}
     Primeiro precisamos instalar os seguintes arquivos:
