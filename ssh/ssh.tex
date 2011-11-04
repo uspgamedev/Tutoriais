@@ -39,21 +39,37 @@ Principais caracteristicas:
 \item Conexão criptografada: senhas não passam em branco pela rede.
 \end{enumerate}
 
-\section{Segurança}
+\section{Como usar}
 
-O cliente possui uma tabela de servidores conhecidos, onde cada item
-é uma tupla (hostname, endereço IP, chave pública).
+Existem diversos clientes, mas nessa aula veremos apenas dois:
 
-Ao conectar com um servidor, este envia a sua chave pública, e seu
-cliente verifica a integridade desta chave. Se a resposta for negativa,
-a conexão é terminada. Senão, de agora em diante, todo dado transportado
-pela conexão é criptografado usando a chave pública do servidor.
 
-Isto garante, desde de que o cliente conheça propriamente a chave
-pública de fato do servidor, que ataques do estilo {}``man-in-the-middle''
-são impossibilitados, pois apenas o servidor têm conhecimento de sua
-chave privada.
+\subsection{PuTTY}
 
+Embora essa aula foque apenas na versão Windows do PuTTY, é importante
+notar que esse é um programa é multi-plataforma e possui versões para
+Linux. 
+
+\begin{figure}[h]
+\includegraphics{putty}
+
+\caption{Tela inicial do PuTTY}
+\end{figure}
+
+
+
+\subsection{OpenSSH Client}
+
+É um programa de terminal. Aqui vai uma lista de exemplos de comandos:
+\begin{enumerate}
+\item \texttt{ssh destino} ; Conecta-se em destino, usando o mesmo usuário
+que o seu atual.
+\item \texttt{ssh jose@destino} ; Conecta-se em destino, com o usuário {}``jose''.
+\item \texttt{ssh jose@destino -p 22000} ; Conecta-se em destino na port
+22000.
+\item \texttt{ssh -i chaveprivada destino} ; Conecta-se em destino, usando
+\texttt{chaveprivada} como chave privada de autenticação.
+\end{enumerate}
 
 \section{Utilidades para o SSH}
 
@@ -90,42 +106,25 @@ Túneis permitem encapsular protocolos inseguros na conexão segura
 do SSH, como por exemplo acessar e-mails.
 
 Também é possível utilizar túneis para burlar problemas devido ao
-NAT.\pagebreak{}
+NAT.
 
 
-\section{Como usar}
+\subsection{Git}
 
-Existem diversos clientes, mas nessa aula veremos apenas dois:
+Git é um sistema de controle de versão distribuído, que utiliza túneis
+SSH para fazer a transferência de dados de maneira segura, além de
+utilizar chaves para autenticação. 
 
-
-\subsection{PuTTY}
-
-Embora essa aula foque apenas na versão Windows do PuTTY, é importante
-notar que esse é um programa é multi-plataforma e possui versões para
-Linux. 
-
-\begin{figure}[h]
-\includegraphics{putty}
-
-\caption{Tela inicial do PuTTY}
+Para comparação, considere esse comando git:\medskip{}
 
 
-\end{figure}
+\texttt{git clone git@github.com:uspgamedev/horus\_eye.git}\medskip{}
 
 
+Esse comando abre uma conexão SSH para o servidor \texttt{github.com}
+usando o usuário \texttt{git} e executa o clone do git no caminho
+\texttt{uspgamedev/horus\_eye.git} .\pagebreak{}
 
-\subsection{OpenSSH Client}
-
-É um programa de terminal. Aqui vai uma lista de exemplos de comandos:
-\begin{enumerate}
-\item \texttt{ssh destino} ; Conecta-se em destino, usando o mesmo usuário
-que o seu atual.
-\item \texttt{ssh jose@destino} ; Conecta-se em destino, com o usuário {}``jose''.
-\item \texttt{ssh jose@destino -p 22000} ; Conecta-se em destino na port
-22000.
-\item \texttt{ssh -i chaveprivada destino} ; Conecta-se em destino, usando
-\texttt{chaveprivada} como chave privada de autenticação.
-\end{enumerate}
 
 \section{Métodos de Autenticação}
 
@@ -176,6 +175,22 @@ as mesmas chaves privadas no destino.
 Cuidado: use agentes SSH, em particular se encaminhar-los pela conexão,
 apenas se você confia nos administradores da máquina destino, pois
 estes podem acessar os arquivos temporários que o agente usa!
+
+
+\section{Segurança}
+
+O cliente possui uma tabela de servidores conhecidos, onde cada item
+é uma tupla (hostname, endereço IP, chave pública).
+
+Ao conectar com um servidor, este envia a sua chave pública, e seu
+cliente verifica a integridade desta chave. Se a resposta for negativa,
+a conexão é terminada. Senão, de agora em diante, todo dado transportado
+pela conexão é criptografado usando a chave pública do servidor.
+
+Isto garante, desde de que o cliente conheça propriamente a chave
+pública de fato do servidor, que ataques do estilo {}``man-in-the-middle''
+são impossibilitados, pois apenas o servidor têm conhecimento de sua
+chave privada.\pagebreak{}
 
 
 \section{Túneis }
@@ -234,8 +249,6 @@ pode ser fisicamente o próprio servidor SSH.
 \includegraphics{tunel-destino-local}
 
 \caption{Exemplo de Túnel Remoto -> Local}
-
-
 \end{figure}
 
 
