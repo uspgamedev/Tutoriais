@@ -1,3 +1,0 @@
-\select@language {brazilian}
-\contentsline {section}{\numberline {1}\textlatin {\LaTeX }, que legal!}{1}
-\contentsline {section}{\numberline {2}Vamos ver o que o \textlatin {\LaTeX }faz!}{1}
