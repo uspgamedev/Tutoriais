@@ -3,3 +3,9 @@
 *.log
 *.ps
 *.dvi
+.*.swp
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb

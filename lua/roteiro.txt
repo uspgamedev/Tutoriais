@@ -1,0 +1,39 @@
+Roteiro levemente desatualizado!
+
+Resumo:
+
+    1) Introdução e breve histórico.
+    2) Sintaxe
+        2.1) Hello World!
+        2.2) Valores e tipos.
+            2.2.1) Tipagem dinâmica.
+            2.2.2) nil
+            2.2.3) boolean
+            2.2.4) number
+            2.2.5) string
+                2.2.5.1) Conversão automática entre strings e
+                        números.
+            2.2.6) function
+            2.2.7) table
+            2.2.8) thread
+            2.2.9) userdata
+        2.3) Variáveis.
+        2.4) Expressões.
+            2.4.1) Atribuição.
+            2.4.2) Estruturas de controle: if..then..else, while,
+                  repeat..until, for, break, return.
+            2.4.3) Operadores: aritméticos, relacionais, lógicos,
+                  concatenção, tamanho, chaves.
+            2.4.4) Definição e uso de funções.
+        2.5) Regras de visibilidade.
+        2.6) Bibliotecas básicas. (dar exemplos)
+    3) Conceitos avançados.
+        3.1) Metatabelas.
+        3.2) Ambientes de funções.
+    4) Conceitos MUITO avançados.
+        4.1) Chamando funções C pelo Lua.
+        4.2) Chamando funções Lua pelo C.
+        
+
+
+
