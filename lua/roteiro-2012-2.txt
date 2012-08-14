@@ -2,7 +2,7 @@
 Resumo:
 
     1) Introdução e breve histórico.
-    2) Expressões
+    2) Expressões básicas
       2.1) Hello World!
       2.2) Tipos escalares
         2.2.1) Sobre tipagem dinâmica
