@@ -92,15 +92,12 @@
 %-------------------------------------
 \section{Introdução e breve histórico}
 %-------------------------------------
-
 \frame{
   \begin{center}
   \LARGE 1. Introdução e breve histórico
   \end{center}
 }
-
 %-------------------------------------
-
 \frame{
   \frametitle{Histórico}
   \begin{itemize}
@@ -119,9 +116,7 @@
     \end{itemize}
   \end{itemize}
 }
- 
 %-------------------------------------
-
 \frame{
   \frametitle{Principais características}
   \begin{itemize}
@@ -135,21 +130,7 @@
     \item Leveza
   \end{itemize}
 }
-
 %-------------------------------------
-\section{Expressões básicas}
-%-------------------------------------
-
-\frame{
-  \begin{center}
-  \LARGE 2. Expressões básicas
-  \end{center}
-}
-
-%-------------------------------------
-\subsection{2.1. Um primeiro programa em Lua}
-%-------------------------------------
-
 \begin{frame}[fragile]
   \frametitle{Hello World!!!}
   \pause
@@ -169,11 +150,23 @@ Hello World!  \end{verbatim}
       \end{block}
   \end{columns}
 \end{frame}
-
 %-------------------------------------
-\subsection{2.2. Tipos escalares.}
+\section{Expressões básicas}
 %-------------------------------------
-
+\frame{
+  \begin{center}
+  \LARGE 2. Expressões básicas
+  \end{center}
+}
+%-------------------------------------
+\subsection{2.1. Tipos escalares.}
+%-------------------------------------
+\frame{
+  \begin{center}
+  \Large 2.1. Tipos escalares
+  \end{center}
+}
+%-------------------------------------
 \frame{
   \frametitle{Tipagem Dinâmica}
   \begin{itemize}
@@ -186,9 +179,7 @@ Hello World!  \end{verbatim}
           programa.
   \end{itemize}
 }
-
 %-------------------------------------
-
 \begin{frame}[fragile]
   \frametitle{O tipo e valor nil}
   \pause
@@ -211,9 +202,7 @@ nil     \end{verbatim}
       \end{block}
   \end{columns}
 \end{frame}
-
 %-------------------------------------
-
 \begin{frame}[fragile]
   \frametitle{O tipo e valor nil}
   \begin{center}E agora?\end{center}
@@ -241,9 +230,7 @@ nil     \end{verbatim}
     assumem automaticamente o valor de nil.
   \end{center}
 \end{frame}
-
 %-------------------------------------
-
 \begin{frame}[fragile]
   \frametitle{Valores booleanos}
   \pause
@@ -267,9 +254,7 @@ boolean   true  \end{verbatim}
       \end{block}
   \end{columns}
 \end{frame}
-
 %-------------------------------------
-
 \begin{frame}[fragile]
   \frametitle{Valores numéricos}
   \pause
@@ -293,9 +278,7 @@ number  9001  \end{verbatim}
       \end{block}
   \end{columns}
 \end{frame}
-
 %-------------------------------------
-
 \begin{frame}[fragile]
   \frametitle{Cadeias de caracteres (string)}
   \pause
@@ -326,11 +309,83 @@ in scripting languages.  \end{verbatim}
       \end{block}
   \end{columns}
 \end{frame}
-
 %-------------------------------------
-
+\subsection{2.2. Operações básicas}
+%-------------------------------------
+\frame{
+  \begin{center}
+  \Large 2.2. Operações básicas
+  \end{center}
+}
+%-------------------------------------
 \begin{frame}[fragile]
-  \frametitle{Conversões automáticas entre numbers e strings}
+  \frametitle{Atribuição}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{assignment.lua}
+        \begin{lstlisting}
+-- Simple assignment.
+x = 10
+y = 20
+-- Complex assignment
+a, b, c = true, "sometext", 99
+print(a, b, c)
+-- Cross assignment. What happens?
+x, y = y, x
+print(x, y)
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{Saída 1:}
+        \begin{verbatim}
+true  sometext  99 \end{verbatim}
+      \end{block}
+      \pause
+      \begin{block}{Saída 2:}
+        \begin{verbatim}
+20 10 \end{verbatim}
+      \end{block}
+  \end{columns}
+  \pause
+  \begin{center}
+    Variáveis em excesso ficam com 'nil'. \\
+    Valores em excesso são ignorados.
+  \end{center}
+\end{frame}
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Operadores aritméticos e concatenação}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{arithmetic.lua}
+        \begin{lstlisting}
+-- Simple math
+x = (10 * (42 + 7)) / (5 * 7 + 192)
+-- Also power and module
+y = 6.022 * 10 ^ 23
+z = 19238479127491 % 5
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{concatenation.lua}
+        \begin{lstlisting}
+-- String concatenation.
+s = "Hakuna".." Matata"
+        \end{lstlisting}
+      \end{block}
+  \end{columns}
+  \pause
+  \begin{center}
+    É possível usar variáveis no lugar dos valores.
+  \end{center}
+\end{frame}
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Conversão implícita entre numbers e strings}
   \pause
   \begin{columns}
     \column[t]{.5\textwidth}
@@ -356,7 +411,45 @@ string  1337  \end{verbatim}
       \end{block}
   \end{columns}
 \end{frame}
-
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Operadores relacionais e lógicos}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{relational.lua}
+        \begin{lstlisting}
+-- Relational operators always
+-- return boolean values
+less, notless = (x < y), (y >= x);
+equal = (x == y)
+different = (x ~= y)
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{logical.lua}
+        \begin{lstlisting}
+-- 'not' inverts boolean evaluation
+nottrue = not true
+-- If x evaluates true, returns y,
+-- else returns x.
+condition1 = x and y
+-- If x evaluates true, return x,
+-- else returns y.
+condition2 = x or y
+        \end{lstlisting}
+      \end{block}
+  \end{columns}
+\end{frame}
+%-------------------------------------
+\section{Expressões de controle}
+%-------------------------------------
+\frame{
+  \begin{center}
+  \LARGE 3. Expressões de controle
+  \end{center}
+}
 %-------------------------------------
 
 \begin{frame}[fragile]
@@ -645,43 +738,6 @@ print(x, y)
 \subsection{2.4. Operações.}
 %-------------------------------------
 
-\begin{frame}[fragile]
-  \frametitle{Atribuição}
-  \pause
-  \begin{columns}
-    \column[t]{.5\textwidth}
-      \begin{block}{assignment.lua}
-        \begin{lstlisting}
--- Simple assignment.
-x = 10
-y = 20
--- Complex assignment
-a, b, c = true, "sometext", {}
-print(a, b, c)
--- Cross assignment. What happens?
-x, y = y, x
-print(x, y)
-        \end{lstlisting}
-      \end{block}
-    \pause
-    \column[t]{.5\textwidth}
-      \begin{block}{Saída 1:}
-        \begin{verbatim}
-true  sometext  table: ... \end{verbatim}
-      \end{block}
-      \pause
-      \begin{block}{Saída 2:}
-        \begin{verbatim}
-20 10 \end{verbatim}
-      \end{block}
-  \end{columns}
-  \pause
-  \begin{center}
-    Variáveis em excesso ficam com 'nil'. \\
-    Valores em excesso são ignorados.
-  \end{center}
-\end{frame}
-
 %-------------------------------------
 
 \begin{frame}[fragile]
@@ -808,56 +864,6 @@ end
 -- Respectively equivalent to:
 table.foreach(t, print)
 table.foreachi(t, print)
-        \end{lstlisting}
-      \end{block}
-  \end{columns}
-\end{frame}
-
-%-------------------------------------
-
-\begin{frame}[fragile]
-  \frametitle{Operadores}
-  \pause
-  \begin{columns}
-    \column[t]{.5\textwidth}
-      \begin{block}{arithmetic.lua}
-        \begin{lstlisting}
--- Simple math
-x = (10 * (42 + 7)) / (5 * 7 + 192)
--- Also power and module
-y = "6.022" * 10 ^ 23 -- problem?
-z = 19238479127491 % 5
-        \end{lstlisting}
-      \end{block}
-      \pause
-      \begin{block}{relational.lua}
-        \begin{lstlisting}
--- Relational operators always
--- return boolean values
-less, notless = (x < y), (y >= x);
-equal = (x == y)
-different = (x ~= y)
-        \end{lstlisting}
-      \end{block}
-    \pause
-    \column[t]{.5\textwidth}
-      \begin{block}{logical.lua}
-        \begin{lstlisting}
--- 'not' inverts boolean evaluation
-nottrue = not true
--- If x evaluates true, returns y,
--- else returns x.
-condition1 = x and y
--- If x evaluates true, return x,
--- else returns y.
-condition2 = x or y
-        \end{lstlisting}
-      \end{block}
-      \pause
-      \begin{block}{concatenation.lua}
-        \begin{lstlisting}
--- String concatenation.
-s = "It is over "..9000.."!"
         \end{lstlisting}
       \end{block}
   \end{columns}

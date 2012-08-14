@@ -3,49 +3,50 @@ Resumo:
 
     1) Introdução e breve histórico.
     2) Expressões básicas
-      2.1) Hello World!
-      2.2) Tipos escalares
-        2.2.1) Sobre tipagem dinâmica
-        2.2.2) nil
-        2.2.3) boolean
-        2.2.4) number
-        2.2.5) string
-      2.3) Operações básicas
-        2.3.1) Atribuição
-        2.3.2) Operadores aritméticos e concatenação
-        2.3.3) Conversão implícita entre strings e números.
-        2.3.4) Operadores relacionais
-        2.3.5) Operadores lógicos
-    3) Estruturas de controle
-      3.1) if..then..else
-      3.2) while e repeat..until
-      3.3) break
-      3.4) for
-      3.5) Escopo
-        3.5.1) Escopo global
-        3.5.2) Escopo local
-        2.5.3) Regras de visibilidade
+      2.1) Tipos escalares
+        2.1.1) Sobre tipagem dinâmica
+        2.1.2) nil
+        2.1.3) boolean
+        2.1.4) number
+        2.1.5) string
+      2.2) Operações básicas
+        2.2.1) Atribuição
+        2.2.2) Operadores aritméticos e concatenação
+        2.2.3) Conversão implícita entre strings e números.
+        2.2.4) Operadores relacionais
+        2.2.5) Operadores lógicos
+    3) Expressões de controle
+      3.1) Estruturas
+        3.1.1) if..then..else
+        3.1.2) while e repeat..until
+        3.1.3) break
+        3.1.4) for
+      3.2) Escopo
+        3.2.1) Escopo global
+        3.2.2) Escopo local
+        2.2.3) Regras de visibilidade
     4) Funções
-      4.1) Definindo e usando funções
-      4.2) Propriedades dos argumentos
-      4.3) Quantidade indefinida de argumentos
-      4.3) Propriedades dos valores de retorno
-      4.5) Upvalues
+      4.1) Formas de uso
+        4.1.1) Definindo e usando funções
+        4.1.2) Propriedades dos argumentos
+        4.1.3) Quantidade indefinida de argumentos
+        4.1.3) Propriedades dos valores de retorno
+      4.2) Upvalues
     5) Tabelas
-      5.1) Criando uma tabela
-        5.1.1) Operador {}
-        5.1.2) Campos sequenciais
-        5.1.3) Campos não-sequenciais (hash)
-        5.1.4) Inserindo campos após a criação da tabela
-      5.2) Acessando os campos de uma tabela
-        5.2.1) Usando uma chave
-        5.2.2) Usando pairs
-        5.2.3) Usando foreach
-        5.2.4) Tamanho da tabela
-      5.3) Possibilidades e restrições
-      5.4) Tabelas são referências!
-      5.5) Métodos
-      5.6) _G: That table is a spy!
+      5.1) Criando e manipulando uma tabela
+        5.1.1) Populando uma tabela
+          5.1.1.1) Operador {}
+          5.1.1.2) Campos sequenciais
+          5.1.1.3) Campos não-sequenciais (hash)
+          5.1.1.4) Inserindo campos após a criação da tabela
+        5.1.2) Acessando os campos de uma tabela
+          5.1.2.1) Usando uma chave
+          5.1.2.2) Usando pairs
+          5.1.2.3) Usando foreach
+          5.1.2.4) Tamanho da tabela
+        5.1.3) Possibilidades e restrições
+        5.1.4) Tabelas são referências!
+      5.2) Métodos
     6) Bibliotecas básicas
       6.1) Funções básicas
       6.2) Módulo de matemática
@@ -54,13 +55,13 @@ Resumo:
       6.5) Módulo do sistema operacional
     7) O que não foi coberto
       7.1) Tipos avançados: thread e userdata
-      7.3) Bibliotecas avançadas: módulos, debug e threads
-    3) Conceitos avançados
-        3.1) Metatabelas
-        3.2) Ambientes de funções
-    4) Conceitos MUITO avançados
-        4.1) Chamar funções C pelo Lua
-        4.2) Chamar funções Lua pelo C
+      7.2) Bibliotecas avançadas: módulos, debug e threads
+      7.3) Conceitos avançados
+        7.3.1) Metatabelas
+        7.3.2) Ambientes de funções
+      7.4) Conceitos MUITO avançados
+        7.4.1) Chamar funções C pelo Lua
+        7.4.2) Chamar funções Lua pelo C
         
 
 
