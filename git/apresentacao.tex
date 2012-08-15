@@ -2,6 +2,7 @@
 \usepackage{beamerthemesplit}
 \usepackage[brazilian]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{hyperref}
 \usepackage{color}
 \usepackage{xcolor}
 \usepackage{amssymb}
@@ -22,6 +23,10 @@
 \section{1. Introdução}
 %-------------------------------------
 
+\frame{\begin{center}
+\Huge Introdução
+\end{center}}
+
 \frame{
   \frametitle{O que é Controle de Versão?}
   Softwares de controle de versão é um sistema que grava todas as modificações em um conjunto de arquivos, criando um 
@@ -34,5 +39,131 @@
     \item Controle de versão distribuído. (Ex: Git, Mercurial)
   \end{itemize}
 }
+
+%-------------------------------------
+\subsection{Fundamentos}
+%-------------------------------------
+
+\frame{\begin{center}
+\Huge Fundamentos
+\end{center}}
+
+\frame{
+  \frametitle{Snapshots, não diferenças}
+  O Git, diferente de outros controles de versões que salvam os arquivos e as modificações entre os commits, 
+  o Git salva, a cada commit, o estado atual de cada arquivo.
+}
+
+\frame{
+  \frametitle{Trabalho Local}
+  Quase todo trabalho do Git é local. Isso significa que ele não precisa de comunicação constante com algum servidor
+  remoto, como é normal em outros CVs. Essa liberdade garante que os usuários não fiquem dependentes de internet ou 
+  intranet para trabalhar.
+}
+
+\frame{
+  \frametitle{Integridade}
+  Todo arquivo que está sob os cuidados do Git recebe um checksum ( soma de verificação ). Olhando para esse checksum,
+  o Git sabe se algum arquivo ou diretório foi modificado, tornando impossível modificações obscuras.
+}
+
+\frame{
+  \frametitle{Adição de dados (geralmente...)}
+  Quase todas as ações do Git tem como finalidade adicionar dados na database do projeto. Depois que algo foi 
+  incorporado em um repositório, é quase impossível tirá-lo de lá.
+}
+
+\frame{
+  \frametitle{3 Estados}
+  Todo e qualquer arquivos que está no Git tem 3 possíveis estados:
+  \begin{itemize}
+    \item Committed - Significa que as modanças feitas no arquivo estão salvas na database do Git.
+    \item Modificado - Significa que o arquivo foi modificado.
+    \item Staged - Significa que as mudanças atuais no arquivos seram inclusas no próximo commit.
+  \end{itemize}
+}
+
+\frame{
+  \frametitle{3 Estados}
+  %Enfiar imagem aqui.
+  Esses 3 estados fazem com que um repositório local do Git seja separado em 3 seções:
+  \begin{itemize}
+    \item Git directory - Onde todos os arquivos vitais e a database do Git estão.
+    \item Working directory - É uma instância de uma versão do seu projeto.
+    \item Staging area - Um arquivo que contêm todas as modificações que entrarão no próximo commit.
+  \end{itemize}
+}
+
+\frame{
+  \frametitle{3 Estados}
+  O processo de trabalho com o Git pode ser resumido a:
+  \begin{enumerate}
+    \item Você modifica os arquivos no seu working directory.
+    \item Você adiciona as modificações na staging area.
+    \item Você commita, aicionando permanentemente as modificações no seu Git directory. 
+  \end{enumerate}
+}
+
+%-------------------------------------
+\subsection{Instalação e Configuração}
+%-------------------------------------
+
+\frame{
+  \frametitle{Instalação}
+  Para instalar o Git, vamos seguir o tutorial do GitHub =D
+}
+
+\begin{frame}[fragile]
+  \frametitle{Configuração}
+  O Git permite uma variedade de configurações. Podemos modificá-las usando o comando:
+  \begin{block}{}
+    \verb#$ git config#
+  \end{block}
+  \pause
+  Duas configurações que temos que modificar depois de instalar o Git são:
+  \begin{block}{}
+      \verb#$ git config --global user.name "José da Silva"# \\
+      \verb#$ git config --global user.email josé@silva.com.br#
+  \end{block}
+  Temos que mudar essas configurações pois o Git usam elas para gerar as mensagens de commit.
+\end{frame}
+
+%-------------------------------------
+\section{Git 101}
+%-------------------------------------
+
+%-------------------------------------
+\subsection{Repositórios}
+%-------------------------------------
+
+\begin{frame}[fragile]
+  Podemos pegar um projeto que usa o Git de duas maneiras distintas:
+  \begin{itemize}
+    \item Portanto um projeto existente para o Git, ou
+    \item Clonando um projeto que já usa o Git.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  Para iniciar o Git num projeto já existente basta ir na pasta raiz do projeto e usar o comando:
+  \begin{block}{}
+    \verb#$ git init#
+  \end{block}
+  \pause
+  Para clonar um projeto que já usa o Git usamos o comando:
+  \begin{block}{}
+    \verb#$ git clone <url-do-repositorio> <nome-da-pasta>#
+  \end{block}
+  Esse comando cria uma pasta com o nome do projeto no local em que foi chamado. Podemos
+  passar um nome para a pasta que vai seer criada.
+\end{frame}
+
+%-------------------------------------
+\subsection{Gravando Mudanças}
+%-------------------------------------
+
+\begin{frame}[fragile]
+  a
+\end{frame}
 
 \end{document}
