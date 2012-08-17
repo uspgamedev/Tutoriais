@@ -200,20 +200,6 @@
       #
     \end{verbatim}
   \end{block}
-  Veremos o que a saída significa depois.
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Git add}
-  O comando git add tem duas principais funcionalidades:
-  \begin{itemize}
-    \item Adicionar um novo arquivo na database do Git. O arquivo passa de Untracked para Tracked.
-    \item Adicionar uma nova versão de um Arquivo Tracked na database. O arquivo passa de modified para staged.
-  \end{itemize}
-  A sintaxe é simples:
-  \begin{block}{}
-    \verb#$ git add <nome-do-arquivo>#
-  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -239,8 +225,38 @@
 \end{frame}
 
 \begin{frame}[fragile]
+  \frametitle{Git add}
+  O comando git add tem duas principais funcionalidades:
+  \begin{itemize}
+    \item Adicionar um novo arquivo na database do Git. O arquivo passa de Untracked para Tracked.
+    \item Adicionar uma nova versão de um Arquivo Tracked na database. O arquivo passa de modified para staged.
+  \end{itemize}
+  A sintaxe é simples:
+  \begin{block}{}
+    \verb#$ git add <nome-do-arquivo>#
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Git rm}
+  Assim como podemos adicionar arquivos na database, podemos removê-los. \\
+  \pause
+  O comando rm do Git remove os arquivos tanto do workdirectory como da database. \\
+  \pause
+  Temos que tomar cuidado ao deletar um arquivo sem o git rm.
+\end{frame}
+
+\begin{frame}[fragile]
   \frametitle{.gitignore}
-  Nem sempre 
+  Nem sempre é bom que o Git veja todos os arquivos dentro de um projeto. \\
+  \pause
+  Imagine se toda vez que o comando status lista a saída, temos vários arquivos de compilação lá? \\
+  \pause
+  Podemos colocar expressões regulares num arquivo chamando \textbf{.gitignore}. \\
+  \pause
+  Todo arquivo que case com qualquer expressão do \textbf{.gitignore} será ignorado pelo Git. \\
+  \pause
+  O \textbf{.gitignore} se aplica na pasta que ele se encontra, e em todas abaixo dele. 
 \end{frame}
 
 \end{document}
