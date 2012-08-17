@@ -137,6 +137,7 @@
 %-------------------------------------
 
 \begin{frame}[fragile]
+  \frametitle{Iniciando um Repositório}
   Podemos pegar um projeto que usa o Git de duas maneiras distintas:
   \begin{itemize}
     \item Portanto um projeto existente para o Git, ou
@@ -145,6 +146,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
+  \frametitle{Iniciando um Repositório}
   Para iniciar o Git num projeto já existente basta ir na pasta raiz do projeto e usar o comando:
   \begin{block}{}
     \verb#$ git init#
@@ -163,7 +165,82 @@
 %-------------------------------------
 
 \begin{frame}[fragile]
-  a
+  \frametitle{Tracked e Untracked}
+  Agora que temos um repositório funcionando, vamos entender como o Git grava as mudanças. \\
+  \pause
+  Lembram que todo arquivo no Git tinha 3 estados? \\
+  \pause
+  Podemos adicionar mais dois estados gerais, \textbf{Tracked} e \textbf{Untracked}. \\
+  \pause
+  Os arquivos \textbf{Tracked} estão na database do Git, e eles podem estar em qualquer dos 3 estados citados
+  anteriormente. \\
+  \pause
+  Os \textbf{Untracked} são os arquivos que não estão na database do Git, ou seja, o Git não grava as mudanças
+  feitas neles.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Tracked e Untracked}
+  %Imagem tracked untracked%
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Git status}
+  Mas como sabemos em qual estado estão os arquivos? \\
+  \pause
+  Podemos usar o comando status do Git, que tem essa saída:
+  \begin{block}{}
+    \begin{verbatim}
+      $ git status
+      # On branch master
+      # Changes to be committed:
+      #   (use "git reset HEAD <file>..." to unstage)
+      #
+      #   new file:   README
+      #
+    \end{verbatim}
+  \end{block}
+  Veremos o que a saída significa depois.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Git add}
+  O comando git add tem duas principais funcionalidades:
+  \begin{itemize}
+    \item Adicionar um novo arquivo na database do Git. O arquivo passa de Untracked para Tracked.
+    \item Adicionar uma nova versão de um Arquivo Tracked na database. O arquivo passa de modified para staged.
+  \end{itemize}
+  A sintaxe é simples:
+  \begin{block}{}
+    \verb#$ git add <nome-do-arquivo>#
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Mais git status}
+  Agora vamos analisar a saída do comando status...
+  \begin{block}{}
+    \begin{verbatim}
+      $ git status
+      # On branch master
+      # Changes to be committed:
+      #   (use "git reset HEAD <file>..." 
+              to unstage)
+      #
+      #   new file:   README
+      #
+      # Changed but not updated:
+      #   (use "git add <file>..." 
+              to update what will be committed)
+      #
+      #   modified:   benchmarks.rb
+    \end{verbatim}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{.gitignore}
+  Nem sempre 
 \end{frame}
 
 \end{document}
