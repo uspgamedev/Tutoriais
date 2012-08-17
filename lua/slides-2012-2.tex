@@ -132,7 +132,7 @@
 }
 %-------------------------------------
 \begin{frame}[fragile]
-  \frametitle{Hello World!!!}
+  \frametitle{Exercício 1.1: Hello World!!!}
   \pause
   \begin{columns}
     \column[t]{.5\textwidth}
@@ -412,6 +412,8 @@ string  1337  \end{verbatim}
   \end{columns}
 \end{frame}
 %-------------------------------------
+%% TODO: exercício 2.1
+%-------------------------------------
 \begin{frame}[fragile]
   \frametitle{Operadores relacionais e lógicos}
   \pause
@@ -451,9 +453,270 @@ condition2 = x or y
   \end{center}
 }
 %-------------------------------------
-
+\subsection{3.1. Estruturas}
+%-------------------------------------
+\frame{
+  \begin{center}
+  \Large 3.1. Estruturas
+  \end{center}
+}
+%-------------------------------------
 \begin{frame}[fragile]
-  \frametitle{Funções}
+  \frametitle{Estrutura if..then..else }
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{ifthenelse.lua}
+        \begin{lstlisting}
+-- Condition statement.
+if x < 10 then
+  -- do something
+elseif x < 20 then
+  -- do something else
+else
+  -- do yet another something
+end 
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{vartest.lua}
+        \begin{lstlisting}
+-- A variable evalues to true if
+-- and only if its value is neither
+-- nil nor false.
+if x then
+  -- x is neither nil nor false
+else
+  -- x is nil or false
+end
+        \end{lstlisting}
+      \end{block}
+  \end{columns}
+  \pause
+  \begin{center}
+    Zero não é avaliado para falso!
+  \end{center}
+\end{frame}
+%-------------------------------------
+%% TODO: exercício
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Estruturas while e repeat..until}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{while.lua}
+        \begin{lstlisting}
+-- Loops while the condition is
+-- true.
+i = 1
+while i <= 10 do
+  -- something that happens
+  -- 10 times
+  i = i + 1
+end
+-- Loops forever... not.
+while true do
+  -- how many times?
+  i = i - 1
+  break
+end
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{repeatuntil.lua}
+        \begin{lstlisting}
+-- Loops until the condition is
+-- true.
+i = 1
+repeat
+  -- something that happens
+  -- 10 times
+  i = i + 1
+until i == 10
+-- Loops foerever... neither.
+repeat
+  -- and now, how many times?
+  i = i - 1
+  if i < 5 then break end
+until false
+        \end{lstlisting}
+      \end{block}
+  \end{columns}
+\end{frame}
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Estrutura for}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{for.lua}
+        \begin{lstlisting}
+-- Loops from i = 1 to i = 5
+for i = 1,5 do
+  print(i)
+end
+
+-- Loops from i = 1 to i = 5
+-- jumping by 2 at a time.
+for i = 1,5,2 do
+  print(i)
+end
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{Saída 1:}
+        \begin{verbatim}
+1
+2
+3
+4
+5 \end{verbatim}
+      \end{block}
+      \pause
+      \begin{block}{Saída 2:}
+        \begin{verbatim}
+1
+3
+5 \end{verbatim}
+      \end{block}
+%% TODO: move
+%%      \begin{block}{foreach.lua}
+%%        \begin{lstlisting}
+%%-- Loops for each key-value
+%%-- pair in table t
+%%for k,v in pairs(t) do
+%%  print(k, v) -- for example
+%%end
+%%-- Loops for each index-value
+%%-- pair in table t. Only 1..n
+%%-- indexes are accessed.
+%%for i,v in ipairs(t) do
+%%  print(i,v) -- same example
+%%end
+%%-- Respectively equivalent to:
+%%table.foreach(t, print)
+%%table.foreachi(t, print)
+%%        \end{lstlisting}
+%%      \end{block}
+  \end{columns}
+\end{frame}
+%-------------------------------------
+%% TODO: exercício
+%% sugestão: fazer um mesmo loop usando while, repeat e for.
+%-------------------------------------
+\subsection{3.2. Escopo.}
+%-------------------------------------
+\frame{
+  \begin{center}
+  \Large 3.2. Escopo
+  \end{center}
+}
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Escopo global}
+  \pause
+  \begin{center}
+    Por padrão, as variáveis são todas globais.
+  \end{center}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{scope1.lua}
+        \begin{lstlisting}
+-- Changing the value of x
+x = 0
+if true then
+  x = x + 1
+end
+print(x)
+        \end{lstlisting}
+      \end{block}
+      \pause
+      \begin{block}{Saída 1:}
+        \begin{verbatim}
+1 \end{verbatim}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{scope2.lua}
+        \begin{lstlisting}
+-- Does x exists?
+if true then
+  x = 1
+end
+print(x)
+        \end{lstlisting}
+      \end{block}
+      \pause
+      \begin{block}{Saída 2:}
+        \begin{verbatim}
+1 \end{verbatim}
+      \end{block}
+  \end{columns}
+\end{frame}
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Escopo local}
+  \pause
+  \begin{center}
+    É preciso explicitar as variáveis locais.
+  \end{center}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{local.lua}
+        \begin{lstlisting}
+-- x will not be a global variable.
+local x = 0
+y = 5
+do
+  local x = 10
+  do
+    y = 20
+    print(x, y)
+  end
+end
+print(x, y)
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{Saída 1:}
+        \begin{verbatim}
+10  20\end{verbatim}
+      \end{block}
+      \pause
+      \begin{block}{Saída 2:}
+        \begin{verbatim}
+0   20\end{verbatim}
+      \end{block}
+  \end{columns}
+\end{frame}
+%-------------------------------------
+%% TODO: exercício "o i do for é global ou local?"
+%-------------------------------------
+\section{Funções}
+%-------------------------------------
+\frame{
+  \begin{center}
+  \LARGE 4. Funções
+  \end{center}
+}
+%-------------------------------------
+\subsection{4.1. Criando e usando funções}
+%-------------------------------------
+\frame{
+  \begin{center}
+  \Large 4.1. Criando e usando funções
+  \end{center}
+}
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{O tipo function}
   \pause
   \begin{center}
     Função é um tipo nativo em Lua!
@@ -476,9 +739,145 @@ print(f)
 function
 function: 0x9d74b0  \end{verbatim}
       \end{block}
+      \pause
+      Não é um tipo escalar.
   \end{columns}
 \end{frame}
-
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Definindo e usando funções}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{functiondef.lua}
+        \begin{lstlisting}
+-- f takes x and returns x+10
+f = function(x)
+  return x + 10
+end
+-- Another way to do it:
+function g(x)
+  if x < 10 then
+    print "Less than 10"
+  else
+    print "Greater than 10"
+  end
+  -- this one returns nothing
+end
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{functionusage.lua}
+        \begin{lstlisting}
+-- The result is 15
+result = f(5)
+-- Just calling
+g(15)
+-- When passing a single string
+-- argument, parenthesis can be
+-- omitted.
+print "single string arg"
+        \end{lstlisting}
+      \end{block}
+      \pause
+      Argumentos são locais.
+  \end{columns}
+\end{frame}
+%% TODO add to table part
+%%-- The same goes for single table
+%%-- arguments.
+%%ls { "first", "second", "third" }
+%-------------------------------------
+%% TODO exercício
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Definindo e usando funções}
+  \pause
+  \begin{center}
+    Quantidade de parâmetros e retornos
+  \end{center}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{functionvardef.lua}
+        \begin{lstlisting}
+-- Functions may receive a
+-- variable number of arguments
+function f(x,y,z,...)
+  local a, b, c = ...
+  return a*x + b*y + c*z
+end
+-- And they may return many
+-- values aswell.
+function g()
+  return "hey","listen"
+end
+-- Or no value at all.
+function h() end
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{functionvarusage.lua}
+        \begin{lstlisting}
+-- Using variable args.
+f(1,2,3) -- error
+f(1,2,3,4,5,6) -- ok
+f() -- error, but possible
+-- Getting multipe returns.
+a,b = g() -- ok
+c = g() -- "listen" is lost
+d = h() -- guess what? nil.
+        \end{lstlisting}
+      \end{block}
+  \end{columns}
+\end{frame}
+%-------------------------------------
+%% TODO exercício
+%-------------------------------------
+\subsection{4.2. Upvalues}
+%-------------------------------------
+\frame{
+  \begin{center}
+  \Large 4.2. Upvalues
+  \end{center}
+}
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{I heard you like functions...}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{upvalue.lua}
+        \begin{lstlisting}
+-- Mindblow function
+function yodog (x)
+  local upvalue = x
+  local function result ()
+    return upvalue
+  end
+  return result
+end
+-- Make a few copies
+f = yodog(10)
+g = yodog("fly me to the moon")
+print(f())
+print(g())
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{Saída:}
+        \begin{verbatim}
+10
+fly me to the moon \end{verbatim}
+      \end{block}
+  \end{columns}
+\end{frame}
+%-------------------------------------
+%% TODO exercício
+%% - a variável "upvalue" era necessária?
 %-------------------------------------
 
 \begin{frame}[fragile]
@@ -507,8 +906,6 @@ table: 0x866780  \end{verbatim}
       \end{block}
   \end{columns}
 \end{frame}
-
-%-------------------------------------
 
 \begin{frame}[fragile]
   \frametitle{Usando tabelas - Criando uma tabela com campos}
@@ -673,201 +1070,13 @@ table.foreach(t, print)
   \end{itemize}
 }
 
-%-------------------------------------
-\subsection{2.3. Variáveis.}
-%-------------------------------------
-
-\frame{
-  \frametitle{Escopo global}
-  \begin{itemize}
-    \pause
-    \item Por padrão, as variáveis são todas globais, isso é,
-          elas pertencem ao escopo global.
-    \pause
-    \item O escopo global nada mais é do que uma tabela que sempre
-          existe e à qual todos têm acesso naturalmente.
-    \pause
-    \item É possível acessá-lo mais explicitamente através da
-          variável global "\_G".
-    \pause
-    \item Sim, o escopo global está inserido nele mesmo.
-  \end{itemize}
-}
-
-%-------------------------------------
-
-\begin{frame}[fragile]
-  \frametitle{Escopo local}
-  \pause
-  \begin{columns}
-    \column[t]{.5\textwidth}
-      \begin{block}{local.lua}
-        \begin{lstlisting}
--- x will not be a global variable.
-local x = 0
-y = 5
-do
-  local x = 10
-  do
-    y = 20
-    print(x, y)
-  end
-end
-print(x, y)
-        \end{lstlisting}
-      \end{block}
-    \pause
-    \column[t]{.5\textwidth}
-      \begin{block}{Saída 1:}
-        \begin{verbatim}
-10  20\end{verbatim}
-      \end{block}
-      \pause
-      \begin{block}{Saída 2:}
-        \begin{verbatim}
-0   20\end{verbatim}
-      \end{block}
-  \end{columns}
-  \pause
-  \begin{center}
-    Isso fará mais sentido daqui a pouco.
-  \end{center}
-\end{frame}
 
 %-------------------------------------
 \subsection{2.4. Operações.}
 %-------------------------------------
 
-%-------------------------------------
 
-\begin{frame}[fragile]
-  \frametitle{Estruturas de controle: if..then..else}
-  \pause
-  \begin{columns}
-    \column[t]{.5\textwidth}
-      \begin{block}{ifthenelse.lua}
-        \begin{lstlisting}
--- Condition statement.
-if x < 10 then
-  -- do something
-elseif x < 20 then
-  -- do something else
-else
-  -- do yet another something
-end 
-        \end{lstlisting}
-      \end{block}
-    \pause
-    \column[t]{.5\textwidth}
-      \begin{block}{vartest.lua}
-        \begin{lstlisting}
--- A variable evalues to true if
--- and only if its value is neither
--- nil nor false.
-if x then
-  -- x is neither nil nor false
-else
-  -- x is nil or false
-end
-        \end{lstlisting}
-      \end{block}
-  \end{columns}
-  \pause
-  \begin{center}
-    Zero não é avaliado para falso!
-  \end{center}
-\end{frame}
 
-%-------------------------------------
-
-\begin{frame}[fragile]
-  \frametitle{Estruturas de controle: while e repeat..until}
-  \pause
-  \begin{columns}
-    \column[t]{.5\textwidth}
-      \begin{block}{while.lua}
-        \begin{lstlisting}
--- Loops while the condition is
--- true.
-i = 1
-while i <= 10 do
-  -- something that happens
-  -- 10 times
-  i = i + 1
-end
--- Loops forever... not.
-while true do
-  -- how many times?
-  i = i - 1
-  break
-end
-        \end{lstlisting}
-      \end{block}
-    \pause
-    \column[t]{.5\textwidth}
-      \begin{block}{repeatuntil.lua}
-        \begin{lstlisting}
--- Loops until the condition is
--- true.
-i = 1
-repeat
-  -- something that happens
-  -- 10 times
-  i = i + 1
-until i == 10
--- Loops foerever... neither.
-repeat
-  -- and now, how many times?
-  i = i - 1
-  if i < 5 then break end
-until false
-        \end{lstlisting}
-      \end{block}
-  \end{columns}
-\end{frame}
-
-%-------------------------------------
-
-\begin{frame}[fragile]
-  \frametitle{Estruturas de controle: for}
-  \pause
-  \begin{columns}
-    \column[t]{.5\textwidth}
-      \begin{block}{iteratedfor.lua}
-        \begin{lstlisting}
--- Loops from i = 1 to i = 10
-for i = 1,10 do
-  -- Loops through 1,2,...,10
-end
--- Loops from i = 1 to i = 10
--- jumping by 2 at a time.
-for i = 1,10,2 do
-  -- Loops through 1,3,...,9
-end
-        \end{lstlisting}
-      \end{block}
-    \pause
-    \column[t]{.5\textwidth}
-      \begin{block}{foreach.lua}
-        \begin{lstlisting}
--- Loops for each key-value
--- pair in table t
-for k,v in pairs(t) do
-  print(k, v) -- for example
-end
--- Loops for each index-value
--- pair in table t. Only 1..n
--- indexes are accessed.
-for i,v in ipairs(t) do
-  print(i,v) -- same example
-end
--- Respectively equivalent to:
-table.foreach(t, print)
-table.foreachi(t, print)
-        \end{lstlisting}
-      \end{block}
-  \end{columns}
-\end{frame}
 
 %-------------------------------------
 
@@ -895,89 +1104,6 @@ r = {
 t = { 5, 5, 5, 5, 5 }
 n = #t -- length is 5
 m = #"yo there" -- length is 8
-        \end{lstlisting}
-      \end{block}
-  \end{columns}
-\end{frame}
-
-%-------------------------------------
-
-\begin{frame}[fragile]
-  \frametitle{Definindo e usando funções}
-  \pause
-  \begin{columns}
-    \column[t]{.5\textwidth}
-      \begin{block}{functiondef.lua}
-        \begin{lstlisting}
--- f takes x and returns x+10
-f = function(x)
-  return x + 10
-end
--- Another way to do it:
-function ls(t)
-  table.foreach(t, print)
-  -- this one returns nothing
-end
-        \end{lstlisting}
-      \end{block}
-    \pause
-    \column[t]{.5\textwidth}
-      \begin{block}{functionusage.lua}
-        \begin{lstlisting}
--- The result is 15
-result = f(5)
--- One passing a single string
--- argument, parenthesis can be
--- omitted.
-print "single string arg"
--- The same goes for single table
--- arguments.
-ls { "first", "second", "third" }
-        \end{lstlisting}
-      \end{block}
-  \end{columns}
-\end{frame}
-
-%-------------------------------------
-
-\begin{frame}[fragile]
-  \frametitle{Definindo e usando funções}
-  \pause
-  \begin{center}
-    Quantidade de parâmetros e retornos indefinida.
-  \end{center}
-  \pause
-  \begin{columns}
-    \column[t]{.5\textwidth}
-      \begin{block}{functionvardef.lua}
-        \begin{lstlisting}
--- Functions may receive a
--- variable number of arguments
-function f(x,y,z,...)
-  local a, b, c = ...
-  return a*x + b*y + c*z
-end
--- And they may return many
--- values aswell.
-function g()
-  return "hey","listen"
-end
--- Or no value at all.
-function h() end
-        \end{lstlisting}
-      \end{block}
-    \pause
-    \column[t]{.5\textwidth}
-      \begin{block}{functionvarusage.lua}
-        \begin{lstlisting}
--- Using variable args.
-f(1,2,3) -- error
-f(1,2,3,4,5,6) -- ok
-f() -- error, but possible
--- Getting multipe returns.
-a,b = g() -- ok
-c = g() -- "listen" is lost
-d = h() -- guess what? nil.
         \end{lstlisting}
       \end{block}
   \end{columns}
