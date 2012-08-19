@@ -679,6 +679,48 @@ print(x, y)
   \end{columns}
 \end{frame}
 %-------------------------------------
+\frame{
+  \frametitle{Blocos}
+  \begin{itemize}
+    \pause
+    \item Um script lua apresenta uma hierarquia de blocos.
+    \pause
+    \item Um bloco é uma sequência de comandos, como os
+          exemplos que vimos até agora.
+    \pause
+    \item Um bloco pode ter outros blocos dentro de si,
+          através de:
+    \begin{itemize}
+      \pause
+      \item estruturas de controle (if, while, for, etc);
+      \pause
+      \item definições de funções; ou
+      \pause
+      \item uso explícito de "do..end".
+    \end{itemize}
+  \end{itemize}
+}
+%-------------------------------------
+\frame{
+  \frametitle{Visibilidade}
+  \begin{itemize}
+    \pause
+    \item Variáveis globais são visíveis a partir de
+          qualquer bloco, contanto que não esteja
+          obscurecida por alguma variável local visível
+          de mesmo nome.
+    \pause
+    \item Variáveis locais são visíveis no bloco em que
+          foram declaradas e nos blocos aninhados nele,
+          contanto que sejam referenciadas após a linha em
+          que foram definidas.
+    \pause
+    \item Se um bloco tenta acessar uma variável que não
+          está visível de jeito nenhum para ele, ele
+          receberá um 'nil'.
+  \end{itemize}
+}
+%-------------------------------------
 %% TODO: exercício "o i do for é global ou local?"
 %-------------------------------------
 \section{Funções}
@@ -1220,27 +1262,36 @@ not \end{verbatim}
   \end{center}
 }
 %-------------------------------------
-%% TODO add to table part
-%%-- The same goes for single table
-%%-- arguments.
-%%ls { "first", "second", "third" }
-
-
-%-------------------------------------
-%-------------------------------------
-
 \begin{frame}[fragile]
-  \frametitle{Definindo e usando funções}
+  \frametitle{Argumento único}
   \pause
-  \begin{center}
-    Métodos!
-  \end{center}
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{uniquearg.lua}
+        \begin{lstlisting}
+-- Sums all indexed fields
+function sum (t)
+  local result = 0
+  for _,v in ipairs(t) do
+    result = result + v
+  end
+  return result
+end
+-- Just like with strings
+x = sum { 15, 26, -31 }
+        \end{lstlisting}
+      \end{block}
+  \end{columns}
+\end{frame}
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Métodos}
   \pause
   \begin{columns}
     \column[t]{.5\textwidth}
       \begin{block}{method1.lua}
         \begin{lstlisting}
--- A method is a function whithing
+-- A method is a function within
 -- a table that takes the table
 -- itself as its first argument:
 t = { "a", "b", "c" }
@@ -1270,65 +1321,14 @@ end
       \end{block}
   \end{columns}
 \end{frame}
-
-%-------------------------------------
-\subsection{2.5. Regras de visibilidade}
-%-------------------------------------
-
-\frame{
-  \frametitle{Blocos}
-  \begin{itemize}
-    \pause
-    \item Um script lua apresenta uma hierarquia de blocos.
-    \pause
-    \item Um bloco é uma sequência de comandos, como os
-          exemplos que vimos até agora.
-    \pause
-    \item Um bloco pode ter outros blocos dentro de si,
-          através de:
-    \begin{itemize}
-      \pause
-      \item estruturas de controle (if, while, for, etc);
-      \pause
-      \item definições de funções; ou
-      \pause
-      \item uso explícito de "do..end".
-    \end{itemize}
-  \end{itemize}
-}
-
-%-------------------------------------
-
-\frame{
-  \frametitle{Visibilidade}
-  \begin{itemize}
-    \pause
-    \item Variáveis globais são visíveis a partir de
-          qualquer bloco, contanto que não esteja
-          obscurecida por alguma variável local visível
-          de mesmo nome.
-    \pause
-    \item Variáveis locais são visíveis no bloco em que
-          foram declaradas e nos blocos aninhados nele,
-          contanto que sejam referenciadas após a linha em
-          que foram definidas.
-    \pause
-    \item Se um bloco tenta acessar uma variável que não
-          está visível de jeito nenhum para ele, ele
-          receberá um 'nil' na cara.
-  \end{itemize}
-}
-
 %-------------------------------------
 \section{Bibliotecas básicas}
 %-------------------------------------
-
 \frame{
   \begin{center}
-    \LARGE 3. Bibliotécas básicas
+    \LARGE 6. Bibliotécas básicas
   \end{center}
 }
-
 %-------------------------------------
 \section{Unlimited slide works}
 %-------------------------------------
