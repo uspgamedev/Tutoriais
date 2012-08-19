@@ -46,7 +46,9 @@ Resumo:
           5.1.2.4) Tamanho da tabela
         5.1.3) Possibilidades e restrições
         5.1.4) Tabelas são referências!
-      5.2) Métodos
+      5.2) Atalhos
+        5.2.1) Argumento único
+        5.2.2) Métodos
     6) Bibliotecas básicas
       6.1) Funções básicas
       6.2) Módulo de matemática

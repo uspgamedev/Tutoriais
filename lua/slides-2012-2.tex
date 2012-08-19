@@ -375,6 +375,7 @@ z = 19238479127491 % 5
         \begin{lstlisting}
 -- String concatenation.
 s = "Hakuna".." Matata"
+length = #"heeey"
         \end{lstlisting}
       \end{block}
   \end{columns}
@@ -583,25 +584,6 @@ end
 3
 5 \end{verbatim}
       \end{block}
-%% TODO: move
-%%      \begin{block}{foreach.lua}
-%%        \begin{lstlisting}
-%%-- Loops for each key-value
-%%-- pair in table t
-%%for k,v in pairs(t) do
-%%  print(k, v) -- for example
-%%end
-%%-- Loops for each index-value
-%%-- pair in table t. Only 1..n
-%%-- indexes are accessed.
-%%for i,v in ipairs(t) do
-%%  print(i,v) -- same example
-%%end
-%%-- Respectively equivalent to:
-%%table.foreach(t, print)
-%%table.foreachi(t, print)
-%%        \end{lstlisting}
-%%      \end{block}
   \end{columns}
 \end{frame}
 %-------------------------------------
@@ -784,10 +766,6 @@ print "single string arg"
       Argumentos são locais.
   \end{columns}
 \end{frame}
-%% TODO add to table part
-%%-- The same goes for single table
-%%-- arguments.
-%%ls { "first", "second", "third" }
 %-------------------------------------
 %% TODO exercício
 %-------------------------------------
@@ -895,12 +873,12 @@ fly me to the moon \end{verbatim}
   \end{center}
 }
 %-------------------------------------
-
 \begin{frame}[fragile]
-  \frametitle{Tabelas}
+  \frametitle{O tipo table}
   \pause
   \begin{center}
-    Tabelas são o principal tipo em Lua!
+    Tabelas, assim como funções, formam um tipo nativo do Lua
+    que não é escalar
   \end{center}
   \pause
   \begin{columns}
@@ -922,13 +900,13 @@ table: 0x866780  \end{verbatim}
       \end{block}
   \end{columns}
 \end{frame}
-
+%-------------------------------------
 \begin{frame}[fragile]
-  \frametitle{Usando tabelas - Criando uma tabela com campos}
+  \frametitle{Criando uma tabela com campos}
   \pause
   \begin{columns}
     \column[t]{.5\textwidth}
-      \begin{block}{tableusage1.lua}
+      \begin{block}{tablecreation.lua}
         \begin{lstlisting}
 -- t receives a table initialized
 -- with some fields.
@@ -954,15 +932,13 @@ b       50  \end{verbatim}
       \end{block}
   \end{columns}
 \end{frame}
-
 %-------------------------------------
-
 \begin{frame}[fragile]
-  \frametitle{Usando tabelas - Inserindo campos}
+  \frametitle{Inserindo campos após a criação}
   \pause
   \begin{columns}
     \column[t]{.5\textwidth}
-      \begin{block}{tableusage2.lua}
+      \begin{block}{tableinsertion.lua}
         \begin{lstlisting}
 -- t receives an empty table
 t = {}
@@ -987,15 +963,13 @@ somefield   table: ...    \end{verbatim}
       \end{block}
   \end{columns}
 \end{frame}
-
 %-------------------------------------
-
 \begin{frame}[fragile]
-  \frametitle{Usando tabelas - Removendo campos}
+  \frametitle{Removendo campos}
   \pause
   \begin{columns}
     \column[t]{.5\textwidth}
-      \begin{block}{tableusage3.lua}
+      \begin{block}{tableremoval.lua}
         \begin{lstlisting}
 -- t receives a non-empty table.
 t = { 10, 20, 30 }
@@ -1026,11 +1000,167 @@ table.foreach(t, print)
     É o mesmo de antes: campos que valem 'nil' não existem!
   \end{center}
 \end{frame}
-
 %-------------------------------------
-
-\frame{
-  \frametitle{Usando tabelas - Possibilidades e restrições}
+\begin{frame}[fragile]
+  \frametitle{Acessando campos pela chave}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{tableaccess.lua}
+        \begin{lstlisting}
+-- Let's go back to the table:
+t = {
+  10, 20, 30,
+  a = 40, b = 50,
+  [3.14159] = "PI"
+}
+-- Access fields
+print(t[1], t[2], t[3])
+print(t["a"], t["b"], t[3.14159])
+-- Also works
+print(t.a, t.b)
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{Saída 1:}
+        \begin{verbatim}
+10  20  30 \end{verbatim}
+      \end{block}
+      \pause
+      \begin{block}{Saída 2:}
+        \begin{verbatim}
+40  50  PI \end{verbatim}
+      \end{block}
+      \pause
+      \begin{block}{Saída 3:}
+        \begin{verbatim}
+40  50 \end{verbatim}
+      \end{block}
+  \end{columns}
+\end{frame}
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Acessando campos usando for}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{tablefor.lua}
+        \begin{lstlisting}
+-- Same table again:
+t = {
+  10, 20, 30,
+  a = 40, b = 50,
+  [3.14159] = "PI"
+}
+-- All fields
+for k,v in pairs(t) do
+  print(k,v)
+end
+-- Indexed fields
+for i,v in ipairs(t) do
+  print(i,v)
+end
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{Saída 1:}
+        \begin{verbatim}
+1       10
+2       20
+3       30
+a       40
+3.14159 PI
+b       50  \end{verbatim}
+      \end{block}
+      \pause
+      \begin{block}{Saída 2:}
+        \begin{verbatim}
+1       10
+2       20
+3       30 \end{verbatim}
+      \end{block}
+  \end{columns}
+\end{frame}
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Acessando campos usando foreach}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{tableforeach.lua}
+        \begin{lstlisting}
+-- He likes us:
+t = {
+  10, 20, 30,
+  a = 40, b = 50,
+  [3.14159] = "PI"
+}
+-- All fields
+table.foreach(t, print)
+-- Indexed fields
+table.foreachi(t, print)
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{Saída 1:}
+        \begin{verbatim}
+1       10
+2       20
+3       30
+a       40
+3.14159 PI
+b       50  \end{verbatim}
+      \end{block}
+      \pause
+      \begin{block}{Saída 2:}
+        \begin{verbatim}
+1       10
+2       20
+3       30 \end{verbatim}
+      \end{block}
+  \end{columns}
+\end{frame}
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Tamanho da tabela}
+  \pause
+  \begin{center}
+    Funciona apenas para campos indexados
+  \end{center}
+  \pause
+  \begin{columns}
+    \column[t]{.5\textwidth}
+      \begin{block}{tablelength.lua}
+        \begin{lstlisting}
+-- One last time?
+t = {
+  10, 20, 30,
+  a = 40, b = 50,
+  [3.14159] = "PI"
+}
+-- Table length
+print(#t)
+        \end{lstlisting}
+      \end{block}
+    \pause
+    \column[t]{.5\textwidth}
+      \begin{block}{Saída:}
+        \begin{verbatim}
+3 \end{verbatim}
+      \end{block}
+  \end{columns}
+\end{frame}
+%-------------------------------------
+%% TODO exercício
+%% - sugestão: construir "tabuada"
+%% - desafio: qual a diferença entre
+%%   usar pairs e usar foreach?
+%-------------------------------------
+\begin{frame}[fragile]
+  \frametitle{Possibilidades e restrições}
   \begin{itemize}
     \pause
     \item Praticamente QUALQUER COISA pode ser inserido em uma
@@ -1039,92 +1169,64 @@ table.foreach(t, print)
     \item Isso significa que tabelas podem ter outras tabelas e
           até mesmo funçoes como chaves e valores!
     \pause
-    \item A ÚNICA EXCEÇÃO é o 'nil'.
+    \item A ÚNICA EXCEÇÃO é o \verb$nil$:
     \begin{itemize}
       \pause
-      \item Chaves NUNCA podem ser 'nil' (isso causa um erro)
+      \item Chaves NUNCA podem ser \verb$nil$ (isso causa um erro)
       \pause
-      \item Valores 'nil' são removidos da tabela.
+      \item Campos com valores \verb$nil$ são removidos da tabela.
     \end{itemize}
   \end{itemize}
-}
-
+\end{frame}
 %-------------------------------------
-
-\frame{
-  \frametitle{Threads}
-  \begin{itemize}
-    \pause
-    \item Threads se parecem com funções, só que elas podem ser
-          executadas sincronizadamente (i.e. paralelamente ao
-          mesmo tempo)
-    \pause
-    \item Talvez não pareça, mas isso é bem complicado de usar!
-    \pause
-    \item Por isso não abordarei threads nesse curso. Os curiosos
-          podem fuçar o manual do Lua e explodirem seus
-          computadores à vontade =P.
-  \end{itemize}
-}
-
-%-------------------------------------
-
-\frame{
-  \frametitle{Userdata}
-  \begin{itemize}
-    \pause
-    \item Userdata representam objetos nativos que vieram de
-          fora do Lua.
-    \pause
-    \item Portanto, não podem ser criados de dentro dele.
-    \pause
-    \item E sua forma de uso é totalmente determinada por quem
-          o criou.
-    \pause
-    \item Por exemplo, ele poderia ser um objeto associado a uma
-          imagem, e ter métodos "draw(x,y)" ou "rotate(degrees)".
-  \end{itemize}
-}
-
-
-%-------------------------------------
-\subsection{2.4. Operações.}
-%-------------------------------------
-
-
-
-
-%-------------------------------------
-
 \begin{frame}[fragile]
-  \frametitle{Operadores}
+  \frametitle{Tabelas são referências}
+  \pause
+  \begin{center}
+    Veja o que acontece quando passamos uma tabela como
+    argumento de uma função que tenta mudar ela
+  \end{center}
   \pause
   \begin{columns}
     \column[t]{.5\textwidth}
-      \begin{block}{tableconstructor.lua}
+      \begin{block}{tableisreference.lua}
         \begin{lstlisting}
--- We've seen a few times already.
-t = {}
--- Also:
-r = {
-  -- lots of stuff
-}
+-- Starts with x = 20
+t = { x = 20 }
+print(t.x)
+-- This changes it
+function change (ref)
+  ref.x = "not"
+end
+change(t)
+print(t.x)
         \end{lstlisting}
       \end{block}
     \pause
     \column[t]{.5\textwidth}
-      \begin{block}{length.lua}
-        \begin{lstlisting}
--- We can get the indexed size
--- of tables and strings.
-t = { 5, 5, 5, 5, 5 }
-n = #t -- length is 5
-m = #"yo there" -- length is 8
-        \end{lstlisting}
+      \begin{block}{Saída:}
+        \begin{verbatim}
+20
+not \end{verbatim}
       \end{block}
   \end{columns}
 \end{frame}
+%-------------------------------------
+\subsection{5.2. Atalhos}
+%-------------------------------------
+\frame{
+  \begin{center}
+  \Large 5.2. Atalhos
+  \end{center}
+}
+%-------------------------------------
+%% TODO add to table part
+%%-- The same goes for single table
+%%-- arguments.
+%%ls { "first", "second", "third" }
 
+
+%-------------------------------------
 %-------------------------------------
 
 \begin{frame}[fragile]
@@ -1230,6 +1332,40 @@ end
 %-------------------------------------
 \section{Unlimited slide works}
 %-------------------------------------
+%-------------------------------------
+\frame{
+  \frametitle{Threads}
+  \begin{itemize}
+    \pause
+    \item Threads se parecem com funções, só que elas podem ser
+          executadas sincronizadamente (i.e. paralelamente ao
+          mesmo tempo)
+    \pause
+    \item Talvez não pareça, mas isso é bem complicado de usar!
+    \pause
+    \item Por isso não abordarei threads nesse curso. Os curiosos
+          podem fuçar o manual do Lua e explodirem seus
+          computadores à vontade =P.
+  \end{itemize}
+}
+%-------------------------------------
+
+\frame{
+  \frametitle{Userdata}
+  \begin{itemize}
+    \pause
+    \item Userdata representam objetos nativos que vieram de
+          fora do Lua.
+    \pause
+    \item Portanto, não podem ser criados de dentro dele.
+    \pause
+    \item E sua forma de uso é totalmente determinada por quem
+          o criou.
+    \pause
+    \item Por exemplo, ele poderia ser um objeto associado a uma
+          imagem, e ter métodos "draw(x,y)" ou "rotate(degrees)".
+  \end{itemize}
+}
 
 \begin{frame}
   \frametitle{Tópicos avançados que não aparecem nos slides}
