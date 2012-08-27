@@ -140,7 +140,7 @@
   \frametitle{Iniciando um Repositório}
   Podemos pegar um projeto que usa o Git de duas maneiras distintas:
   \begin{itemize}
-    \item Portanto um projeto existente para o Git, ou
+    \item Portando um projeto existente para o Git, ou
     \item Clonando um projeto que já usa o Git.
   \end{itemize}
 \end{frame}
@@ -257,6 +257,193 @@
   Todo arquivo que case com qualquer expressão do \textbf{.gitignore} será ignorado pelo Git. \\
   \pause
   O \textbf{.gitignore} se aplica na pasta que ele se encontra, e em todas abaixo dele. 
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Commits}
+  Certo. Agora que sabemos como adicionar as mudanças para a area staged. \\
+  Mas como passamos essas modificações para a database? \\
+  \pause
+  Usamos os commits para levar essas modificações até a database. \\
+  Para commitar suas mudanças, usamos o comando:
+  \begin{block}{}
+    \verb#$ git commit#
+  \end{block}
+  Esse comando abre uma tela de edição onde escrevemos a mensagem de commit. 
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Boas práticas de commit}
+  Ao commitar, é bom seguir algumas práticas:
+  \begin{itemize}
+    \item Faça commits pequenos. Isso cria um histórico mais rico.
+    \item Crie mensagens que expressem seu commit. Isso ajuda a identificar as mudanças.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Commits}
+  O commit leva consigo algumas informações:
+  \begin{itemize}
+    \item As modificações que foram introduzidas nesse commit.
+    \item O nome e o e-mail de que fez o commit.
+    \item Um HASH que identifica o commit de maneira unica.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Movendo arquivos}
+  Para mover arquivos dentro de um repositorio Git, usamos o comando: \\
+  \begin{block}{}
+    \verb#$ git mv#
+  \end{block}
+  \pause
+  Se movemos um arquivo usando só o \verb#mv#, o Git percebe que o arquivo foi movido mas não
+  adiciona a movimentação automaticamente na staging area.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Git log}
+  Para acessar o historico de commits usamos o comando:
+  \begin{block}{}
+    \verb#$ git log#
+  \end{block}
+  \pause
+  O comando devolve uma lista que mostra todos os commits desde o começo do repositorio. \\
+  Cada elemento da lista contêm as informações dos commits ( as mesmas informações que os commits levam 
+  consigo).
+\end{frame}
+
+%-------------------------------------
+\subsection{Desfazendo coisas}
+%-------------------------------------
+
+\begin{frame}[fragile]
+  \frametitle{--amend}
+  O comando commit aceita a opção --amend, que possibilita a edição do commit que acabou de ser feito. \\
+  Podemos colocar mais arquivos no commit ou mudar a mensagme do mesmo. \\
+  A sintaxe é:
+  \begin{block}{}
+    \verb#$ git commit --amend#
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{git reset HEAD}
+  Para retirar arquivos da area staged, usamos o comando:
+  \begin{block}{}
+    \verb#$ git reset HEAD <arquivo>#
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{git checkout --}
+  Para reverter as modificações feitas em um arquivo que ainda não foi adicionado a database do Git,
+  usamos o comando:
+  \begin{block}{}
+    \verb#$ git checkout -- <arquivo>#
+  \end{block}
+\end{frame}
+
+%-------------------------------------
+\subsection{Repositórios Remotos}
+%-------------------------------------
+
+\begin{frame}[fragile]
+  \frametitle{Remotos}
+  Repositórios remotos são versões do seu repositório local que ficam ou na internet ou em alguma máquina 
+  na rede. \\
+  \pause
+  O seu repositório local reconhece os remotos que ele conhece por aliases. Podemos ver esses aliases
+  usando o comando:
+  \begin{block}{}
+    \verb#$ git remote -v#
+  \end{block}
+  \pause
+  Quando clonamos um repositório, o Git cria um alias chamado origin que faz referência a url "clonada".
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Adicionar, Remover e Renomear}
+  Para adicionar um novo remote:
+  \begin{block}{}
+    \verb#$ git remote add <alias> <url>#
+  \end{block}
+  \pause
+  Para remover um remote:
+  \begin{block}{}
+    \verb#$ git remote rm <alias>#
+  \end{block}
+  \pause
+  Para renomear um remote:
+  \begin{block}{}
+    \verb#$ git remote rename <alias-velho> <alias-novo>#
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Pushando}
+  Para pushar para um remote, usamos o comando:
+  \begin{block}{}
+    \verb#$ git push <remote-alias> <nome-da-branch>#
+  \end{block}
+\end{frame}
+
+%-------------------------------------
+\section{Branchs}
+%-------------------------------------
+
+\begin{frame}[fragile]
+  \frametitle{O que são branchs}
+  Branchs são separações no fluxo de commits de um repositório. \\
+  \pause
+  Usamos elas para trabalhar em várias partes do projeto sem influenciar no fluxo principal do mesmo. \\
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Criando Branchs}
+  Quando criamos uma branch, ela usa o commit atual da branch atual como base por default. \\
+  Usamos 2 comandos para criar uma branch:
+  \begin{block}{}
+    \verb#$ git checkout -b <nome-da-branch># ou \\
+    \verb#$ git branch <nome-da-branch>#
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Listando, mudando e deletando de branchs}
+  Podemos listar as branchs atuais usando o comando:
+  \begin{block}{}
+    \verb#$ git branch#
+  \end{block}
+  A branch que estiver marcada com um * é a branch atual. \\
+  \pause
+  Para mudar de branchs usamos o comando:
+  \begin{block}{}
+    \verb#$ git checkout <nome-da-branch>#
+  \end{block}
+  \pause
+  Para deletar uma branch, o comando é:
+  \begin{block}{}
+    \verb#$ git branch -d <nome-da-branch>#
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Mandando branchs para o remoto}
+  Para mandar uma branch para um repositório remoto, o comando push é usado:
+  \begin{block}{}
+    \verb#$ git push -u <remote> <branch>#
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Merge}
+  Para passar as mudanças de uma branch para outra, usamos o comando:
+  \begin{block}{}
+    \verb#$ git merge <nome-da-branch>#
+  \end{block}
+  É na branch em que esse comando é rodado que a junção das modificações ficara.
 \end{frame}
 
 \end{document}
