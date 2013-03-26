@@ -1,0 +1,40 @@
+
+file: beast-eye.png
+
+- Parte I: Seleções
+  - Ferramentas
+    - Retângulo e afins
+    - Tesoura
+    - Varinha
+  - Operações de conjunto
+    - União
+    - Diferença
+    - Complementar
+    - Intersecção
+  - Colorindo uma seleção
+    - Jato
+    - Balde
+    - Sombreamento
+  - Operações de clipboard
+    - Copiar
+    - Recortar
+    - Movimentar
+
+- Parte II: Camadas
+  - Operações básicas
+    - Adicionar camada
+    - Ocultar/mostrar camada
+    - Mudar precedência da camada
+    - Deletar camada
+  - Trabalhando em uma camada
+    - Colorir
+      - As mesmas de antes
+      - Balde + Textura
+    - Seleções
+  - Operações úteis
+    - Criar camada a partir de seleção flutuante
+    - Redimensionar camada
+
+- Parte III: Extras?
+  - Adicionando texturas ao Gimp (TODO)
+
