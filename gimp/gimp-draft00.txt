@@ -36,5 +36,6 @@ file: beast-eye.png
     - Redimensionar camada
 
 - Parte III: Extras?
+  - Manipulando cores
   - Adicionando texturas ao Gimp (TODO)
 
