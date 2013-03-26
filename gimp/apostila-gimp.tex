@@ -2,7 +2,11 @@
 \documentclass[12pt,onecolumn]{article}
 \usepackage[brazilian]{babel}
 \usepackage[utf8]{inputenc}
-
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{hyperref}
 
 \begin{document}
 
@@ -18,10 +22,35 @@
   Ou sudo apt-get install.
 
 \section{Exercícios}
-  
 
   \subsection{Colorindo uma imagem em preto-e-branco}
-    oi.
+    Insira motivação aqui.
+
+    \begin{figure}[H]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.7\linewidth]{beast-eye.png}
+      \caption{Antes}
+      \label{fig:sub1}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.7\linewidth]{draft00.png}
+      \caption{Depois}
+      \label{fig:sub2}
+    \end{subfigure}
+    %\caption{A figure with two subfigures}
+    \label{fig:test}
+    \end{figure}
+
+    A imagem original está disponível em (pegue a maior versão possível em PNG)
+    \begin{center}
+      \url{http://game-icons.net/lorc/original/beast-eye.html}      
+    \end{center}
+
+    \subsubsection{Abrindo a imagem e convertendo para RGBA}
+    
 
   \subsection{Destacando com cores}
     oi2.
@@ -35,4 +64,3 @@
 \section{Glossário}
 
 \end{document}
-
