@@ -68,7 +68,11 @@
     \includegraphics[width=.7\linewidth]{draft00.png}
     \label{fig:ex1_after}
   \end{subfigure}
-  \caption{Imagem antes e depois da edição}
+  \caption{
+    \footnotesize
+    \it
+    Imagem antes e depois da edição
+  }
   \label{fig:intro}
   \end{figure}
   
@@ -101,7 +105,11 @@
     \begin{figure}[h]
       \centering
       \includegraphics[width=.6\textwidth]{screenshots/00-pencil_and_color.png}
-      \caption{Seleciondo a {\bf Pencil Tool} e mudando a cor}
+      \caption{
+        \footnotesize
+        \it
+        Seleciondo a {\bf Pencil Tool} e mudando a cor.
+      }
       \label{fig:pencil_and_color}
     \end{figure}
     
@@ -130,7 +138,11 @@
     \begin{figure}[H]
       \centering
       \includegraphics[scale=.55]{screenshots/00-grayscale_to_RGBA.png}
-      \caption{Criando uma imagem RGBA}
+      \caption{
+        \footnotesize
+        \it
+        Criando uma imagem RGBA
+      }
       \label{fig:grayscale_to_RGBA}
     \end{figure}
     
@@ -166,15 +178,25 @@
     usá-la, obteremos o resultado mostrado na Figura
     \ref{fig:selective_painting}.
   
-    %% 1) Explicação sobre seleções. Só funciona editar se estiver selecionado.
     \begin{figure}[H]
       \centering
       \includegraphics[scale=0.6]{screenshots/01-selective_painting.png}
-      \caption{As ferramentas trabalham apenas nas regiões selecionadas}
+      \caption{
+        \footnotesize
+        \it
+        As ferramentas trabalham apenas nas regiões selecionadas
+      }
       \label{fig:selective_painting}
     \end{figure}
-    %% 2) Ferramentas de seleção: retângulo, tesoura e varinha.
-    \begin{figure}[H]
+    
+    Outras duas ferramentas de seleção que vamos usar bastante são a {\bf
+    Free Select Tool} (atalho {\bf F}) e a {\bf Fuzzy Select Tool} (atalho
+    {\bf U}). A primeira permite selecionar uma região à mão livre e a segunda
+    seleciona uma região que tenha uma cor em comum. Recomendamos experimentar
+    um pouco com ela antes de prosseguir. Possíveis resultados do uso dessas
+    ferramentas podem ser vistas na Figura \ref{fig:select_tools}.
+    
+    \begin{figure}[h]
       \centering
       \begin{subfigure}{.5\textwidth}
         \centering
@@ -184,21 +206,110 @@
       \begin{subfigure}{.5\textwidth}
         \centering
         \includegraphics[width=.7\linewidth]{screenshots/03-fuzzy_select.png}
-        %\caption{Depois}
         \label{fig:fuzzy_select}
       \end{subfigure}
-      \caption{Ferramenta de seleção livre e varinha mágica}
+      \caption{
+        \footnotesize
+        \it
+        Free Select Tool (esquerda) e Fuzzy Select Tool (direita).
+      }
       \label{fig:select_tools}
     \end{figure}
-    %% 3) Operações de conjunto: inversão (CTRL+I), conjunção (SHIFT), disjunção
-    %%    (CTRL+SHIFT) e diferença (CTRL).
-    %% 4) Selecionar o olho e pintar a pupila.
-    \begin{figure}[H]
+    
+    \begin{framed}
+      A {\bf Free Select Tool} também pode ser usada traçando retas. Cada ponto
+      que você clicar será ligado ao anterior, até que você volte a clicar no
+      primeiro. Então, a região será selecionada. Também é possível misturar
+      trechos retos e à mão livre.
+    \end{framed}
+  
+    Agora, vamos afazer algo mais útil. Vamos colorir a pupila do olho na
+    imagem. Como é de se esperar, para isso precisamos selecionar a pupila. A
+    primeira ideia é usar a {\bf Fuzzy Selection Tool} e clicar nas regiões que
+    correspondem à pupila. No entanto, como nas bordas dessa região há uma
+    transição do branco para o preto, a seleção não fica perfeita (partes da
+    borda ficam de fora). Além disso, mesmo que selecionássemos um dos lados da
+    pupila, como selecionar o outro ao mesmo tempo?
+    
+    \begin{figure}[h]
       \centering
       \includegraphics[width=.5\textwidth]{screenshots/04-pupil.png}
-      \caption{Pintamos somente a pupila graças ao funcionamento das seleções}
+      \caption{
+        \footnotesize
+        \it
+        O objetivo é selecionar apenas a pupila para podermos manipulá-la sem
+        correr o risco de "vazar" para as outras partes da imagem
+      }
       \label{fig:pupil}
     \end{figure}
+    
+    É nesse ponto que entram as {\bf operações de seleção}. Começando pelo
+    primeiro problema, o grande obstáculo é que a {\bf Fuzzy Selection Tool} não
+    alcança todas as partes da região branca, isso é, fica {\it faltando pixels}
+    na região selecionada e {\it sobrando} na região não selecionada. Por outro
+    lado, o mesmo acontece se a usamos para selecionar a região preta. Então uma
+    plausível solução seria pegarmos o {\it inverso} da região preta. A {\bf
+    operação de inversão} é a primeira das operações de seleção, e pode ser
+    realizada usando {\bf Botão Direito do Mouse $\rightarrow$ Select
+    $\rightarrow$ Invert} ou {\bf CTRL+I}.
+    
+    Mas então temos outro problema: todas as regiões brancas ficaram
+    selecionadas. Para resolver isso usamos a {\bf operação de intersecção} ou
+    a {\bf operação de diferença}. Diferentemente da operação de inversão, essas
+    operações são aplicadas com o auxílio de alguma ferramenta de seleção. No
+    caso, vamos usar a {\bf Free Select Tool}.
+    
+    Para ativar a operação de intersecçao, basta segurar {\bf CTRL+SHIFT} e usar
+    a ferramenta de seleção. Quando terminar, {\bf todas as regiões em comum}
+    entre a região até então selecionada e a nova comporão a nova seleção.
+    
+    Para ativar a operação de diferença, deve-se segurar {\bf CTRL} e usar a
+    ferramenta de seleção. No final, as novas regiões selecionadas serão {\bf
+    subtraídas} da seleção antiga.
+    
+    \begin{framed}
+      A última operação de seleção é a {\bf operação de soma}. Ela é ativada
+      segurando {\bf SHIFT} antes de usar uma ferramenta de seleção, e a nova
+      região selecionada é somada à que havia antes.
+    \end{framed}
+    
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=.5\textwidth]{screenshots/04-setting_brush.png}
+      \caption{
+        \footnotesize
+        \it
+        Muda-se o pincel ({\it brush}) usado por uma ferramenta de manipulação
+        na região destacada.
+      }
+      \label{fig:setting_brush}
+    \end{figure}
+    
+    Quando, enfim, a pupila estiver devidamente selecionada, use alguma
+    ferramenta de manipulação para deixá-la como preferir. No nosso exemplo,
+    usamos a {\bf Airbrush Tool}. Ajustamos o formato do pincel dela na opção
+    indicada na Figura \ref{fig:setting_brush}, e aumentamos seu tamanho até
+    ficar do tamanho da pupila. Por fim, aplicamos ela no centro da pupila (que,
+    em particular, não está na região selecionada) e obtivemos o resultado da
+    Figura \ref{fig:pupil}.
+    
+    \begin{framed}
+      Para aumentar ou diminuir o tamanho de uma ferramenta de manipulação,
+      usa-se os botões {\bf \verb$[$} e {\bf \verb$]$}, respectivamente.
+    \end{framed}
+    
+    Uma dificuldade comum quando se começa a usar o Gimp é saber como mover
+    seleções. Quando tentamos mover uma região selecionada usando a {\bf Move
+    Tool}, por exemplo, apenas o contorno da região se move, e não o conteúdo
+    dela. Para fazer isso, é preciso recortar e logo em seguida colar de volta a
+    região selecionada. Só então é que a região junto com seu conteúdo poderá
+    ser movida.
+    
+    \begin{framed}
+      Para recortar podemos usar {\bf Botão Direito do Mouse $\rightarrow$ Edit
+      $\rightarrow$ Cut} ou o atalho {\bf CTRL+X}.
+    \end{framed}
+    
     %% 5) Mencionar como mover seleções.
         
   \subsection{Sobre camadas}
