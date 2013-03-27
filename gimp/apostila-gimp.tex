@@ -2,17 +2,41 @@
 \documentclass[12pt,onecolumn]{article}
 \usepackage[brazilian]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage[section]{placeins}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
-\usepackage{hyperref}
+\usepackage{framed,color}
 
 \begin{document}
 
-\title{Apostila de Gimp}
-\author{Renan Teruo Carneiro \\ Wilson Kazuo Mizutani}
-\maketitle
+% Title page.
+\begin{titlepage}
+
+    % Title info.
+    \title{
+        \bf
+        \LARGE Apostila de \\
+        \Huge  Gimp
+    }
+    
+    \author{Renan Teruo Carneiro \\ Wilson Kazuo Mizutani}
+    
+    % Print title.
+    \maketitle
+    
+    % No numbering on this page.
+    \thispagestyle{empty}
+    
+\end{titlepage}
+
+% Print table of contents.
+\tableofcontents
+
+% Page break.
+\clearpage
 
 \section{Sobre o Gimp}
   O Gimp é legal.
@@ -21,10 +45,18 @@
   Baixa e clique avançar-avançar-indução seja feliz.
   Ou sudo apt-get install.
 
-\section{Tutorial}
-  Insira motivação aqui.
+\section{Introdução}
+  Como uma introdução ao Gimp, vamos fazer uma edição bem simples. O objetivo
+  será colorir a imagem de um ícone preto-e-branco, como mostrado na Figura
+  \ref{fig:intro}. A imagem original está disponível em
+  
+  \begin{center}
+    \url{http://game-icons.net/lorc/original/beast-eye.html}      
+  \end{center}
+  
+   O ideal é pegar a versão com maior resolução possível, em PNG.
 
-  \begin{figure}[H]
+  \begin{figure}
   \centering
   \begin{subfigure}{.5\textwidth}
     \centering
@@ -36,31 +68,108 @@
     \includegraphics[width=.7\linewidth]{draft00.png}
     \label{fig:ex1_after}
   \end{subfigure}
-  \caption{Imagem antes e depois de ter sido editada}
-  \label{fig:exercise1}
+  \caption{Imagem antes e depois da edição}
+  \label{fig:intro}
   \end{figure}
-
-  A imagem original está disponível em (pegue a maior versão possível em PNG)
-  \begin{center}
-    \url{http://game-icons.net/lorc/original/beast-eye.html}      
-  \end{center}
-
+  
+  Com esse exercício esperamos apresentar as funcionalidades básicas e as
+  técnicas essenciais para se manipular imagens com o Gimp. Mas apesar do foco
+  nesse momento ser passar os conceitos básicos para o aluno, também
+  introduziremos algumas das principais ferramentas usadas em projetos Gimp.
+  
   \subsection{Abrindo a imagem e convertendo para RGBA}
-    %% 1) File->Open ou CTRL+O
-    %% 2) A imagem fica em grayscale. Vamos criar outra imagem RGBA e passar o
-    %%    conteúdo para ela. File->New ou CTRL+N. CTRL+A, CTRL+C, CTR+V.
+    O primeiro passo do exercício é dizer para o Gimp que queremos trabalhar em
+    RGBA (isso é, com cores e transparência) ao invés de Grayscale, que é o
+    formato no qual a imagem do ícone está. E vamos aproveitar esse passo para
+    mostrar o básico de copiar e colar imagens com Gimp (que não é muito
+    diferente do convencional).
+    
+    Começamos abrindo a imagem original indo em {\bf File $\rightarrow$ Open}
+    ou digitando {\bf CTRL+O}.
+    
+    \begin{framed}
+      Algo que facilita muito o uso do Gimp é a familiarização com os atalhos
+      de teclado. Saber uma meia-dúzia de atalhos é o suficiente para tornar
+      dobrar a eficiência de trabalho. 
+    \end{framed}
+    
+    Do jeito que o Gimp carrega a imagem (em Grayscale) não é possível aplicar
+    nenhuma cor aos pixeis. Isso significa que se selecionarmos, por exemplo,
+    a {\bf Pencil Tool} (atalho {\bf N}), e mudarmos a cor para vermelho, ainda
+    assim pintaremos apenas tons de cinza.
+    
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=.6\textwidth]{screenshots/00-pencil_and_color.png}
+      \caption{Seleciondo a {\bf Pencil Tool} e mudando a cor}
+      \label{fig:pencil_and_color}
+    \end{figure}
+    
+    \begin{framed}
+      Para mudar de cor no Gimp, basta clicar duas vezes no retângulo colorido
+      no meio da {\bf Toolbox }, como mostra a Figura \ref{fig:pencil_and_color}.
+    \end{framed}
+    
+    \begin{framed}
+      Para desfazer uma ação Gimp, pode-se ir em {\bf Edit $\rightarrow$ Undo}
+      ou digitar {\bf CTRL+Z}. É um comando {\it extremamente útil}, e o
+      histórico de ações que o Gimp guarda é bastante grande. Use ele para
+      desfazer quaisquer alterações que você possa ter feito na imagem original
+      antes de seguir os próximos passos.
+    \end{framed}
+    
+    Vamos, então, criar uma nova imagem que use RGBA ao invés de Grayscale. Para
+    isso, clicamos em {\bf File $\rightarrow$ New} ou digitamos {\bf CTRL+N}. Um
+    menu {\bf Create a New Image} aparecerá. Nele temos acesso à várias
+    configurações da nova imagem, como a largura e a altura dela. Essas
+    manteremos como estão (512x512 se você pegou a maior resolução disponível).
+    O que nos interessa aqui é mudar o formato de cores e o suporte a
+    transparência. Basta mudar essas configurações conforme a Figura
+    \ref{fig:grayscale_to_RGBA}.
+    
     \begin{figure}[H]
       \centering
-      \includegraphics[width=.7\linewidth]{screenshots/00-grayscale_to_RGBA.png}
+      \includegraphics[scale=.55]{screenshots/00-grayscale_to_RGBA.png}
       \caption{Criando uma imagem RGBA}
       \label{fig:grayscale_to_RGBA}
     \end{figure}
     
+    Uma vez feito isso, basta voltarmos para a imagem original, e:
+    
+    \begin{itemize}
+      \item
+        Selecionarmos ela inteira com {\bf Botão Direito do Mouse $\rightarrow$
+        Selection $\rightarrow$ All} ou {\bf CTRL+A}.
+      \item
+        Copiarmos ela com {\bf Botão Direito do Mouse $\rightarrow$ Edit
+        $\rightarrow$ Copy} ou {\bf CTRL+C}.
+      \item
+        Voltarmos para a imagem com RGBA que acabamos de criar.
+      \item
+        Colarmos o ícone orignal nela com {\bf Botão Direito do Mouse
+        $\rightarrow$ Edit $\rightarrow$ Paste} ou {\bf CTRL+V}.
+    \end{itemize}
+    
+    
   \subsection{Sobre seleções}
+    Agora que temos nossa imagem pronta para ser manipulada, vamos falar sobre
+    seleções no Gimp. Seleções são um conceito primordial para qualquer tipo de
+    edição, pois {\bf toda ferramenta que não seja de seleção, só é aplicada
+    sobre a seleção atual}. Quando não há nenhuma seleção, então a imagem toda
+    é considerada selecionada (ou seja, as ferramentas serão aplicadas em todas
+    as partes dela).
+    
+    Para entender isso melhor, podemos escollher a {\bf Rectangle Selection
+    Tool} (atalho {\bf R}) e selecionar uma região qualquer da imagem
+    clicando e arrastando o mouse, e depois soltando-o. Agora, se escolhermos,
+    por exemplo, a {\bf Bucket Feel Tool} (atalho {\bf SHIFT+B}) e tentarmos
+    usá-la, obteremos o resultado mostrado na Figura
+    \ref{fig:selective_painting}.
+  
     %% 1) Explicação sobre seleções. Só funciona editar se estiver selecionado.
     \begin{figure}[H]
       \centering
-      \includegraphics[scale=1]{screenshots/01-selective_painting.png}
+      \includegraphics[scale=0.6]{screenshots/01-selective_painting.png}
       \caption{As ferramentas trabalham apenas nas regiões selecionadas}
       \label{fig:selective_painting}
     \end{figure}
@@ -129,7 +238,7 @@
       \caption{Resultado final}
       \label{fig:final}
     \end{figure}
-    %% 4) Proporpupilas melhores.
+    %% 4) Propor pupilas melhores.
     
 \section{Ferramentas}
 
@@ -187,7 +296,5 @@
     É da padaria?
     
   \subsection{Controle de Cor}
-
-\section{Glossário}
 
 \end{document}
