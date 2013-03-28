@@ -19,7 +19,7 @@
     \title{
         \bf
         \LARGE Apostila de \\
-        \Huge  Gimp
+        \Huge  GIMP
     }
     
     \author{Renan Teruo Carneiro \\ Wilson Kazuo Mizutani}
@@ -38,16 +38,55 @@
 % Page break.
 \clearpage
 
-\section{Sobre o Gimp}
-  O Gimp é legal.
+\section{Sobre o GIMP}
+  Do site oficial do GIMP (\url{http://gimp.org}):
+  
+  \begin{quotation}
+    GIMP is an acronym for GNU Image Manipulation Program. It is a freely
+    distributed program for such tasks as photo retouching, image composition
+    and image authoring.
+  \end{quotation}
+  
+  Além disso, o GIMP possui atualmente uma vasta comunidade de usuários. Cada
+  vez mais ele representa uma alternativa efetiva aos programas de manipulação
+  de imagem comerciais. Seus usos variam desde {\it pixel art} até
+  elaboradíssimas edições e composições de fotos e cenários.
+  
+  \begin{figure}[ht]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.7\linewidth]{screenshots/00-pixel_art.png}
+      \caption{
+        \footnotesize
+        \it
+        Pixel Art
+      }
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.7\linewidth]{screenshots/Dance_of_Rebirth_by_shiroikuro.jpg}
+      \caption{
+        \footnotesize
+        \it
+        Concept Art
+      }
+    \end{subfigure}
+    \caption{
+      \footnotesize
+      \it
+      Imagens feitas no GIMP.
+    }
+  \end{figure}
 
+\clearpage
 \section{Instalando}
   Baixa e clique avançar-avançar-indução seja feliz.
   Ou sudo apt-get install.
 
 \clearpage
 \section{Introdução}
-  Como uma introdução ao Gimp, vamos fazer uma edição bem simples. O objetivo
+  Como uma introdução ao GIMP, vamos fazer uma edição bem simples. O objetivo
   será colorir a imagem de um ícone preto-e-branco, como mostrado na Figura
   \ref{fig:intro}. A imagem original está disponível em
   
@@ -78,33 +117,33 @@
   \end{figure}
   
   Com esse exercício esperamos apresentar as funcionalidades básicas e as
-  técnicas essenciais para se manipular imagens com o Gimp. Mas apesar do foco
+  técnicas essenciais para se manipular imagens com o GIMP. Mas apesar do foco
   nesse momento ser passar os conceitos básicos para o aluno, também
-  introduziremos algumas das principais ferramentas usadas em projetos Gimp.
+  introduziremos algumas das principais ferramentas usadas em projetos GIMP.
   
   \subsection{Abrindo a imagem e convertendo para RGBA}
-    O primeiro passo do exercício é dizer para o Gimp que queremos trabalhar em
+    O primeiro passo do exercício é dizer para o GIMP que queremos trabalhar em
     RGBA (isso é, com cores e transparência) ao invés de Grayscale, que é o
     formato no qual a imagem do ícone está. E vamos aproveitar esse passo para
-    mostrar o básico de copiar e colar imagens com Gimp (que não é muito
+    mostrar o básico de copiar e colar imagens com GIMP (que não é muito
     diferente do convencional).
     
     Começamos abrindo a imagem original indo em {\bf File $\rightarrow$ Open}
     ou digitando {\bf CTRL+O}.
     
     \begin{framed}
-      Algo que facilita muito o uso do Gimp é a familiarização com os atalhos
+      Algo que facilita muito o uso do GIMP é a familiarização com os atalhos
       de teclado. Saber uma meia-dúzia de atalhos é o suficiente para tornar
       dobrar a eficiência de trabalho. 
     \end{framed}
     
-    Do jeito que o Gimp carrega a imagem (em Grayscale) não é possível aplicar
+    Do jeito que o GIMP carrega a imagem (em Grayscale) não é possível aplicar
     nenhuma cor aos pixeis. Isso significa que se selecionarmos, por exemplo,
     a {\bf Pencil Tool} (atalho {\bf N}), e mudarmos a cor para vermelho, ainda
     assim pintaremos apenas tons de cinza.
     
     \begin{framed}
-      Para mudar de cor no Gimp, basta clicar duas vezes no retângulo colorido
+      Para mudar de cor no GIMP, basta clicar duas vezes no retângulo colorido
       no meio da {\bf Toolbox }, como mostra a Figura \ref{fig:pencil_and_color}.
     \end{framed}
     
@@ -120,9 +159,9 @@
     \end{figure}
     
     \begin{framed}
-      Para desfazer uma ação Gimp, pode-se ir em {\bf Edit $\rightarrow$ Undo}
+      Para desfazer uma ação GIMP, pode-se ir em {\bf Edit $\rightarrow$ Undo}
       ou digitar {\bf CTRL+Z}. É um comando {\it extremamente útil}, e o
-      histórico de ações que o Gimp guarda é bastante grande. Use ele para
+      histórico de ações que o GIMP guarda é bastante grande. Use ele para
       desfazer quaisquer alterações que você possa ter feito na imagem original
       antes de seguir os próximos passos.
     \end{framed}
@@ -166,7 +205,7 @@
     
   \subsection{Sobre seleções}
     Agora que temos nossa imagem pronta para ser manipulada, vamos falar sobre
-    seleções no Gimp. Seleções são um conceito primordial para qualquer tipo de
+    seleções no GIMP. Seleções são um conceito primordial para qualquer tipo de
     edição, pois {\bf toda ferramenta que não seja de seleção, só é aplicada
     sobre a seleção atual}. Quando não há nenhuma seleção, então a imagem toda
     é considerada selecionada (ou seja, as ferramentas serão aplicadas em todas
@@ -301,7 +340,7 @@
         
   \subsection{Sobre camadas}
     
-    Uma dificuldade comum quando se começa a usar o Gimp é saber como mover
+    Uma dificuldade comum quando se começa a usar o GIMP é saber como mover
     seleções. Quando tentamos mover uma região selecionada usando a {\bf Move
     Tool}, por exemplo, apenas o contorno da região se move, e não o conteúdo
     dela. Para fazer isso, é preciso recortar e logo em seguida colar de volta a
@@ -313,16 +352,16 @@
       $\rightarrow$ Cut} ou o atalho {\bf CTRL+X}.
     \end{framed}
     
-    Na verdade, o que acontece é que quando colamos algo no Gimp, uma nova {\it
+    Na verdade, o que acontece é que quando colamos algo no GIMP, uma nova {\it
     camada} é criada usando a seleção colada. E, assim, quando movemos a
     seleção, estamos realmente é movendo a nova camada. Quando confirmamos a
     colagem (clicando fora da seleção, normalmente), essa camada temporária
-    criada pelo Gimp é aplicada na original. Ela recebe o nome de {\it Floating
+    criada pelo GIMP é aplicada na original. Ela recebe o nome de {\it Floating
     Selection} enquanto estiver nesse estado intermediário, como mostra a figura
     \ref{fig:pasted_layer}.
     
     Mas qual a utilidade das camadas? Assim como com as seleções, {\bf as
-    ferramentas de edição do Gimp são aplicadas apenas na camada atualmente
+    ferramentas de edição do GIMP são aplicadas apenas na camada atualmente
     selecionada}. Ou seja, no final das contas {\bf as ferramentas de edição só
     funcionam na seleção atual da camada focada}. Mas as camadas, diferentemente
     de simples seleções, têm a vantagem de persistirem ao longo do projeto. Você
@@ -359,7 +398,7 @@
     {\bf Botão Direito do Mouse $\rightarrow$ Delete Layer} (note que pressionar
     {\bf DELETE} não terá esse efeito).
     
-    Além disso, como é possível perceber, o Gimp apresenta as camadas de baixo
+    Além disso, como é possível perceber, o GIMP apresenta as camadas de baixo
     para cima, isso é, as camadas de cima aparecem por cima das camadas de
     baixo. É possível alterar essa ordem clicando e arrastando elas no menu de
     camadas. Também é possível ocultar uma camada clicando no ícone de olho do
@@ -520,7 +559,7 @@
       Essa ferramenta seleciona uma área definida pelo usuário, mas tentando separar áreas pela
       diferença de cores. Para usá-la, clique num ponto inicial, e em seguida clique nos pŕoximos
       pontos que contornam a área que você quer selecionar. Caso você queira mudar a seleção feita
-      pelo Gimp, você pode clicar na borda da área selecionada e arrastar para onde ela deveria 
+      pelo GIMP, você pode clicar na borda da área selecionada e arrastar para onde ela deveria 
       estar.
 
       \subsubsection{Fuzzy}
