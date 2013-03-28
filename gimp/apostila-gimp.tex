@@ -45,6 +45,7 @@
   Baixa e clique avançar-avançar-indução seja feliz.
   Ou sudo apt-get install.
 
+\clearpage
 \section{Introdução}
   Como uma introdução ao Gimp, vamos fazer uma edição bem simples. O objetivo
   será colorir a imagem de um ícone preto-e-branco, como mostrado na Figura
@@ -102,7 +103,12 @@
     a {\bf Pencil Tool} (atalho {\bf N}), e mudarmos a cor para vermelho, ainda
     assim pintaremos apenas tons de cinza.
     
-    \begin{figure}[h]
+    \begin{framed}
+      Para mudar de cor no Gimp, basta clicar duas vezes no retângulo colorido
+      no meio da {\bf Toolbox }, como mostra a Figura \ref{fig:pencil_and_color}.
+    \end{framed}
+    
+    \begin{figure}[ht]
       \centering
       \includegraphics[width=.6\textwidth]{screenshots/00-pencil_and_color.png}
       \caption{
@@ -112,11 +118,6 @@
       }
       \label{fig:pencil_and_color}
     \end{figure}
-    
-    \begin{framed}
-      Para mudar de cor no Gimp, basta clicar duas vezes no retângulo colorido
-      no meio da {\bf Toolbox }, como mostra a Figura \ref{fig:pencil_and_color}.
-    \end{framed}
     
     \begin{framed}
       Para desfazer uma ação Gimp, pode-se ir em {\bf Edit $\rightarrow$ Undo}
@@ -196,7 +197,14 @@
     um pouco com ela antes de prosseguir. Possíveis resultados do uso dessas
     ferramentas podem ser vistas na Figura \ref{fig:select_tools}.
     
-    \begin{figure}[h]
+    \begin{framed}
+      A {\bf Free Select Tool} também pode ser usada traçando retas. Cada ponto
+      que você clicar será ligado ao anterior, até que você volte a clicar no
+      primeiro. Então, a região será selecionada. Também é possível misturar
+      trechos retos e à mão livre.
+    \end{framed}
+    
+    \begin{figure}[ht]
       \centering
       \begin{subfigure}{.5\textwidth}
         \centering
@@ -215,13 +223,6 @@
       }
       \label{fig:select_tools}
     \end{figure}
-    
-    \begin{framed}
-      A {\bf Free Select Tool} também pode ser usada traçando retas. Cada ponto
-      que você clicar será ligado ao anterior, até que você volte a clicar no
-      primeiro. Então, a região será selecionada. Também é possível misturar
-      trechos retos e à mão livre.
-    \end{framed}
   
     Agora, vamos afazer algo mais útil. Vamos colorir a pupila do olho na
     imagem. Como é de se esperar, para isso precisamos selecionar a pupila. A
@@ -231,7 +232,7 @@
     borda ficam de fora). Além disso, mesmo que selecionássemos um dos lados da
     pupila, como selecionar o outro ao mesmo tempo?
     
-    \begin{figure}[h]
+    \begin{figure}[ht]
       \centering
       \includegraphics[width=.5\textwidth]{screenshots/04-pupil.png}
       \caption{
@@ -273,7 +274,7 @@
       região selecionada é somada à que havia antes.
     \end{framed}
     
-    \begin{figure}[h]
+    \begin{figure}[ht]
       \centering
       \includegraphics[width=.5\textwidth]{screenshots/04-setting_brush.png}
       \caption{
@@ -297,6 +298,8 @@
       Para diminuir ou aumentar o tamanho de uma ferramenta de manipulação,
       usa-se os botões {\bf \verb$[$} e {\bf \verb$]$}, respectivamente.
     \end{framed}
+        
+  \subsection{Sobre camadas}
     
     Uma dificuldade comum quando se começa a usar o Gimp é saber como mover
     seleções. Quando tentamos mover uma região selecionada usando a {\bf Move
@@ -310,47 +313,174 @@
       $\rightarrow$ Cut} ou o atalho {\bf CTRL+X}.
     \end{framed}
     
-    %% 5) Mencionar como mover seleções.
-        
-  \subsection{Sobre camadas}
-    %% 1) Vamos fazer uma camada para o olho. Selecione apenas o olho.
-    %% 2) CTRL+X, CTR+V, colar em nova camada.
+    Na verdade, o que acontece é que quando colamos algo no Gimp, uma nova {\it
+    camada} é criada usando a seleção colada. E, assim, quando movemos a
+    seleção, estamos realmente é movendo a nova camada. Quando confirmamos a
+    colagem (clicando fora da seleção, normalmente), essa camada temporária
+    criada pelo Gimp é aplicada na original. Ela recebe o nome de {\it Floating
+    Selection} enquanto estiver nesse estado intermediário, como mostra a figura
+    \ref{fig:pasted_layer}.
+    
+    Mas qual a utilidade das camadas? Assim como com as seleções, {\bf as
+    ferramentas de edição do Gimp são aplicadas apenas na camada atualmente
+    selecionada}. Ou seja, no final das contas {\bf as ferramentas de edição só
+    funcionam na seleção atual da camada focada}. Mas as camadas, diferentemente
+    de simples seleções, têm a vantagem de persistirem ao longo do projeto. Você
+    pode dividir seu trabalho em camadas, e trabalhar separadamente em cada uma
+    sem que haja interferência entre elas. Sempre que quiser voltar a mexer em
+    uma delas basta selecioná-la no menu {\bf Layers}.
+    
     \begin{figure}[H]
       \centering
       \includegraphics[width=.5\textwidth]{screenshots/05-pasted_layer.png}
-      \caption{Seleções coladas ficam em uma camada flutuante}
+      \caption{
+        \footnotesize
+        \it
+        Seleções coladas ficam em uma camada flutuante temporária
+      }
       \label{fig:pasted_layer}
     \end{figure}
-    %% 3) Camadas 101
-    %% 4) Renomear camada nova (F2 ou "Edit Layer Attributes")
-    %% 5) Redimensionar camada para o tamanho da imagem
-    %% 6) Preencher o vazio na camada de baixo (usar balde)
-    %% 7) Separar as estrias em outra camada também.
+    
+    Então, voltando ao nosso exercício, vamos selecionar o olho inteiro e
+    separá-lo em uma camada diferente do resto. Para isso, vamos nos aproveitar
+    do mecanismo de recortar e colar que acabamos de ver. Usando as ferramentas
+    de seleção {\bf Free} e {\bf Fuzzy}, junto com as operações de seleção,
+    selecionamos o olho e o recortamos, para depois colar de volta. Só que ao
+    invés de simplesmente confirmamos a colagem, vamos usar {\bf Botão Direito
+    do Mouse $\rightarrow$ To New Layer} sobre a camada flutuante no menu de
+    camadas. Isso irá de fato isolar a seleção em uma nova camada, como
+    queremos.
+    
+    Mas a nova camada criada estará com um nome parecido com {\it Pasted Layer}
+    ou algo assim. Para mudar isso, basta selecioná-la no menu de camadas e usar
+    {\bf Botão Direito do Mouse $\rightarrow$ Edit Layer Attributes} ou apertar
+    o botão {\bf F2}. Podemos renomear a camada do olho para "Eye", por exemplo.
+    Eventualmente, se quisermos remover uma camada, é só clicar nela e usar
+    {\bf Botão Direito do Mouse $\rightarrow$ Delete Layer} (note que pressionar
+    {\bf DELETE} não terá esse efeito).
+    
+    Além disso, como é possível perceber, o Gimp apresenta as camadas de baixo
+    para cima, isso é, as camadas de cima aparecem por cima das camadas de
+    baixo. É possível alterar essa ordem clicando e arrastando elas no menu de
+    camadas. Também é possível ocultar uma camada clicando no ícone de olho do
+    lado esquerdo do nome delas (vide Figura \ref{fig:hide_layer}).
+    
     \begin{figure}[H]
       \centering
+      \includegraphics[width=.5\textwidth]{screenshots/06-hide_layer.png}
+      \caption{
+        \footnotesize
+        \it Podemos esconder uma camada clicando no ícone destacado
+      }
+      \label{fig:hide_layer}
+    \end{figure}
+    
+    \begin{framed}
+      É importante ressaltar que quando exportamos um trabalho para, digamos,
+      uma imagem PNG, a imagem final conterá apenas as camadas visíveis (as
+      ocultas não aparecerão).
+    \end{framed}
+    
+    Outro detalhe de criar camadas recortando e colando é que a nova camada
+    acaba tendo {\it um tamanho menor que a orignal}. Esse tamanho pode ser
+    reconhecido por uma linha pontilhada preta e amarela em volta da região que
+    delimita a camada. Para ajustar ela de volta para o tamanho total da imagem,
+    usa-se {\bf Botão Direito do Mouse $\rightarrow$ Layer to Image Size}.
+    
+    
+    Mas agora a camada de baixo (provavelmente chamada de {\it beast-eye.png})
+    ficou com um espaço vazio onde o olho ficava. Podemos facilmente preencher
+    ele de preto usando a {\bf Bucket Fill Tool} mencionada mais cedo. Vamos
+    aproveitar para renomear essa camada para "Background" ou algo semelhante
+    que faça sentido. Depois, vamos repetir o processo de criar uma nova camada
+    para as estrias do desenho, e chamemos essa terceira camada de algo como
+    "Stripes". No final, o esquema de camadas deve estar condizente com a Figura
+    \ref{fig:layers}.
+    
+    \begin{figure}[ht]
+      \centering
       \includegraphics[width=.5\textwidth]{screenshots/07-layers.png}
-      \caption{As três camadas no final}
+      \caption{
+        \footnotesize
+        \it
+        As três camadas no final
+      }
       \label{fig:layers}
     \end{figure}
     
   \subsection{Finalizando}
-    %% 1) Pintar as estrias (explicar o modo "fill selection" do balde)
-    \begin{figure}[H]
+  
+    Bom, agora que a imagem está devidamente separada em camadas, falta apenas
+    colorí-las apropriadamente. Podemos pintar as estrias com uma única cor
+    usando a técnica de inverter a seleção do fundo pela Fuzzy Selection Tool e
+    depois aplicar a Bucket Fill Tool sobre as regiões selecionadas resultantes.
+    Poderíamos usar qualquer outra ferramenta de edição além da Bucket, mas por
+    simplicidade vamos continuar usando ela de exemplo. Nesse ponto, teremos
+    algo parecido com o que aparece na Figura \ref{fig:partial}.
+    
+    \begin{figure}[ht]
       \centering
-      \includegraphics[width=.5\textwidth]{screenshots/06-partial.png}
-      \caption{Resultado quase pronto da edição}
+      \includegraphics[width=.3\textwidth]{screenshots/06-partial.png}
+      \caption{
+        \footnotesize
+        \it
+        Resultado quase pronto da edição
+      }
       \label{fig:partial}
     \end{figure}
-    %% 2) Preencher o fundo com a textura "Leather" usando balde.
-    %% 3) Ajustar cores, tons, etc.
-    \begin{figure}[H]
+    
+    Vamos, por fim, colorir o fundo. Nesse caso, como queremos preencher toda a
+    camada em questão, não precisamos nos preocupar com seleções. Mais uma vez
+    usaremos a ferramente Bucket, mas agora com uma textura ao invés de uma
+    simples cor plana. Para tanto, selecionamos a opção {\bf Pattern Fill} no
+    menu da ferramenta Bucket (metade de baixo do menu Toolbox) e mudamos a
+    textura desejada para {\it Leather}, por exemplo. Esse passos estão expostos
+    na Figura \ref{fig:pattern_fill}.
+    
+    \begin{figure}[ht]
       \centering
-      \includegraphics[width=.7\linewidth]{draft00.png}
-      \caption{Resultado final}
+      \includegraphics[width=.4\linewidth]{screenshots/07-pattern_fill.png}
+      \caption{
+        \footnotesize
+        \it
+        Ajustando a ferramenta Bucket para usar a textura Leather
+      }
+      \label{fig:pattern_fill}
+    \end{figure}
+    
+    Agora é só aplicar a ferramenta Bucket na camada de fundo! Com isso chegamos
+    ao resultado final mostrado no começo da introdução, mostrado na Figura
+    \ref{fig:final}. Mas um dos problemas da imagem do jeito que ela ficou é que
+    ela está muito {\it plana}. É possível usar diversas ferramentas de edição
+    para melhorar isso. O leitor pode consultar a seção de ferramentas em
+    busca da que achar melhor, mas sugerimos a {\bf Dodge/Burn Tool} para
+    efeitos de luz e sombra, por exemplo. Também vale a pena uma olhada na seção
+    \ref{sec:color_control} ({\bf Controle de Cor}).
+    
+    \begin{figure}
+      \centering
+      \includegraphics[width=\linewidth]{draft00.png}
+      \caption{
+        \footnotesize
+        \it
+        Resultado final
+      }
       \label{fig:final}
     \end{figure}
-    %% 4) Propor pupilas melhores.
     
+    Também serve como um treino interessante repetir esse exercício usando
+    ferramentas de edição diferentes e usando a própria criatividade. Por
+    exemplo, poder-se-ia fazer uma pupila com efeitos mais interessantes.
+    Muitas outras imagens semelhantes à usada podem ser encontradas e usadas
+    gratuitamente do site:
+    
+    \begin{center}
+      \url{http://game-icons.net/}
+    \end{center}
+      
+    Contanto que seja dado o devido crédito ao autor.
+    
+\clearpage
 \section{Ferramentas}
 
   \subsection{Seleção}
@@ -518,7 +648,7 @@
 
 
 
-
   \subsection{Controle de Cor}
+  \label{sec:color_control}
 
 \end{document}
