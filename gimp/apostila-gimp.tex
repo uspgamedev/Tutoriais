@@ -726,7 +726,12 @@
     {\bf Hue-Saturation} como a {\bf Colorize} para retirar toda a saturação da
     imagem.
     
-    %% TODO box explicando hue-saturation-lightness.
+    \begin{framed}
+      Além do formato usual de representação de cores RGB, também é possível
+      existe o Hue-Saturaion-Lightness, que em geral é mais fácil e mais
+      intuitivo de usar. Como o próprio nome indica, você escolhe valores de
+      matiz, saturação e luminosidade da cor.
+    \end{framed}
     
     Essas opções podem ser encontradas no menu {\bf Colors}. Nessa apostila,
     explicamos apenas as quatro primeiras, que são as mais simples e mais úteis
@@ -736,13 +741,29 @@
     ou sobre a camada inteira se não houver seleção.
     
       \subsubsection{Color Balance}
-        Essa opção permite que você altere as cores
+        Essa opção permite que você manipule a proporção das cores, alterando o
+        balanço entre as partes complementares. Você pode, por exemplo, aumentar
+        a proporção de amarelo diminuindo a parte azul, e toda a região afetada
+        ficará mais amarelada.
       
         \begin{figure}[H]
           \centering
           \includegraphics[width=.6\linewidth]{screenshots/08-color_balance.png}
+          \caption{
+            \footnotesize
+            \it
+            Menu de controle de balanço de cores.
+          }
           \label{fig:color_balance}
         \end{figure}
+        
+        No entanto, a opção atinge apenas certos intervalos de cores. Como pode
+        ser visto na Figura \ref{fig:color_balance}, você pode escolher qual
+        intervalo afetar dentre sombras, tons médios e iluminações.
+        
+        Essa opção pode ser usada para ajustar os tons das cores de imagens. Por
+        exemplo, é possível manipular a iluminação em uma foto de forma a fazer
+        parecer que a luz no local é de uma cor diferente da original.
       
       \subsubsection{Hue-Saturation}
       
