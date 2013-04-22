@@ -738,7 +738,9 @@
     de maneira geral.
     
     Assim como as ferramentas, essas opções são aplicadas sobre a seleção atual,
-    ou sobre a camada inteira se não houver seleção.
+    ou sobre a camada inteira se não houver seleção. Por padrão elas mostram uma
+    prévia do resultado na imagem, mas suas modificações só são efetivadas quando
+    o botão \textbf{OK} delas é pressionado.
     
       \subsubsection{Color Balance}
         Essa opção permite que você manipule a proporção das cores, alterando o
@@ -766,9 +768,32 @@
         parecer que a luz no local é de uma cor diferente da original.
       
       \subsubsection{Hue-Saturation}
+        Essa opção permite que você manipule os valores de
+        Hue-Saturation-Lightness da imagem, ou de alguns tons da imagem. Você
+        pode, por exemplo, tirar toda a saturação dos tons de vermelho de uma
+        imagem, deixando-os apenas com tons de cinza. Ou você pode mudara todos
+        os tons de amarelo para verde, também.
+        
+        O principal propósito dessa opção é fazer ajustes nos tons de cor para
+        se alcançar a saturação, a matiz e a iluminação desejadas.
       
       \subsubsection{Colorize}
+        Essa opção lembra bastante a opção \textbf{Hue-Saturation}, mas ao invés
+        de manipular os valores Hue-Saturation-Lightness originais da imagem,
+        ela sobrepõe completamente eles. Isso significa que se você usar essa
+        opção para mover a matiz para azul, toda a região afetada terá a matiz
+        azul. O mesmo vale para a saturação e para a limnunosidade.
+        
+        O principal objetivo dessa ferramenta é atribuir diretamente valores de
+        saturação, matiz e luminosidade em determinadas regiões da imagem.
       
       \subsubsection{Brightness-Contrast}
+        Essa opção permite que você ajuste o brilho e o contraste da imagem, da
+        mesma maneira que fazemos com monitores e projetores. Você pode, por
+        exemplo, aumentar o brilho e o contraste de uma imagem escura e embaçada
+        para tentar discernir melhor os elementos dela.
+        
+        O principal objetivo dessa ferramenta é ajustar o brilho e o contraste
+        da região afetada para melhorar a visibilidade da imagem.
 
 \end{document}
