@@ -33,6 +33,25 @@
     
 \end{titlepage}
 
+\begin{center}
+  Copyright (C) 2013 USPGameDev
+\end{center}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{CC-BY.png}
+\end{figure}
+
+\vspace{300pt}
+
+Escrito por:
+\begin{itemize}
+  \item \textbf{Renan Teruo Carneiro} \textit{(imano\_ob at uspgamedev.org)}
+  \item \textbf{Wilson Kazuo Mizutani} \textit{(kazuo at uspgamedev.org)}
+\end{itemize}
+
+% Page break.
+\clearpage
+
 % Print table of contents.
 \tableofcontents
 
@@ -65,6 +84,7 @@
         \it
         Pixel Art
       }
+      \label{fig:pixelart}
     \end{subfigure}%
     \begin{subfigure}{.5\textwidth}
       \centering
@@ -74,6 +94,7 @@
         \it
         Concept Art
       }
+      \label{fig:conceptart}
     \end{subfigure}
     \caption{
       \footnotesize
@@ -111,23 +132,20 @@
    O ideal é pegar a versão com maior resolução possível, em PNG.
 
   \begin{figure}
-  \centering
-  \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=.7\linewidth]{beast-eye.png}
-    \label{fig:ex1_before}
-  \end{subfigure}%
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[width=.7\linewidth]{draft00.png}
-    \label{fig:ex1_after}
-  \end{subfigure}
-  \caption{
-    \footnotesize
-    \it
-    Imagem antes e depois da edição
-  }
-  \label{fig:intro}
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.7\linewidth]{beast-eye.png}
+      \caption{Antes}
+      \label{fig:ex1_before}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+      \centering
+      \includegraphics[width=.7\linewidth]{draft00.png}
+      \caption{Depois}
+    \end{subfigure}
+    \caption{}
+    \label{fig:intro}
   \end{figure}
   
   Com esse exercício esperamos apresentar as funcionalidades básicas e as
@@ -908,5 +926,42 @@
         
         O principal objetivo dessa ferramenta é ajustar o brilho e o contraste
         da região afetada para melhorar a visibilidade da imagem.
+
+\clearpage
+\section{Créditos}
+
+  \begin{itemize}
+    \item
+      \textbf{Figura \ref{fig:pixelart}} \\
+      Fonte:
+      \begin{center}
+        [LPC] 2 Characters (modificado)
+        \url{http://game-icons.net/lorc/original/beast-eye.html} \\
+      \end{center}
+      Autores: pennomi, laetissima, makrohn e artistas dos sprites base LPC. \\
+      Licensa: CC3.0 - By
+  \end{itemize}
+  
+  \begin{itemize}
+    \item
+      \textbf{Figura \ref{fig:conceptart}} \\
+      Fonte:
+      \begin{center}
+        Dance of Rebirth \url{http://opengameart.org/content/dance-of-rebirth} \\
+      \end{center}
+      Autor: 5shiroi \\
+      Licensa: CC0
+  \end{itemize}
+  
+  \begin{itemize}
+    \item
+      \textbf{Figura \ref{fig:ex1_before}} \\
+      Fonte:
+      \begin{center}
+        Game Icons \url{http://game-icons.net/lorc/original/beast-eye.html} \\
+      \end{center}
+      Autor: Lorc \\
+      Licensa: CC3.0 - By
+  \end{itemize}
 
 \end{document}
