@@ -61,8 +61,11 @@ Escrito por:
 \section{Introdução}
   Infográficos são representações gráficas e visuais de informação, dados ou
   conhecimento. Seu objetivo é apresentar informações complexas
-  eficientemente.\footnote{\url{http://en.wikipedia.org/wiki/Infographic},
-  acesso em 21/04/2013.}
+  eficientemente\footnotemark.
+  
+  \footnotetext{
+    \url{http://en.wikipedia.org/wiki/Infographic}, acesso em 21/04/2013.
+  }
   
   Na realidade, Infográficos já existem há muitos anos. Mas foi só recentemente
   que a proliferação de ferramentas simples e livres trouxeram a criação de
@@ -78,7 +81,46 @@ Escrito por:
 
 \clearpage
 \section{\textit{Embedding}}
-  Embedding é um bagulho muito louco.
+  Antes de mostrar as ferramentas de infográficos, vamos discutir como elas são
+  integradas em um site. Usa-se uma técnica chamada \textit{Embedding}, que se
+  traduz mais ou menos como "incorporar". E, de fato, o que essa técnica faz é
+  incorporar mídias externas em um site qualquer.
+  
+  \subsection{Por que precisamos disso?}
+    Os infográficos que faremos ficam hospedados no site que os gerou, porque
+    eles que possuem a tecnologia para gerá-los. Além disso, serão infográficos
+    relativamente interativos, portanto eles não são simples imagens para
+    fazermos \textit{download}.
+    
+    Então, através do \textit{Embedding}, nós fazemos mídias complexas geradas
+    em outros sites aparecerem naturalmente no nosso próprio site.
+  
+  \subsection{Como isso funciona?}
+    Talvez você já saiba, mas todas páginas Web possuem um código fonte em
+    \textit{HyperText Markup Language} (HTML). Tudo que aparece em uma página
+    tem um código HTML por trás. Logo, se queremos colocar um infográfico em
+    uma página, precisamos de algum tipo código HTML.
+    
+    É nesse ponto que entram as ferramentas de infografia Web. Elas não só os
+    constroem, como os mantêm hospedados em seus sites e fornecem um trecho de
+    código HTML para \textit{Embedding}, isso é, para colocarmos no nosso site.
+    Basta copiar tal trecho e colá-lo no código do site, e pronto!
+    
+  \subsection{Onde eu acesso o código HTML do meu site? Como eu faço um site?}
+    Normalmente, contrata-se um \textit{WebMaster} para criar uma página Web, e
+    ele fornece um meio de inserirmos código HTML nele. Mas, para simplificar
+    essa apostila, e manter o foco no que realmente interessa, usaremos a
+    ferramenta de blog WordPress, que faz tudo isso para a gente.
+    
+    Nesse caso, você tem duas opções: criar um blog hospedado em
+    \url{www.wordpress.com}, ou pedir para os monitores do curso criarem um
+    para você\footnotemark. Uma vez que você tenha seu próprio WordPress, você
+    poderá inserir código HTML nos seus \textit{posts} do blog, apresentando os
+    infográficos que quiser.
+    
+    \footnotetext{
+      Normalmente no endereço \url{www.uspgamedev.org/cursos/wordpress/}.
+    }
 
 \clearpage
 \section{Datawrapper}
