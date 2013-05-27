@@ -274,12 +274,25 @@ Escrito por:
 
   \subsection{Google Trends}
     \textbf{Endereço: \url{http://www.google.com/trends/}}
+    
     Google Trends é um site do Google que fornece estatísticas e infográficos
-    sobre chaves de busca usadas pelas pessoas no site principal deles. Por
-    exemplo, você pode pedir as Trends da busca "\textit{cats}", e o Google
-    Trends mostrará uma página com diversas estatísticas sobre essa busca,
-    como frequência ao longo do tempo, distribuição geográfica e termos
+    interativos sobre chaves de busca usadas pelas pessoas no site principal
+    deles. Por exemplo, você pode pedir as Trends da busca "\textit{cats}", e o
+    Google Trends mostrará uma página com diversas estatísticas sobre essa
+    busca, como frequência ao longo do tempo, distribuição geográfica e termos
     relacionados.
+    
+    \begin{figure}[ht]
+      \centering
+      \includegraphics[width=.9\linewidth]{cats.png}
+      \caption{
+        \footnotesize
+        \it
+        Infográfico de "Interesse ao longo do tempo" da chave de busca "cats",
+        pelo Google Trends.
+      }
+      \label{fig:cats}
+    \end{figure}
     
     Cada um dos infográficos na página apresentada tem uma opção "Embed". Ela
     abre uma janela para você configurar o tamanho que você deseja que o
@@ -289,5 +302,69 @@ Escrito por:
   \subsection{Wordle}
     \textbf{Endereço: \url{http://www.wordle.net/}}
     
+    Wordle é um serviço Web de geração de "Word Clouds" (nuvem de palavras). É
+    um tipo específico de infográfico onde o que se quer mostrar é quais
+    palavras (em um dado conjunto delas) são mais usadas, ou mais procuradas,
+    ou mais importantes em algum aspecto.
+    
+    As palavras ficam visualmente distribuídas em uma mesma imagem e as mais
+    "relevantes" ficam maiores que as outras. A distribuição delas pode seguir
+    diversos padrões, fontes, cores e formatos. Algumas vezes elas assumem até o
+    formato de algum objeto, podendo ter um objetivo mais artístico do que
+    informacional.
+    
+    \begin{figure}[ht]
+      \centering
+      \includegraphics[width=.9\linewidth]{wordle-1.png}
+      \caption{
+        \footnotesize
+        \it
+        Exemplo de "Word Cloud" gerada pelo Wordle, usando termos do código
+        LaTeX desta apostila.
+      }
+      \label{fig:wordle-1}
+    \end{figure}
+    
+    Para usar o Wordle, não é necessário cadastro nenhum. Basta entrar no site e
+    clicar em "Create". Ele pedirá para você fornecer um texto ou um
+    \textit{link} para uma página Web que satisfaça certas condições (na dúvida,
+    coloque e veja se funciona). Ele usará a frequência com que cada palavra
+    aparece no texto ou no site para formular os \textit{pesos} delas na
+    \textit{Word Cloud} resultante.
+    
+    Uma vez fornecidas as palavras, ele gerará um infográfico inicial usando
+    configurações aleatórias, e você poderá mudar essas configurações para
+    alterar a forma com que a \textit{Word Cloud} está apresentada. Para isso,
+    basta acessar os menus na barra superior do visualizador do infográfico
+    (pode estar razoavelmente difícil de enxergar devido às cores usadas). As
+    opções nesses menus são bastante intuitivas, sendo as principais as dos
+    menus "Font", "Layout" e "Color". Também é possível usar o botão "Randomize"
+    para re-gerar o gráfico usando alguma outra configuração aleatória.
+    
+    \begin{figure}[ht]
+      \centering
+      \includegraphics[width=.9\linewidth]{wordle-2.png}
+      \caption{
+        \footnotesize
+        \it
+        Outro exemplo de "Word Cloud" gerada pelo Wordle, usando o mesmo
+        conjunto de palavras.
+      }
+      \label{fig:wordle-2}
+    \end{figure}
+    
+    Uma vez que o resultado lhe satisfizer, é só usar o botão "Save to public
+    gllery" (salvar na galeria pública). Toda \textit{Word Cloud} feita no
+    Wordle é pública, isso é, acessível a todos. No entanto, só o criador dela
+    pode removê-la. Assim que você publicar sua imagem, aparecerá uma página
+    explicando como se faz isso. Basicamente, você pode ou remover o gráfico
+    imediatamente da galeria pública (no \textit{link} "DELETE THIS WORDLE"), ou
+    guardar o endereço fornecido pelo Wordle e remover sua \textit{Word Cloud}
+    posteriormente.
+    
+    Por fim, ao final da página com a notificação de publicação, haverá o código
+    HTML para fazer o \textit{embedding} do infográfico produzido no seu site.
+    Note que se você remover seu trabalho da galeria pública, qualquer
+    \textit{embedding} que você tenha feito dele não irá mais funcionar.
 
 \end{document}
