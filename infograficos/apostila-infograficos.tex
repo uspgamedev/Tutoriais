@@ -69,11 +69,11 @@ Escrito por:
   
   Na realidade, Infográficos já existem há muitos anos. Mas foi só recentemente
   que a proliferação de ferramentas simples e livres trouxeram a criação de
-  Infográficos para o alcance de um segmento maior da socedade. É no uso de
-  algumas dessas ferramentas que essa apostila se concentra. Não é nosso
-  objetivo dar nenhum curso sobre coleta e processamento de dados, mas sim sobre
-  as possíveis maneiras de se apresentá-los em seu blog ou site de maneira
-  simples e elegante.
+  Infográficos para o alcance de um segmento maior da socedade, princiaplmente
+  no âmbito digital. É no uso de algumas dessas ferramentas que essa apostila se
+  concentra. Não é nosso objetivo dar curso sobre coleta e processamento de
+  dados, mas sim sobre as possíveis maneiras de se apresentá-los em seu blog ou
+  site de maneira simples e elegante.
   
   Mais particularmente, trabalharemos usando o software livre WordPress como
   ferramenta de blog para publicar os infográficos gerados pelas ferramentas que
@@ -81,42 +81,56 @@ Escrito por:
 
 \clearpage
 \section{\textit{Embedding}}
-  Antes de mostrar as ferramentas de infográficos, vamos discutir como elas são
-  integradas em um site. Usa-se uma técnica chamada \textit{Embedding}, que se
-  traduz mais ou menos como "incorporar". E, de fato, o que essa técnica faz é
-  incorporar mídias externas em um site qualquer.
+  Antes de mostrar as ferramentas de infográficos, vamos discutir como fazer
+  o restultado aparecer em um site nosso. Para isso, usa-se uma técnica chamada
+  \textit{Embedding}, que se traduz mais ou menos como "incorporar". E, de fato,
+  o que essa técnica faz é incorporar em um site mídia externas a ele.
   
   \subsection{Por que precisamos disso?}
-    Os infográficos que faremos ficam hospedados no site que os gerou, porque
-    eles que possuem a tecnologia para gerá-los. Além disso, serão infográficos
-    relativamente interativos, portanto eles não são simples imagens para
-    fazermos \textit{download}.
+    Com o conhecimento técnico apropriado, é perfeitamente possível fazer o
+    infográfico que eu quiser em meu site. No entanto, isso não é nem um pouco
+    prático. Seriam semanas - se não meses - de trabalho como desenvolver alguns
+    poucos tipos de infográficos. Então, ao invés de reinventar a roda, vamos
+    usar o ferramental disponível na Web.
+
+    Usaremos infográficos gerados por sites especializados. Uma vez criados, os
+    infográficos ficam hospedados nesses sites, disponíveis para usarmos quando
+    e onde quisermos. Porém, como serão normalmente infográficos relativamente
+    interativos, fazer um simples \textit{download} de uma imagem deles não
+    seria exatamente o que queremos. O que queremos é que eles sejam acessados
+    como parte do \emph{nosso} próprio site, e não no site que o gerou.
     
-    Então, através do \textit{Embedding}, nós fazemos mídias complexas geradas
-    em outros sites aparecerem naturalmente no nosso próprio site.
-  
+    É isso que se chama \emph{incorporar} elementos externos no nosso site. E é
+    por isso que usamos essa técnica.
   \subsection{Como isso funciona?}
     Talvez você já saiba, mas todas páginas Web possuem um código fonte em
-    \textit{HyperText Markup Language} (HTML). Tudo que aparece em uma página
+    \emph{HyperText Markup Language} (HTML). Tudo que aparece em uma página
     tem um código HTML por trás. Logo, se queremos colocar um infográfico em
-    uma página, precisamos de algum tipo código HTML.
+    uma página, precisamos de algum tipo de código HTML.
     
-    É nesse ponto que entram as ferramentas de infografia Web. Elas não só os
-    constroem, como os mantêm hospedados em seus sites e fornecem um trecho de
-    código HTML para \textit{Embedding}, isso é, para colocarmos no nosso site.
-    Basta copiar tal trecho e colá-lo no código do site, e pronto!
+    É bem mais simples do que parece, porque não precisamos fazer esse código
+    nós mesmos. São as ferramentas de infografia Web responsáveis pelo nosso
+    infográfico que fornecem o código necessário para nós. Isso é possível pois,
+    como falamas, são esses sites especializados que hospedam o infográfico (da
+    mesma maneira que o YouTube hospeda nossos e muitos outros vídeos). Basta
+    copiar o trecho de código HTML fornecido pelo site e colá-lo no código do 
+    \emph{nosso} site, e pronto!
     
   \subsection{Onde eu acesso o código HTML do meu site? Como eu faço um site?}
     Normalmente, contrata-se um \textit{WebMaster} para criar uma página Web, e
-    ele fornece um meio de inserirmos código HTML nele. Mas, para simplificar
-    essa apostila, e manter o foco no que realmente interessa, usaremos a
-    ferramenta de blog WordPress, que faz tudo isso para a gente.
+    ele fornece um meio de inserirmos código HTML nele - seja pedindo para ele o
+    fazer por nós, seja ele nos concedendo acesso remoto ao servidor. Mas, para
+    simplificar essa apostila, e manter o foco no que realmente interessa,
+    usaremos a ferramenta de blog WordPress, que faz tudo isso para a gente e
+    permite escrevermos o código HTML que quisermos a partir do nosso próprio
+    brwoser.
     
     Nesse caso, você tem duas opções: criar um blog hospedado em
     \url{www.wordpress.com}, ou pedir para os monitores do curso criarem um
     para você\footnotemark. Uma vez que você tenha seu próprio WordPress, você
     poderá inserir código HTML nos seus \textit{posts} do blog, apresentando os
-    infográficos que quiser.
+    infográficos que quiser. Os detalhes específicos de como cada ferramenta de
+    infográfico é incorporado ao site são descritos nas seções a seguir.
     
     \footnotetext{
       Normalmente no endereço \url{www.uspgamedev.org/cursos/wordpress/}.
@@ -146,10 +160,11 @@ Escrito por:
     \end{figure}
     
     Tendo uma conta no site, para criar um infográfico, basta clicar no botão 
-    "Create a Chart". O primeiro passo é entrar com os dados. Os dados podem ser 
-    um arquivo .csv (Comma Separated Values) ou dados copiados e colados a partir
-    de um editor de planilhas, como o Microsoft Excel ou o LibreOffice Calc, como
-    por exemplo na Figura \ref{fig:dados-calc}.
+    "Create a Chart". O site segue um processo passo-a-passo para você elaborar
+    o infográfico que desejar. O primeiro passo é entrar com os dados. Os dados
+    podem ser um arquivo .csv (\emph{Comma Separated Values}) ou dados copiados
+    e colados a partir de um editor de planilhas, como o \emph{Microsoft Excel}
+    ou o \emph{LibreOffice Calc}. Veja um exemplo na Figura \ref{fig:dados-calc}.
     
     %%Exemplo de dados
     %%Tela com o resultado
@@ -162,12 +177,13 @@ Escrito por:
       \end{center}
     \end{figure}
     
-    Logo em seguida, você poderá rever os dados para confirmar se eles foram
+    No segundo passo, você poderá rever os dados para confirmar se eles foram
     reconhecidos corretamente, como na Figura \ref{fig:datawrapper-data}. Você
-    também pode informar ao serviço se a primeira linha e colunas são labels,
-    se as séries de dados se encontram nas linhas ou nas colunas, e algumas
-    outras opções de formatação nesse ponto. Também é possível creditar a
-    fonte original dos dados, ou mesmo disponibilizá-los agora.
+    também pode informar ao serviço se a primeira linha e colunas são apenas
+    etiquetas (ou \emph{labels}) para os dados, se as séries de dados
+    encontram-se nas linhas ou nas colunas, e algumas outras opções de
+    formatação nesse ponto. Também é possível creditar a fonte original dos
+    dados, ou mesmo visualizá-los imediatamente.
     
     
     \begin{figure}[H]
@@ -185,7 +201,8 @@ Escrito por:
     aqui). Aqui também é onde se nomeia o gráfico, e onde se coloca a descrição do
     mesmo. É possível também destacar uma série de dados em particular. Por fim, 
     é nessa parte em que você pode escolher as cores usadas, além de diversas outras
-    opções visuais do gráfico.
+    opções visuais do gráfico. Essas opções estão todas disponibilizadas no menu
+    lateral, como mostrado na Figura \ref{fig:datawrapper-describe}.
     
     \begin{figure}[H]
       \begin{center}
@@ -195,9 +212,10 @@ Escrito por:
       \end{center}
     \end{figure}
     
-    Finalmente, temos o gráfico pronto. Agora falta apenas publicar. Na última etapa,
-    você tem o gráfico final, um link para o gráfico e o código html para emebedding
-    do mesmo.
+    Finalmente, temos uma visualização do gráfico pronto no próximo passo. Agora
+    falta apenas publicar. Isso é feito na última etapa, onde você tem o gráfico
+    final em exibição, um link para você voltar a acessar o gráfico e o código
+    HTML para \emph{embedding} do mesmo.
     
     \begin{figure}[H]
       \begin{center}
@@ -207,7 +225,7 @@ Escrito por:
       \end{center}
     \end{figure}
     
-    Se quiser, você ainda pode modificar os gráficos já publicados. Eles se encontram
+    Se quiser, você também pode modificar os gráficos já publicados. Eles se encontram
     em "My Charts". Lembre-se de republicá-los caso tenha modificado alguma coisa.
     %%Exemplo?
 
@@ -225,9 +243,9 @@ Escrito por:
     Infogram é um site de serviço Web voltado para a criação e manutenção de
     infográficos dos mais diversos tipos, relativamente interativos e com
     aparência profissional. Seu uso não exige nenhum tipo de conhecimento de
-    design, apenas uma noção elementar de manipulação de planilhas. O site fornece
-    um cadastro gratuito, com possibilidade de adquirir uma conta "Pro" para ter
-    acesso a funcionalidades avançadas.
+    design, apenas uma noção elementar de manipulação de planilhas. O site
+    fornece um cadastro gratuito, com possibilidade de adquirir uma conta
+    ``Pro'' para ter acesso a funcionalidades avançadas.
     
     Uma vez feita uma conta, é possível começar imediatamente a fazer
     infográficos. Na verdade, o site permite você criar um \textit{layout}
@@ -235,8 +253,8 @@ Escrito por:
     mapas e vídeos. Também existem vários temas para esses \textit{layouts}.
     
     Na primeira vez que você entrar, o Infogr.am mostrará um esquema rápido
-    explicando o que é cada ferramenta. Não são muitas, é bem simples de entender.
-    A interface é dividida em quatro partes:
+    explicando o que é cada ferramenta da interface dele. Não são muitas, é bem
+    simples de entender. Elas estão divididas em quatro partes:
     
     \begin{itemize}
       \item
@@ -250,9 +268,9 @@ Escrito por:
       \item
         \textbf{Menu superior:}
         Configurações do \textit{layout}, prévia visual do resultado,
-        \textit{download} (funcionalidade para contas Pro) e compartilhar. É nessa
-        última opção ("\textit{share}") que você poderá obter o código HTML para
-        incorporar sua produção no seu site.
+        \textit{download} (funcionalidade para contas Pro) e publicação. É nessa
+        última opção (escrita como ``\textit{share}'') que você poderá obter o
+        código HTML para incorporar sua produção no seu site.
       \item
         \textbf{Editor visual do \textit{layout}:}
         Aqui você pode posicionar os elementos do seu \textit{layout}, escrever
@@ -266,7 +284,7 @@ Escrito por:
     linha, gráficos de setor, gráficos de barra, gráficos de espalhamento e
     muito outros. Alguns possuem variações, e todos podem ter suas cores
     modificadas. Essa última opção e outras aparecem no menu de edição do
-    infográfico, que, como dita acima, aparece quando você clica duas vezes
+    infográfico, que, como dito acima, aparece quando você clica duas vezes
     nele.
     
     No menu de edição do infográfico, você pode colocar os dados que o Infogr.am
@@ -292,7 +310,7 @@ Escrito por:
     é bastante conveniente. No entanto, esses dados precisam já estar processados
     e distribuídos da maneira que o Infogr.am espera. Por exemplo, um gráfico de
     linhas espera por uma tabela com: uma coluna com identificadores para cada
-    linha do gráfico, e várias colunas com os valores associados acada
+    linha do gráfico, e várias colunas com os valores associados a cada
     identificador ao longo do tempo. Isso fica mais claro na Figura
     \ref{fig:infogram-sample-spreadsheet}. O gráfico resultante está na Figura
     \ref{fig:infogram-sample-chart}.
@@ -319,8 +337,8 @@ Escrito por:
 \section{Ferramentas de uso específico}
   Às vezes queremos um tipo mais específico de Infográfico, e serviços Web de
   propósito geral nesse aspecto podem não ter tudo que a gente quer nesses
-  casos. Essa seção dedica-se a explicar alguns outro sites de Infográfico de
-  uso mais específico, como geradores especializados de "Word Clouds", por
+  casos. Essa seção dedica-se a explicar alguns outro sites de Infográficos de
+  uso mais específico, como geradores especializados de ``Word Clouds'', por
   exemplo.
 
   \subsection{Google Trends}
@@ -328,8 +346,8 @@ Escrito por:
     
     Google Trends é um site do Google que fornece estatísticas e infográficos
     interativos sobre chaves de busca usadas pelas pessoas no site principal
-    deles. Por exemplo, você pode pedir as Trends da busca "\textit{cats}", e o
-    Google Trends mostrará uma página com diversas estatísticas sobre essa
+    deles. Por exemplo, você pode pedir as Trends da busca ``\textit{cats}'', e
+    o Google Trends mostrará uma página com diversas estatísticas sobre essa
     busca, como frequência ao longo do tempo, distribuição geográfica e termos
     relacionados.
     
@@ -339,13 +357,13 @@ Escrito por:
       \caption{
         \footnotesize
         \it
-        Infográfico de "Interesse ao longo do tempo" da chave de busca "cats",
-        pelo Google Trends.
+        Infográfico de ``Interesse ao longo do tempo'' da chave de busca
+        ``cats'', pelo Google Trends.
       }
       \label{fig:cats}
     \end{figure}
     
-    Cada um dos infográficos na página apresentada tem uma opção "Embed". Ela
+    Cada um dos infográficos na página apresentada tem uma opção ``Embed''. Ela
     abre uma janela para você configurar o tamanho que você deseja que o
     infográfico tenha na sua página (em pixels) e fornece o código HTML
     correspondente. O uso do Google Trends é bem direto e específico mesmo.
@@ -353,13 +371,13 @@ Escrito por:
   \subsection{Wordle}
     \textbf{Endereço: \url{http://www.wordle.net/}}
     
-    Wordle é um serviço Web de geração de "Word Clouds" (nuvem de palavras). É
-    um tipo específico de infográfico onde o que se quer mostrar é quais
+    Wordle é um serviço Web de geração de ``Word Clouds'' (nuvens de palavras).
+    É um tipo específico de infográfico onde o que se quer mostrar é quais
     palavras (em um dado conjunto delas) são mais usadas, ou mais procuradas,
     ou mais importantes em algum aspecto.
     
     As palavras ficam visualmente distribuídas em uma mesma imagem e as mais
-    "relevantes" ficam maiores que as outras. A distribuição delas pode seguir
+    ``relevantes'' ficam maiores que as outras. A distribuição delas pode seguir
     diversos padrões, fontes, cores e formatos. Algumas vezes elas assumem até o
     formato de algum objeto, podendo ter um objetivo mais artístico do que
     informacional.
@@ -370,14 +388,14 @@ Escrito por:
       \caption{
         \footnotesize
         \it
-        Exemplo de "Word Cloud" gerada pelo Wordle, usando termos do código
+        Exemplo de ``Word Cloud'' gerada pelo Wordle, usando termos do código
         LaTeX desta apostila.
       }
       \label{fig:wordle-1}
     \end{figure}
     
     Para usar o Wordle, não é necessário cadastro nenhum. Basta entrar no site e
-    clicar em "Create". Ele pedirá para você fornecer um texto ou um
+    clicar em ``Create''. Ele pedirá para você fornecer um texto ou um
     \textit{link} para uma página Web que satisfaça certas condições (na dúvida,
     coloque e veja se funciona). Ele usará a frequência com que cada palavra
     aparece no texto ou no site para formular os \textit{pesos} delas na
@@ -389,8 +407,8 @@ Escrito por:
     basta acessar os menus na barra superior do visualizador do infográfico
     (pode estar razoavelmente difícil de enxergar devido às cores usadas). As
     opções nesses menus são bastante intuitivas, sendo as principais as dos
-    menus "Font", "Layout" e "Color". Também é possível usar o botão "Randomize"
-    para re-gerar o gráfico usando alguma outra configuração aleatória.
+    menus ``Font'', ``Layout'' e ``Color''. Também é possível usar o botão
+    ``Randomize'' para re-gerar o gráfico usando alguma outra configuração aleatória.
     
     \begin{figure}[ht]
       \centering
@@ -398,24 +416,27 @@ Escrito por:
       \caption{
         \footnotesize
         \it
-        Outro exemplo de "Word Cloud" gerada pelo Wordle, usando o mesmo
+        Outro exemplo de ``Word Cloud'' gerada pelo Wordle, usando o mesmo
         conjunto de palavras.
       }
       \label{fig:wordle-2}
     \end{figure}
     
-    Uma vez que o resultado lhe satisfizer, é só usar o botão "Save to public
-    gllery" (salvar na galeria pública). Toda \textit{Word Cloud} feita no
+    Uma vez que o resultado lhe satisfizer, é só usar o botão ``Save to public
+    gallery'' (salvar na galeria pública). Toda \textit{Word Cloud} feita no
     Wordle é pública, isso é, acessível a todos. No entanto, só o criador dela
     pode removê-la. Assim que você publicar sua imagem, aparecerá uma página
     explicando como se faz isso. Basicamente, você pode ou remover o gráfico
-    imediatamente da galeria pública (no \textit{link} "DELETE THIS WORDLE"), ou
-    guardar o endereço fornecido pelo Wordle e remover sua \textit{Word Cloud}
-    posteriormente.
+    imediatamente da galeria pública (no \textit{link} ``DELETE THIS WORDLE''),
+    ou guardar o endereço URL fornecido pelo Wordle e remover sua \textit{Word
+    Cloud} posteriormente.
     
     Por fim, ao final da página com a notificação de publicação, haverá o código
     HTML para fazer o \textit{embedding} do infográfico produzido no seu site.
     Note que se você remover seu trabalho da galeria pública, qualquer
-    \textit{embedding} que você tenha feito dele não irá mais funcionar.
+    \textit{embedding} que você tenha feito dele não irá mais funcionar. Além
+    disso, dependendo do tamanho que você queira que a \emph{Word Cloud}
+    apresente no seu site, talvez valha mais a pena baixar uma imagem de alta
+    resolução dela do que usar \emph{embedding}.
 
 \end{document}
